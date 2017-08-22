@@ -1,0 +1,25 @@
+<apex:page standardController="Account" sidebar="false" showheader="false" extensions="PM5S1Extension">
+
+<apex:pageblock >
+<apex:form style="text-align:center">
+<apex:repeat value="{!alphaList}" var="alpha">
+	<apex:commandlink action="{!getContacts}" value="{!alpha}	" rerender="contacts">
+		<apex:param name="start" value="{!alpha}" assignTo="{!start}"></apex:param>
+	</apex:commandlink>
+</apex:repeat>
+</apex:form>
+<apex:outputpanel id="contacts">
+<apex:datatable value="{!conlist}" var="con">
+	<apex:facet name="header">Contacts Related to Account {!account.id}</apex:facet>
+		<apex:column value="{!con.id}"></apex:column>
+		<apex:column value="{!con.name}"></apex:column>
+		<apex:column value="{!con.accountid}"></apex:column>
+		<apex:column >
+		<apex:form >
+			<apex:commandlink onclick="del('{!con.id}')" value="Delete Contact" rerender="contacts"></apex:commandlink>
+		</apex:form>
+		</apex:column>
+	</apex:datatable>
+</apex:outputpanel>
+</apex:pageblock>
+</apex:page>

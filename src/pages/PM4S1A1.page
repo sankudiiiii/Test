@@ -1,0 +1,24 @@
+<apex:page controller="PM4S1A1Controller" sidebar="false" showheader="false">
+<apex:pageblock >
+<apex:form style="text-align:center">
+	<apex:inputText value="{!searchString}"/>
+	<apex:commandButton action="{!search}" value="SEARCH" rerender="conId,accId,oppId,lId"/>
+</apex:form>
+<apex:pageblocktable value="{!acclist}" var="acc" id="accId" style="display:{!if(isacc,"block","none")}">
+		<apex:facet name="header">Accounts</apex:facet>
+		<apex:column value="{!acc.name}"/>
+</apex:pageblocktable>
+<apex:pageblocktable value="{!conlist}" var="con" id="conId" style="display:{!if(iscon,"block","none")}">
+		<apex:facet name="header">Contacts</apex:facet>
+		<apex:column value="{!con.name}"/>
+</apex:pageblocktable>
+<apex:pageblocktable value="{!llist}" var="l" id="lId" style="display:{!if(isl,"block","none")}">
+		<apex:facet name="header">Leads</apex:facet>
+		<apex:column value="{!l.name}"/>
+</apex:pageblocktable>
+<apex:pageblocktable value="{!opplist}" var="opp" id="oppId" style="display:{!if(isopp,"block","none")}">
+		<apex:facet name="header">Opportunities</apex:facet>
+		<apex:column value="{!opp.name}"/>
+</apex:pageblocktable>
+</apex:pageblock>
+</apex:page>
