@@ -5,14 +5,12 @@ if(e.keyCode==13)
 CallApexMethod() ;
 }
 //     function del(i) {
-// 	    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });
-	    
+// 	    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });	    
 //     }
-    
-    var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
+var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
 </script>
 <script src="{!URLFOR($Resource.RemotingJS,'Remoting.js')}"></script>
-<apex:sectionHeader title="Account List" id="sh">
+<apex:sectionHeader >
 <apex:outputLink value="{!$Resource.AccImg}" id="theLink">
      <apex:image url="{!URLFOR($Resource.AccImg)}" width="50" height="50">
       </apex:image>

@@ -1,4 +1,4 @@
-public with sharing class PM1S2OOP extends ParentOOP{
+public with sharing class PM1S2OOP extends PM1S2ParentOOP{
     Integer id;
     String name;
     public static Integer staticInteger = 0;

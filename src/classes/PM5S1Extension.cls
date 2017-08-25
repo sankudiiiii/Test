@@ -6,13 +6,10 @@ global with sharing class PM5S1Extension {
     public String start{get;set;}
     public list<Contact> conlist{get;set;}
     public list<String> alphaList = new list<String> {'All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    public Account a{get;set;}
     public list<String> getAlphaList(){
     	return alphaList;
     }
-    public PM5S1Extension(ApexPages.StandardController controller){
-    	a = (Account)controller.getRecord();
-    }
+    public PM5S1Extension(){}
     public PM5S1Extension(ApexPages.StandardSetController controller){
     	countacc=0;
     	acclist=new list<account>();
@@ -52,14 +49,21 @@ global with sharing class PM5S1Extension {
     } 
     @RemoteAction
     global static boolean deleteContact(id cid){
-    	Contact c = [select accountid from contact where id=:cid];
-    	System.debug(c.accountid);
+    	Contact c = new contact();
+    	if(cid!=null){
+    		for(contact cn : [select id from contact]){
+    			if(cn.id==cid){
+    				c = [select accountid from contact where id=:cid];
+    			}
+    		}
+    	}
+    	//System.debug(c.accountid);
     	c.accountid=null;
-    	System.debug(c.accountid);
+    	//System.debug(c.accountid);
     	Database.SaveResult sr = Database.update(c,false);
-    	System.debug(c);
-    	System.debug(sr);
-    	System.debug(sr.issuccess());
+    	//System.debug(c);
+    	//System.debug(sr);
+    	//System.debug(sr.issuccess());
     	if(sr.issuccess())
     	return true;
     	else

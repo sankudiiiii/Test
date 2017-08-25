@@ -1,0 +1,16 @@
+<apex:page standardcontroller="OpportunityLineItem" renderAs="pdf" extensions="ABCContainersInvoicesExtension" tabstyle="Opportunity" applyHtmlTag="false" showheader="false" sidebar="false">
+	<head>
+		<style>
+			
+		</style>
+	</head>
+	<h2><apex:outputtext value="{!acc.name}" /></h2><h2></h2><h4></h4>
+		<apex:outputpanel styleClass="label">				
+					<apex:outputfield value="{!li.name}" />
+					<apex:outputfield value="{!li.opportunityid}" />
+					<apex:outputfield value="{!li.servicedate}" />
+					<apex:outputfield value="{!li.unitprice}" />
+					<apex:outputfield value="{!li.quantity}" />
+		</apex:outputpanel>
+		{!acc}{!usr}{!opp}
+</apex:page>

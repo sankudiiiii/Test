@@ -1,0 +1,39 @@
+<apex:page standardcontroller="OpportunityLineItem" extensions="ABCContainersInvoicesExtension" tabstyle='Opportunity' applyHtmlTag="false" showheader="false" sidebar="false">
+	<head>
+		<style>
+			.tbl {
+				margin : 0% 10%;
+				display : table;
+				width : 80%;
+				border:1px solid;
+			}
+			.label {
+				display : table-row;
+				width:80%;
+				border:1px solid;
+			}
+			.dt {
+				display : table-cloumn;
+				width : 20%;
+				border:1px solid;
+			}
+		</style>
+	</head>
+<apex:sectionheader title="ABC Containers" subtitle='Line Items'/>
+	<div class="tbl" >
+		<apex:outputpanel styleClass="label">
+		<apex:outputlabel styleClass="dt" value="Opportunity Line Item" />
+		<apex:outputlabel styleClass="dt" value="Opportunity" />
+		<apex:outputlabel styleClass="dt" value="Product" />
+		<apex:outputlabel styleClass="dt" value="Invoice" />
+		</apex:outputpanel>
+		<apex:outputpanel styleClass="label">
+		<apex:repeat value="{!lineitems}" var="li">
+				<apex:outputfield styleClass="dt" value="{!li.name}" />
+				<apex:outputfield styleClass="dt" value="{!li.opportunityid}" />
+				<apex:outputfield styleClass="dt" value="{!li.product2id}" />
+				<apex:outputlink styleClass="dt" value='https://c.ap5.visual.force.com/apex/ABCContainersInvoices?id={!li.id}' >Generate Invoice</apex:outputlink>
+		</apex:repeat>			
+		</apex:outputpanel>
+		</div>
+</apex:page>

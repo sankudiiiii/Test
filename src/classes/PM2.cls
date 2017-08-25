@@ -87,6 +87,22 @@ for(aggregateresult agg : agglist){
 		Map<String,Map<String,Integer>> map2 = new Map<String,Map<String,Integer>>();
 List<Schema.PicklistEntry> statuslist = lead.status.getdescribe().getpicklistvalues();
 List<Schema.PicklistEntry> sourcelist = lead.leadsource.getdescribe().getpicklistvalues();
+list<lead> leadlist = [select id,name,status,leadsource from lead];
+for(Schema.PicklistEntry s1 : sourcelist){
+	String  source = s1.getlabel();
+	Map<String,Integer> map1 = new Map<String,Integer>();
+	for(Schema.PicklistEntry s2 : statuslist){
+		String  status = s2.getlabel();
+		Integer count = 0;
+		for(lead l : leadlist){
+			if(l.leadsource == source && l.status == status)
+				count++;
+		}
+		map1.put(status,count);		
+	}
+	map2.put(source,map1);
+}
+/*
 for(Schema.PicklistEntry sl : sourcelist){
     String  source = sl.getlabel();
 	Map<String,Integer> map1 = new Map<String,Integer>();
@@ -95,7 +111,7 @@ for(Schema.PicklistEntry sl : sourcelist){
         map1.put((String)agg.get('status'),(Integer)agg.get('expr0'));
     }
     map2.put(sl.getlabel(),map1);
-}
+}*/
 for(String str : map2.keyset()){
     System.debug('Lead Source : '+str+' Status Map : '+map2.get(str));
 }
