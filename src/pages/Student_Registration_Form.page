@@ -1,0 +1,28 @@
+<apex:page standardcontroller="Student__c" extensions="StudentRegistrationExtension" language="{!lang}" id="abc">
+<apex:form >
+	<apex:selectlist value="{!lang}" size="1" multiselect="false">
+		<apex:selectoptions value="{!so}">
+			<apex:commandlink action='{!changelang}' rerender='abc'/>
+		</apex:selectoptions>
+		<apex:actionSupport event="onchange" action="{!changelang}" reRender="abc" />
+	</apex:selectlist>
+</apex:form>
+<apex:form >
+	Name : <apex:inputfield value="{!Student__c.name}" /><br></br>
+	Roll Number : <apex:inputfield value="{!Student__c.Roll_Number__c}" /><br></br>
+	Gender : <apex:inputfield value="{!Student__c.Gender__c}" /><br></br>
+	Course : <apex:inputfield value="{!Student__c.Course__c}" /><br></br>
+	SSC Percentage : <apex:inputfield value="{!Student__c.SSC_Percentage__c}" /><br></br>
+	HSC Percentage : <apex:inputfield value="{!Student__c.HSC_Percentage__c}" /><br></br>
+	Country : <apex:inputfield value="{!Student__c.Country__c}" /><br></br>
+	State : <apex:inputfield value="{!Student__c.State__c}" /><br></br>
+	City: <apex:inputfield value="{!Student__c.City__c}" /><br></br>
+	<apex:commandButton action="{!insertRecord}" value="Save" onComplete="return fun()" />
+</apex:form>
+<script>
+	function fun(){
+		window.alert('Your admission application has been submitted successfully');
+		return true;
+	}
+</script>
+</apex:page>
