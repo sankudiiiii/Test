@@ -16,8 +16,11 @@
 			#datetable td {
 				border : 1px solid;
 			}
-			#infotable {
+			#infotable,#infotable1 {
 				float:left;
+			}
+			#infotable1 { 
+				position:absolute; top:100px;
 			}
 			#desctable {
 				margin-top:50%;
@@ -54,8 +57,8 @@
 			<th>Date</th>
 		</tr>
 		<tr>
-			<td></td>
-			<td>{!li.servicedate}</td>
+			<td>#{!invoiceNo}</td>
+			<td>{!dt}</td>
 		</tr>
 	</table>
 	<table id='infotable'>
@@ -72,7 +75,7 @@
 			<td>{!acc.phone}</td>
 		</tr>
 	</table>
-	<table id='infotable'>
+	<table id='infotable1'>
 		<tr>
 			<th>BILL TO</th>
 		</tr>
@@ -102,18 +105,22 @@
 		</tr>
 		<tr>
 			<td>Service fee</td>
-			<td class='rt'>{!servicefee}</td>
+			<td class='rt'>{!li.service_fee__c}</td>
 		</tr>
 		<tr>
-			<td>Labour {!labourhour} hrs at ${!labour}/hr</td>
-			<td class='rt'>{!labourcost}</td>
+			<td>Labour {!li.labour_hour__c} hrs at ${!li.labour_rate__c}/hr</td>
+			<td class='rt'>{!labour}</td>
 		</tr>
 		<tr>
 			<td>Line Item {!li.quantity} at ${!li.unitprice}/line item</td>
 			<td class='rt'>{!licost}</td>
 		</tr>
 		<tr>
-			<td>Tax (){!tax}%)</td>
+			<td>Discount ({!li.discount}%)</td>
+			<td class='rt'>-{!discount}</td>
+		</tr>
+		<tr>
+			<td>Tax ({!li.tax__c}% after discount)</td>
 			<td class='rt'>{!taxamount}</td>
 		</tr>
 		<tr>

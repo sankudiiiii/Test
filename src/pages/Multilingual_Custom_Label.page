@@ -1,0 +1,3 @@
+<apex:page language='fr'>
+{!$label.Multilingual_Custom_Label}
+</apex:page>

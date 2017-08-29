@@ -15,7 +15,9 @@ public with sharing class StudentRegistrationExtension {
 		return null;
 	}
 	public pagereference changelang(){
-		System.debug(lang);
+		PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+		pageRef.setRedirect(true);
+		System.debug(pageRef);
 		return null;
 	}
 }
