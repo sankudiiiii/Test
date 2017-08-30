@@ -175,10 +175,16 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Student Name</label>
+        <label>Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Students</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>VR1</fullName>
+        <active>true</active>
+        <errorConditionFormula>$Setup.Validation_Setting__c.Validation_Rule__c  &amp;&amp; (ISBLANK( City__c )  ||  ISBLANK( Country__c )  ||  ISBLANK( State__c ))</errorConditionFormula>
+        <errorMessage>please fill all the details.</errorMessage>
+    </validationRules>
 </CustomObject>

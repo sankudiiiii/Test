@@ -1,5 +1,5 @@
-<apex:page standardcontroller="Student__c" extensions="StudentRegistrationExtension" language="{!lang}" id="abc" showheader='false' sidebar='false'>
-<apex:pageblock id='abc'>
+<apex:page standardcontroller="Student__c" extensions="StudentRegistrationExtension" language="{!lang}" id="abc" showheader="false" sidebar="false">
+<apex:pageblock id="abc">
 <apex:form >
 	{!$Label.Change_Language}
 	<apex:selectlist value="{!lang}" size="1" multiselect="false">
@@ -9,8 +9,8 @@
 	</apex:selectlist>
 </apex:form>
 <apex:form >
-	<apex:pageblock>
-	<apex:pageblocksection>
+	<apex:pageblock >
+	<apex:pageblocksection >
 	<apex:inputfield value="{!Student__c.name}" /><br></br>
 	<apex:inputfield value="{!Student__c.Roll_Number__c}" /><br></br>
 	<apex:inputfield value="{!Student__c.Gender__c}" /><br></br>

@@ -1,5 +1,5 @@
 <apex:page standardcontroller="OpportunityLineItem" renderAs="pdf" extensions="ABCContainersInvoicesExtension" applyHtmlTag="false" showheader="false" sidebar="false">
-	<head>
+	<!-- <head>
 		<style>
 			h2 {
 				color:blue;
@@ -49,7 +49,9 @@
 				position:absolute; top:850px; left : 150px;
 			}
 		</style>
-	</head>
+	</head> -->
+	<head>
+<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersInvoices.css')}" rel="stylesheet"/></head>
 	<table id='datetable'>
 		<caption>INVOICE</caption>
 		<tr>

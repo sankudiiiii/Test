@@ -1,3 +1,3 @@
-<apex:page language='fr'>
-{!$label.Multilingual_Custom_Label}
+<apex:page language="fr">
+{!$Label.Multilingual_Custom_Label}
 </apex:page>

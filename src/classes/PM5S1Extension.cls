@@ -31,9 +31,11 @@ global with sharing class PM5S1Extension {
     	if(acclist!=null){
     		acclist.clear();
     		countacc=acclist.size();
-    	}
-    	else
+    	} else
     		countacc=0;
+    	if(conlist!=null){
+    		conlist.clear();
+    	}
     	return null;
     }
     public pagereference getContacts(){

@@ -1,0 +1,3 @@
+<apex:page standardcontroller="Campaign">
+<apex:enhancedlist type="Campaign" height="300"></apex:enhancedlist>
+</apex:page>

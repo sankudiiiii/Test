@@ -23,7 +23,7 @@ var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
 		<apex:outputtext >Account Name : </apex:outputtext>
 		<apex:inputtext value="{!searchString}" onkeyup="s(event,this)"></apex:inputtext>
 		<apex:commandButton id="submitb" action="{!search}" value="SEARCH" rerender="accountlist,showmsg"></apex:commandButton>
-		<apex:commandlink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountlist"></apex:commandlink>
+		<apex:commandlink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountlist,contacts"></apex:commandlink>
 	</apex:form>
 <apex:outputPanel id="accountlist">
 	<apex:datatable value="{!acclist}" var="acc">
