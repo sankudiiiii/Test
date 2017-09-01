@@ -15,7 +15,7 @@ public class EFTAddressVerificationTriggerHandler {
                                  status='New',
                                  Type=cType,
                                  subject=sh.Bill_to_Customer_Account__r.name+' '+cType,
-                                 Open_Sales_Order__c=eft.SalesHeader__c,
+                                 OpenSalesOrder__c=eft.SalesHeader__c,
                                  Transaction_Status__c=eft.Transaction_Status__c,
                                  Sales_Order_Number__c=sh.Name,
                                  Order_Date__c=eft.Transaction_Date__c));

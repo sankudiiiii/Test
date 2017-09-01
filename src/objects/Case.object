@@ -168,17 +168,18 @@
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
-        <fullName>Open_Sales_Order__c</fullName>
-        <encrypted>false</encrypted>
+        <fullName>OpenSalesOrder__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Open Sales Order</label>
-        <length>18</length>
+        <label>OpenSalesOrder</label>
+        <referenceTo>SalesHeader__c</referenceTo>
+        <relationshipLabel>Cases</relationshipLabel>
+        <relationshipName>Cases</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Order_Date__c</fullName>
@@ -415,6 +416,13 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SourceId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Status</fullName>

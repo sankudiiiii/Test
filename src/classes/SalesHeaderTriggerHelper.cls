@@ -16,7 +16,7 @@ public class SalesHeaderTriggerHelper {
                                  status='New',
                                  Type=cType,
                                  subject=acc.name+' '+cType,
-                                 Open_Sales_Order__c=sh.id,
+                                 OpenSalesOrder__c=sh.id,
                                  Transaction_Status__c=eft.Transaction_Status__c,
                                  Sales_Order_Number__c=sh.Name,
                                  Order_Date__c=eft.Transaction_Date__c));

@@ -1,0 +1,37 @@
+<apex:page standardcontroller="OpportunityLineItem" extensions="ABCContainersInvoicesExtension" tabstyle="Opportunity" applyHtmlTag="false" showheader="false" sidebar="false">
+	<!-- <head>
+		<style>
+			table {
+				width : 80%;
+				margin:0 10%;
+				border-collapse:collapse;
+			}
+			td,th {
+				border : 1px black solid;
+			}
+		</style>
+	</head> -->
+	<head>
+<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}" rel="stylesheet"/></head>
+<apex:sectionheader title="ABC Containers" subtitle="Line Items"/>
+	<table class="tbl" >
+		<tr>
+		<apex:outputpanel styleClass="label">
+			<th><apex:outputlabel styleClass="dt" value="Opportunity Line Item" /></th>
+			<th><apex:outputlabel styleClass="dt" value="Opportunity" /></th>
+			<th><apex:outputlabel styleClass="dt" value="Product" /></th>
+			<th><apex:outputlabel styleClass="dt" value="Invoice" /></th>
+		</apex:outputpanel>
+		</tr>
+		<apex:outputpanel styleClass="label">
+			<apex:repeat value="{!lineitems}" var="li">
+				<tr>
+				<td><apex:outputfield styleClass="dt" value="{!li.name}" /></td>
+				<td><apex:outputfield styleClass="dt" value="{!li.opportunityid}" /></td>
+				<td><apex:outputfield styleClass="dt" value="{!li.product2id}" /></td>
+				<td><apex:outputlink styleClass="dt" value="https://c.ap5.visual.force.com/apex/ABCTrials?id={!li.id}&no={!count}" >Generate Invoice
+				</apex:outputlink></td></tr>
+			</apex:repeat>			
+		</apex:outputpanel>
+	</table>
+</apex:page>

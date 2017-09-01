@@ -41,6 +41,25 @@
         <fullName>Discount</fullName>
     </fields>
     <fields>
+        <fullName>Labour_Hour__c</fullName>
+        <externalId>false</externalId>
+        <label>Labour Hour</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Labour_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Labour Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>ListPrice</fullName>
     </fields>
     <fields>
@@ -61,7 +80,25 @@
         <fullName>ServiceDate</fullName>
     </fields>
     <fields>
+        <fullName>Service_Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Subtotal</fullName>
+    </fields>
+    <fields>
+        <fullName>Tax__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>TotalPrice</fullName>

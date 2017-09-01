@@ -126,6 +126,16 @@
         <fullName>PostalCode</fullName>
     </fields>
     <fields>
+        <fullName>RSVP__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>RSVP</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Salutation</fullName>
         <picklist>
             <picklistValues>

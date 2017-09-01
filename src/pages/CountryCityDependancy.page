@@ -1,0 +1,11 @@
+<apex:page controller="CountryCityDependancyController">
+<apex:form >
+<apex:selectlist value="{!c1}" size="1" multiselect="false">
+	<apex:actionSupport event="onchange" rerender="form1"/>
+	<apex:selectoptions value="{!countries}" />
+</apex:selectlist>
+<apex:selectlist value="{!c2}" size="1" multiselect="false" id="form1">
+	<apex:selectoptions value="{!cities}" />
+</apex:selectlist>
+</apex:form>
+</apex:page>

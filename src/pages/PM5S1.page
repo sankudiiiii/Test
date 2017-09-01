@@ -5,14 +5,12 @@ if(e.keyCode==13)
 CallApexMethod() ;
 }
 //     function del(i) {
-// 	    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });
-	    
+// 	    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });	    
 //     }
-    
-    var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
+var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
 </script>
 <script src="{!URLFOR($Resource.RemotingJS,'Remoting.js')}"></script>
-<apex:sectionHeader title="Account List" id="sh">
+<apex:sectionHeader >
 <apex:outputLink value="{!$Resource.AccImg}" id="theLink">
      <apex:image url="{!URLFOR($Resource.AccImg)}" width="50" height="50">
       </apex:image>
@@ -25,7 +23,7 @@ CallApexMethod() ;
 		<apex:outputtext >Account Name : </apex:outputtext>
 		<apex:inputtext value="{!searchString}" onkeyup="s(event,this)"></apex:inputtext>
 		<apex:commandButton id="submitb" action="{!search}" value="SEARCH" rerender="accountlist,showmsg"></apex:commandButton>
-		<apex:commandlink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountlist"></apex:commandlink>
+		<apex:commandlink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountlist,contacts"></apex:commandlink>
 	</apex:form>
 <apex:outputPanel id="accountlist">
 	<apex:datatable value="{!acclist}" var="acc">
