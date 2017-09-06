@@ -5,10 +5,9 @@ public with sharing class StudentRegistrationExtension {
     public StudentRegistrationExtension(ApexPages.StandardController controller){
     	so = new list<selectoption>();
     	s = (Student__c)controller.getrecord();
-    	for(String s : System.label.Language.split(',')){
-    		so.add(new selectoption(s,s));
-    	}
-    	
+    	for(String ss : System.label.Language.split(',')){
+    		so.add(new selectoption(ss,ss));
+    	}    	
 	}
 	public pagereference insertRecord(){
 		upsert s;
@@ -17,7 +16,6 @@ public with sharing class StudentRegistrationExtension {
 	public pagereference changelang(){
 		PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
 		pageRef.setRedirect(true);
-		System.debug(pageRef);
 		return null;
 	}
 }

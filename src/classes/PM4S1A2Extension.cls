@@ -3,6 +3,8 @@ public with sharing class PM4S1A2Extension {
     public list<opportunity> opplist{get;set;}
     public id i{get;set;}
     public PM4S1A2Extension(ApexPages.StandardSetController controller){
+    	conlist = new list<contact>();
+    	opplist = new list<opportunity>();
     }
     public pagereference fetchContacts(){
     	conlist = [select name from contact where accountId =: i];

@@ -1,8 +1,6 @@
 public with sharing class CountryCityDependancyController {
     public String c1{get;set;}
     
-    public String c2{get;set;}
-    
     public CountryCityDependancyController(){}
     
     public list<selectoption> getCountries(){
