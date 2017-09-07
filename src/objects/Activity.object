@@ -33,6 +33,21 @@
         <type>Default</type>
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Event_Processed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Event Processed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Object_Record__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Object Record</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
     <listViews>
         <fullName>AllActivities</fullName>
         <filterScope>Team</filterScope>

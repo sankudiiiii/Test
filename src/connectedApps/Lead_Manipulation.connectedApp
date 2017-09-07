@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>mandharesanket79284@gmail.com</contactEmail>
+    <label>Lead Manipulation</label>
+    <oauthConfig>
+        <callbackUrl>https://www.google.com</callbackUrl>
+        <consumerKey>3MVG9d8..z.hDcPIZJbow_cYM34gJQ600ho883t1X06nhdMo2J_09unzzxqVsYqZ.mB2fZlKOwal18orWQxGt</consumerKey>
+        <scopes>Full</scopes>
+    </oauthConfig>
+</ConnectedApp>

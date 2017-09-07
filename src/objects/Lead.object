@@ -368,6 +368,58 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Lead_City__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead City</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hydrabad</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pune</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>P1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>P2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>P3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>P4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>MobilePhone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -660,8 +712,22 @@
         <columns>LEAD.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>LEAD.UNREAD</columns>
+        <columns>LEAD.LEAD_SOURCE</columns>
+        <columns>Lead_City__c</columns>
+        <columns>Lead_Priority__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.LEAD_SOURCE</field>
+            <operation>equals</operation>
+            <value>Web,Other</value>
+        </filters>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Open - Not Contacted</value>
+        </filters>
         <label>View - Custom 1</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>ViewCustom2</fullName>
@@ -853,6 +919,40 @@
             </values>
             <values>
                 <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_City__c</picklist>
+            <values>
+                <fullName>Hydrabad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pune</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_Priority__c</picklist>
+            <values>
+                <fullName>P1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P4</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1115,6 +1215,40 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Lead_City__c</picklist>
+            <values>
+                <fullName>Hydrabad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pune</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_Priority__c</picklist>
+            <values>
+                <fullName>P1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Name</picklist>
             <values>
                 <fullName>Dr%2E</fullName>
@@ -1373,6 +1507,40 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Lead_City__c</picklist>
+            <values>
+                <fullName>Hydrabad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pune</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_Priority__c</picklist>
+            <values>
+                <fullName>P1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Name</picklist>
             <values>
                 <fullName>Dr%2E</fullName>
@@ -1627,6 +1795,40 @@
             </values>
             <values>
                 <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_City__c</picklist>
+            <values>
+                <fullName>Hydrabad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pune</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lead_Priority__c</picklist>
+            <values>
+                <fullName>P1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P4</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

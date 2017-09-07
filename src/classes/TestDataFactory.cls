@@ -126,4 +126,15 @@ public class TestDataFactory {
     	}
     	insert ll1;
     }
+    public static void generateSObjectRecordCreationTestData(){
+    	list<event> el = new list<event>();
+    	for(Integer i = 65; i<=75 ;i++){
+    		el.add(new event(subject=i+'Event',StartDateTime=System.today(),EndDateTime=System.today(),event_processed__c=false,Object_Record__c='{"JSON":{"Name" : "Eternus Solutions Pune"},"Object Name" : "Account"}'));
+    	}
+    	insert el;
+    }
+    public static void generateLeadManipulatorServiceTestData(){
+    	lead l = new lead(firstname='A',lastname='B',email='c@d.e',phone='6',company='g');
+    	insert l;
+    }
 }

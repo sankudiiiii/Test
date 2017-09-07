@@ -1,5 +1,6 @@
 public with sharing class PM4S1A1Controller {
     public String searchString{get;set;}
+    public list<list<sObject>> resultList{get;set;}/*
     public list<contact> conlist{get;set;}
     public list<account> acclist{get;set;}
     public list<opportunity> opplist{get;set;}
@@ -7,19 +8,24 @@ public with sharing class PM4S1A1Controller {
     public boolean isacc{get;set;}
     public boolean iscon{get;set;}
     public boolean isopp{get;set;}
-    public boolean isl{get;set;}
-    public PM4S1A1Controller(){
+    public boolean isl{get;set;}*/
+    public PM4S1A1Controller(){/*
     	acclist=new list<account>();
     	conlist=new list<contact>();
     	opplist=new list<opportunity>();
-    	llist=new list<lead>();
+    	llist=new list<lead>();*/
+    	list<list<sObject>> resultList = new list<list<sObject>>();
     }
-    public PageReference search(){
+    public PageReference search(){/*
     	acclist.clear();
     	conlist.clear();
     	opplist.clear();
-    	llist.clear();
-    	String str = '%'+searchString+'%';
+    	llist.clear();*/
+    	if(searchString.length()>1){
+    	String str = searchString+'*';
+    	resultList = [FIND :str IN NAME FIELDS RETURNING Account (Name), Contact (Name), Opportunity (Name), Lead (Name)];
+    	}
+    	/*
     	acclist = [select name from account where name like :str];
     	if(acclist.size()>0)
     		isacc=true;
@@ -39,7 +45,7 @@ public with sharing class PM4S1A1Controller {
     	if(llist.size()>0)
     		isl=true;
     	else
-    		isl=false;
+    		isl=false;*/
     	return null;
     }
 }

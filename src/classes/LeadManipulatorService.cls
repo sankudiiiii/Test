@@ -18,8 +18,8 @@ global with sharing class LeadManipulatorService {
     		rw.status = 'Success';
     	} catch (Exception e){
     		rw.isSuccess = false;
-    		rw.leadId = '';
-    		rw.leadName = leadObject.name;
+    		rw.leadId = null;
+    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
     		rw.status = e.getMessage();
     	}
     	return rw;
@@ -32,8 +32,9 @@ global with sharing class LeadManipulatorService {
     	String ln = RestContext.request.params.get('lastname');
     	String em = RestContext.request.params.get('email');
     	String ph = RestContext.request.params.get('phone');
-    	Lead leadObject = [select id,firstname,lastname from lead where firstname=:fn and lastname=:ln and email=:em and phone=:ph];
+    	Lead leadObject = new Lead();
     	try{
+    		leadObject = [select id,firstname,lastname from lead where firstname=:fn and lastname=:ln and email=:em and phone=:ph];
     		delete leadObject;
     		rw.isSuccess = true;
     		rw.leadId = null;
@@ -50,10 +51,11 @@ global with sharing class LeadManipulatorService {
     @HTTPPatch
     global static ResponseWrapper updateLeadRecord(String firstName, String lastName, String email, String phone){
     	ResponseWrapper rw = new ResponseWrapper();
-    	Lead leadObject = [select id,firstname,lastname from lead where firstname=:firstname and lastname=:lastname];
+    	Lead leadObject = new Lead();
     	leadObject.email=email;
     	leadObject.phone=phone;
     	try{
+    		leadObject = [select id,firstname,lastname from lead where firstname=:firstname and lastname=:lastname];
     		update leadObject;
     		rw.isSuccess = true;
     		rw.leadId = leadObject.id;

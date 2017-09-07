@@ -22,7 +22,16 @@ global with sharing class PM5S1Extension {
     	}
     	else {
     	String str = '%'+searchString+'%';
-    	acclist=[select id,name,enrollment_year__c,(select id,name from contacts) from account where name like :str];
+    	acclist=[
+    		SELECT id
+    		     , name
+    		     , enrollment_year__c
+    		     , (SELECT id
+    		             , name 
+    		          FROM contacts) 
+    		  FROM account 
+    		 WHERE name LIKE :str
+    	];
     	countacc=acclist.size();
     	return null;
     	}
