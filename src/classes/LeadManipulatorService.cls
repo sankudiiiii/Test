@@ -28,13 +28,13 @@ global with sharing class LeadManipulatorService {
     global static ResponseWrapper deleteLeadRecord(){
     	ResponseWrapper rw = new ResponseWrapper();
     	RestRequest request = RestContext.request;
-    	String fn = RestContext.request.params.get('firstname');
-    	String ln = RestContext.request.params.get('lastname');
+    	String fn = RestContext.request.params.get('firstName');
+    	String ln = RestContext.request.params.get('lastName');
     	String em = RestContext.request.params.get('email');
     	String ph = RestContext.request.params.get('phone');
     	Lead leadObject = new Lead();
     	try{
-    		leadObject = [select id,firstname,lastname from lead where firstname=:fn and lastname=:ln and email=:em and phone=:ph];
+    		leadObject = [select id,firstname,lastname from lead where firstname=:fn and lastname=:ln and email=:em and phone=:ph limit 1];
     		delete leadObject;
     		rw.isSuccess = true;
     		rw.leadId = null;
@@ -52,10 +52,10 @@ global with sharing class LeadManipulatorService {
     global static ResponseWrapper updateLeadRecord(String firstName, String lastName, String email, String phone){
     	ResponseWrapper rw = new ResponseWrapper();
     	Lead leadObject = new Lead();
-    	leadObject.email=email;
-    	leadObject.phone=phone;
     	try{
-    		leadObject = [select id,firstname,lastname from lead where firstname=:firstname and lastname=:lastname];
+    		leadObject = [select id,firstname,lastname,email,phone from lead where firstname=:firstname and lastname=:lastname limit 1];
+    		leadObject.email=email;
+    		leadObject.phone=phone;
     		update leadObject;
     		rw.isSuccess = true;
     		rw.leadId = leadObject.id;

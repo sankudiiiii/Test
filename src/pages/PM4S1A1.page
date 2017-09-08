@@ -1,24 +1,26 @@
-<apex:page controller="PM4S1A1Controller" sidebar="false" showheader="false">
-<apex:pageblock >
-<apex:form style="text-align:center">
-	<apex:inputText value="{!searchString}"/>
-	<apex:commandButton action="{!search}" value="SEARCH" rerender="conId,accId,oppId,lId"/>
-</apex:form>
-<apex:pageblocktable value="{!resultList[0]}" var="acc" id="accId" ><!-- style="display:{!if(isacc,"block","none")}" -->
-		<apex:facet name="header">Accounts</apex:facet>
-		<apex:column value="{!acc.name}"/>
-</apex:pageblocktable>
-<apex:pageblocktable value="{!resultList[1]}" var="con" id="conId"> <!--  style="display:{!if(iscon,"block","none")}" -->
-		<apex:facet name="header">Contacts</apex:facet>
-		<apex:column value="{!con.name}"/>
-</apex:pageblocktable>
-<apex:pageblocktable value="{!resultList[3]}" var="l" id="lId"> <!--  style="display:{!if(isl,"block","none")}" -->
-		<apex:facet name="header">Leads</apex:facet>
-		<apex:column value="{!l.name}"/>
-</apex:pageblocktable>
-<apex:pageblocktable value="{!resultList[2]}" var="opp" id="oppId" > <!-- style="display:{!if(isopp,"block","none")}" -->
-		<apex:facet name="header">Opportunities</apex:facet>
-		<apex:column value="{!opp.name}"/>
-</apex:pageblocktable>
-</apex:pageblock>
+<apex:page controller="PM4S1A1Controller" sideBar="false" showHeader="false">
+	<apex:pageBlock>
+		<apex:form style="text-align:center">
+			<apex:inputText value="{!searchString}"/>
+			<apex:commandButton action="{!search}" value="SEARCH" reRender="contactBlockId,accountBlockId,opportunityBlockId,leadBlockId"/>
+		</apex:form>
+		<apex:pageblock id="accountBlockId" >
+		<apex:pageBlockTable value="{!resultList[0]}" var="accountInstance" rendered="{! IF(resultList[0]!=null,true,false)}">
+			<apex:facet name="header">Accounts</apex:facet>
+			<apex:column value="{!accountInstance.Name}"/>
+		</apex:pageBlockTable>
+		</apex:pageblock>
+		<apex:pageBlockTable value="{!resultList[1]}" var="contactInstance" id="contactBlockId">
+			<apex:facet name="header">Contacts</apex:facet>
+			<apex:column value="{!contactInstance.Name}"/>
+		</apex:pageBlockTable>
+		<apex:pageBlockTable value="{!resultList[3]}" var="leadInstance" id="leadBlockId">
+			<apex:facet name="header">Leads</apex:facet>
+			<apex:column value="{!leadInstance.Name}"/>
+		</apex:pageBlockTable>
+		<apex:pageBlockTable value="{!resultList[2]}" var="opportunityInstance" id="opportunityBlockId" >
+			<apex:facet name="header">Opportunities</apex:facet>
+			<apex:column value="{!opportunityInstance.Name}"/>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
 </apex:page>

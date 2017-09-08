@@ -1,66 +1,68 @@
-<apex:page standardController="Account" sidebar="false" showheader="false" recordsetvar="accounts" extensions="PM5S1Extension">
-<script>
-function s(e,r){
-if(e.keyCode==13)
-CallApexMethod() ;
-}
-//     function del(i) {
-// 	    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });	    
-//     }
-var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
-</script>
-<script src="{!URLFOR($Resource.RemotingJS,'Remoting.js')}"></script>
-<apex:sectionHeader >
-<apex:outputLink value="{!$Resource.AccImg}" id="theLink">
-     <apex:image url="{!URLFOR($Resource.AccImg)}" width="50" height="50">
-      </apex:image>
-</apex:outputLink>
-</apex:sectionHeader>
-<apex:pageBlock id="boss">
-<apex:pageMessages id="showmsg" rendered="true" />
-	<apex:form style="text-align:center">
-	<apex:actionFunction name="CallApexMethod" action="{!search}"/>
-		<apex:outputtext >Account Name : </apex:outputtext>
-		<apex:inputtext value="{!searchString}" onkeyup="s(event,this)"></apex:inputtext>
-		<apex:commandButton id="submitb" action="{!search}" value="SEARCH" rerender="accountlist,showmsg"></apex:commandButton>
-		<apex:commandlink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountlist,contacts"></apex:commandlink>
-	</apex:form>
-<apex:outputPanel id="accountlist">
-	<apex:datatable value="{!acclist}" var="acc">
-	<apex:facet name="header">Accounts : {!countacc} rows</apex:facet>
-		<apex:column value="{!acc.id}"></apex:column>
-		<apex:column value="{!acc.name}"></apex:column>
-		<apex:column value="{!acc.Enrollment_Year__c}"></apex:column>
-		<apex:column >
-		<apex:form >
-		<apex:commandlink action="{!setContacts}" value="Related Contacts">
-			<apex:param name="accid" value="{!acc.id}" assignTO="{!accid}"></apex:param>
-		</apex:commandlink>	
-		</apex:form>	
-		</apex:column>
-	</apex:datatable>
-</apex:outputPanel>
-<apex:form style="text-align:center">
-<apex:repeat value="{!alphaList}" var="alpha">
-	<apex:commandlink action="{!getContacts}" value="{!alpha}	" rerender="contacts">
-		<apex:param name="start" value="{!alpha}" assignTo="{!start}"></apex:param>
-	</apex:commandlink>
-</apex:repeat>
-</apex:form>
-<apex:outputpanel id="contacts">
-<apex:outputpanel >
-<apex:datatable value="{!conlist}" var="con">
-	<apex:facet name="header">Contacts Related to Account {!account.id}</apex:facet>
-		<apex:column value="{!con.id}"></apex:column>
-		<apex:column value="{!con.name}"></apex:column>
-		<apex:column value="{!con.accountid}"></apex:column>
-		<apex:column >
-		<apex:form >
-			<apex:commandlink onclick="del('{!con.id}');location.reload(true);" value="Delete Contact" rerender="contacts"></apex:commandlink>
+<apex:page standardController="Account" sideBar="false" showHeader="false" recordSetVar="accounts" extensions="PM5S1Extension">
+	<script>
+		function searchOnEnter(eventInstance , eventElement) {
+			if(eventInstance.keyCode == 13)
+				CallApexMethod();
+		}
+		/*
+	    function del(i) {
+ 		    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });	    
+     	}
+     	*/
+		var remoteMethod = '{!$RemoteAction.PM5S1Extension.deleteContact}';
+	</script>
+	<script src="{!URLFOR($Resource.RemotingJS,'Remoting.js')}"></script>
+	<apex:sectionHeader >
+		<apex:outputLink value="{!$Resource.AccImg}" id="theLink">
+     		<apex:image url="{!URLFOR($Resource.AccImg)}" width="50" height="50"/>
+		</apex:outputLink>
+	</apex:sectionHeader>
+	<apex:pageBlock id="pageBlockId">
+		<apex:pageMessages id="showMessage" rendered="true" />
+		<apex:form style="text-align:center">
+			<apex:actionFunction name="CallApexMethod" action="{!search}"/>
+			<apex:outputText >Account Name : </apex:outputText>
+			<apex:inputText value="{!searchString}" onkeyup="searchOnEnter(event,this)"></apex:inputText>
+			<apex:commandButton id="submitButtonId" action="{!search}" value="SEARCH" rerender="accountPanelId,showMessage"></apex:commandButton>
+			<apex:commandLink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountPanelId,contactPanelId"></apex:commandLink>
 		</apex:form>
-		</apex:column>
-	</apex:datatable>
-</apex:outputpanel>
-</apex:outputpanel>
-</apex:pageBlock>
+		<apex:outputPanel id="accountPanelId">
+			<apex:pageBlockTable value="{!accountList}" var="accountInstance">
+				<apex:facet name="header">Accounts : {!accountCount} rows</apex:facet>
+				<apex:column value="{!accountInstance.Id}"></apex:column>
+				<apex:column value="{!accountInstance.Name}"></apex:column>
+				<apex:column value="{!accountInstance.Enrollment_Year__c}"></apex:column>
+				<apex:column >
+					<apex:facet name="header">Related Contacts</apex:facet>
+					<apex:form>
+						<apex:commandLink action="{!setContacts}" value="Related Contacts" rerender="contactPanelId">
+							<apex:param name="accountId" value="{!accountInstance.id}" assignTO="{!accountId}"></apex:param>
+						</apex:commandLink>	
+					</apex:form>	
+				</apex:column>
+			</apex:pageBlockTable>
+		</apex:outputPanel>
+		<apex:outputPanel id="contactPanelId">
+			<apex:form style="text-align:right">
+				<apex:repeat value="{!alphaList}" var="alphaInstance">
+					<apex:commandLink action="{!getContacts}" value="{!alphaInstance}	" rerender="contactPanleId">
+						<apex:param name="start" value="{!alphaInstance}" assignTo="{!start}"></apex:param>
+					</apex:commandLink>
+				</apex:repeat>
+			</apex:form>
+			<apex:outputPanel>
+				<apex:pageBlockTable value="{!contactList}" var="contactInstance">
+					<apex:facet name="header">Contacts Related to Account {!accountId}</apex:facet>
+					<apex:column>
+						<apex:facet name="header">Action</apex:facet>
+						<apex:form >
+							<apex:commandLink onclick="del('{!contactInstance.id}');location.reload(true);" value="del" rerender="contactPanleId"></apex:commandLink>
+						</apex:form>
+					</apex:column>
+					<apex:column value="{!contactInstance.Id}"></apex:column>
+					<apex:column value="{!contactInstance.Name}"></apex:column>
+				</apex:pageBlockTable>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:pageBlock>
 </apex:page>

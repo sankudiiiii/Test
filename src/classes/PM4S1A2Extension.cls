@@ -1,14 +1,23 @@
 public with sharing class PM4S1A2Extension {
-    public list<contact> conlist{get;set;}
-    public list<opportunity> opplist{get;set;}
-    public id i{get;set;}
-    public PM4S1A2Extension(ApexPages.StandardSetController controller){
-    	conlist = new list<contact>();
-    	opplist = new list<opportunity>();
+    public list<Contact> contactList{get; set;}
+    public list<Opportunity> opportunityList{get; set;}
+    public ID accountId{get; set;}
+    public PM4S1A2Extension(ApexPages.StandardSetController controller) {
+    	contactList = new list<Contact>();
+    	opportunityList = new list<Opportunity>();
     }
-    public pagereference fetchContacts(){
-    	conlist = [select name from contact where accountId =: i];
-    	opplist = [select name from opportunity where accountId =: i];
+    public PageReference fetchContacts() {
+    	Account accountInstance = [SELECT (SELECT name 
+    									   FROM   contacts
+    									  )
+    									, (SELECT name 
+    									   FROM   opportunities
+    									  ) 
+    							   FROM   Account 
+    							   WHERE  id=:accountId
+    							  ];
+    	contactList = accountInstance.contacts;
+    	opportunityList = accountInstance.opportunities;
     	return null;
     }
 }
