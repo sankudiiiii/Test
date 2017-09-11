@@ -12,8 +12,9 @@
 		</style>
 	</head> -->
 	<head>
-<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}" rel="stylesheet"/></head>
-<apex:sectionheader title="ABC Containers" subtitle="Line Items"/>
+		<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}" rel="stylesheet"/>
+	</head>
+	<apex:sectionheader title="ABC Containers" subtitle="Line Items"/>
 	<table class="tbl" >
 		<tr>
 		<apex:outputpanel styleClass="label">
@@ -24,12 +25,12 @@
 		</apex:outputpanel>
 		</tr>
 		<apex:outputpanel styleClass="label">
-			<apex:repeat value="{!lineitems}" var="li">
+			<apex:repeat value="{!opportunityLineItemList}" var="lineItem">
 				<tr>
-				<td><apex:outputfield styleClass="dt" value="{!li.name}" /></td>
-				<td><apex:outputfield styleClass="dt" value="{!li.opportunityid}" /></td>
-				<td><apex:outputfield styleClass="dt" value="{!li.product2id}" /></td>
-				<td><apex:outputlink styleClass="dt" value="https://c.ap5.visual.force.com/apex/ABCTrials?id={!li.id}&no={!count}" >Generate Invoice
+				<td><apex:outputfield styleClass="dt" value="{!lineItem.Name}" /></td>
+				<td><apex:outputfield styleClass="dt" value="{!lineItem.Opportunityid}" /></td>
+				<td><apex:outputfield styleClass="dt" value="{!lineItem.Product2id}" /></td>
+				<td><apex:outputlink styleClass="dt" value="https://c.ap5.visual.force.com/apex/ABCTrials?id={!lineItem.id}&no={!count}" >Generate Invoice
 				</apex:outputlink></td></tr>
 			</apex:repeat>			
 		</apex:outputpanel>

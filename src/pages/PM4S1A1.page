@@ -1,24 +1,22 @@
 <apex:page controller="PM4S1A1Controller" sideBar="false" showHeader="false">
-	<apex:pageBlock>
+	<apex:pageBlock id="pageBlockId">
 		<apex:form style="text-align:center">
 			<apex:inputText value="{!searchString}"/>
-			<apex:commandButton action="{!search}" value="SEARCH" reRender="contactBlockId,accountBlockId,opportunityBlockId,leadBlockId"/>
+			<apex:commandButton action="{!search}" value="SEARCH" reRender="pageBlockId"/>
 		</apex:form>
-		<apex:pageblock id="accountBlockId" >
-		<apex:pageBlockTable value="{!resultList[0]}" var="accountInstance" rendered="{! IF(resultList[0]!=null,true,false)}">
+		<apex:pageBlockTable value="{!accountList}" var="accountInstance" rendered="{! accountList.size>0}">
 			<apex:facet name="header">Accounts</apex:facet>
 			<apex:column value="{!accountInstance.Name}"/>
 		</apex:pageBlockTable>
-		</apex:pageblock>
-		<apex:pageBlockTable value="{!resultList[1]}" var="contactInstance" id="contactBlockId">
+		<apex:pageBlockTable value="{!contactList}" var="contactInstance" rendered="{! contactList.size>0}">
 			<apex:facet name="header">Contacts</apex:facet>
 			<apex:column value="{!contactInstance.Name}"/>
 		</apex:pageBlockTable>
-		<apex:pageBlockTable value="{!resultList[3]}" var="leadInstance" id="leadBlockId">
+		<apex:pageBlockTable value="{!leadList}" var="leadInstance" rendered="{! leadList.size>0}">
 			<apex:facet name="header">Leads</apex:facet>
 			<apex:column value="{!leadInstance.Name}"/>
 		</apex:pageBlockTable>
-		<apex:pageBlockTable value="{!resultList[2]}" var="opportunityInstance" id="opportunityBlockId" >
+		<apex:pageBlockTable value="{!opportunityList}" var="opportunityInstance" rendered="{! opportunityList.size>0}">
 			<apex:facet name="header">Opportunities</apex:facet>
 			<apex:column value="{!opportunityInstance.Name}"/>
 		</apex:pageBlockTable>

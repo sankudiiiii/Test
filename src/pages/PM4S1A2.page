@@ -1,10 +1,10 @@
 <apex:page standardController="Account" recordSetVar="accountList" sideBar="false" showHeader="false" extensions="PM4S1A2Extension">
-	<apex:pageBlock>
+	<apex:pageBlock id="pageBlockId">
 		<apex:form>
 			<apex:pageBlockTable value="{!accountList}" var="accountInstance">
 				<apex:column>
 					<apex:facet name="header">Account Name</apex:facet>
-					<apex:commandLink action="{!fetchContacts}" value="{!accountInstance.Name}" reRender="contactBlockId,opportunityBlockId">
+					<apex:commandLink action="{!fetchContacts}" value="{!accountInstance.Name}" reRender="contactBlockId,opportunityBlockId,pageBlockId">
 						<apex:param name="accountId" value="{!accountInstance.id}" assignTO="{!accountId}"></apex:param>
 					</apex:commandLink>
 				</apex:column>
@@ -15,11 +15,11 @@
 				<apex:column value="{!accountInstance.BillingState}"/>
 				<apex:column value="{!accountInstance.BillingCountry}"/>
 			</apex:pageBlockTable>
-			<apex:pageBlockTable value="{!contactList}" var="contactInstance" id="contactBlockId">
+			<apex:pageBlockTable value="{!contactList}" var="contactInstance" rendered="{! contactList.size>0}">
 				<apex:facet name="header">Contacts Related To Account {!accountId}</apex:facet>
 				<apex:column value="{!contactInstance.Name}"/>
 			</apex:pageBlockTable>
-			<apex:pageBlockTable value="{!opportunityList}" var="opportunityInstance" id="opportunityBlockId">
+			<apex:pageBlockTable value="{!opportunityList}" var="opportunityInstance" rendered="{! opportunityList.size>0}">
 				<apex:facet name="header">Opportunities Related To Account {!accountId}</apex:facet>
 				<apex:column value="{!opportunityInstance.Name}"/>
 			</apex:pageBlockTable>

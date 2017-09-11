@@ -51,7 +51,8 @@
 		</style>
 	</head> -->
 	<head>
-<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersInvoices.css')}" rel="stylesheet"/></head>
+		<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersInvoices.css')}" rel="stylesheet"/>
+	</head>
 	<table id='datetable'>
 		<caption>INVOICE</caption>
 		<tr>

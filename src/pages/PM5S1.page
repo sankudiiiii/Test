@@ -3,6 +3,9 @@
 		function searchOnEnter(eventInstance , eventElement) {
 			if(eventInstance.keyCode == 13)
 				CallApexMethod();
+			else
+				Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',eventElement.value,function(result,event){if(result) console.log(result);eventElement.setAttribute("list",result);},{ buffer: false, escape: true, timeout: 30000 });
+			return false;
 		}
 		/*
 	    function del(i) {
@@ -22,12 +25,12 @@
 		<apex:form style="text-align:center">
 			<apex:actionFunction name="CallApexMethod" action="{!search}"/>
 			<apex:outputText >Account Name : </apex:outputText>
-			<apex:inputText value="{!searchString}" onkeyup="searchOnEnter(event,this)"></apex:inputText>
-			<apex:commandButton id="submitButtonId" action="{!search}" value="SEARCH" rerender="accountPanelId,showMessage"></apex:commandButton>
-			<apex:commandLink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="accountPanelId,contactPanelId"></apex:commandLink>
+			<apex:inputText value="{!searchString}" onkeyup="return searchOnEnter(event,this)" id="inputValue"></apex:inputText>
+			<apex:commandButton id="submitButtonId" action="{!search}" value="SEARCH" rerender="pageBlockId"></apex:commandButton>
+			<apex:commandLink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="pageBlockId"></apex:commandLink>
 		</apex:form>
 		<apex:outputPanel id="accountPanelId">
-			<apex:pageBlockTable value="{!accountList}" var="accountInstance">
+			<apex:pageBlockTable value="{!accountList}" var="accountInstance" rendered="{! accountList.size>0}">
 				<apex:facet name="header">Accounts : {!accountCount} rows</apex:facet>
 				<apex:column value="{!accountInstance.Id}"></apex:column>
 				<apex:column value="{!accountInstance.Name}"></apex:column>
@@ -35,28 +38,30 @@
 				<apex:column >
 					<apex:facet name="header">Related Contacts</apex:facet>
 					<apex:form>
-						<apex:commandLink action="{!setContacts}" value="Related Contacts" rerender="contactPanelId">
+						<apex:commandLink action="{!setContacts}" value="Related Contacts" rerender="contactPanelId,alphaPanelId">
 							<apex:param name="accountId" value="{!accountInstance.id}" assignTO="{!accountId}"></apex:param>
 						</apex:commandLink>	
 					</apex:form>	
 				</apex:column>
 			</apex:pageBlockTable>
 		</apex:outputPanel>
-		<apex:outputPanel id="contactPanelId">
-			<apex:form style="text-align:right">
+		<apex:outputPanel>
+			<apex:outputPanel id="alphaPanelId">
+			<apex:form style="text-align:right" rendered="{! contactList.size>0}" >
 				<apex:repeat value="{!alphaList}" var="alphaInstance">
-					<apex:commandLink action="{!getContacts}" value="{!alphaInstance}	" rerender="contactPanleId">
+					<apex:commandLink action="{!getContacts}" value="{!alphaInstance}	" rerender="contactPanelId">
 						<apex:param name="start" value="{!alphaInstance}" assignTo="{!start}"></apex:param>
 					</apex:commandLink>
 				</apex:repeat>
 			</apex:form>
-			<apex:outputPanel>
-				<apex:pageBlockTable value="{!contactList}" var="contactInstance">
+			</apex:outputPanel>
+			<apex:outputPanel id="contactPanelId">
+				<apex:pageBlockTable value="{!contactList}" var="contactInstance" rendered="{! contactList.size>0}">
 					<apex:facet name="header">Contacts Related to Account {!accountId}</apex:facet>
 					<apex:column>
 						<apex:facet name="header">Action</apex:facet>
 						<apex:form >
-							<apex:commandLink onclick="del('{!contactInstance.id}');location.reload(true);" value="del" rerender="contactPanleId"></apex:commandLink>
+							<apex:commandLink onclick="del('{!contactInstance.id}');location.reload(true);" value="del" rerender="contactPanelId"></apex:commandLink>
 						</apex:form>
 					</apex:column>
 					<apex:column value="{!contactInstance.Id}"></apex:column>

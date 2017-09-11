@@ -16,6 +16,8 @@ global with sharing class PM5S1Extension {
     	contactList = new list<Contact>();
     }
     public PageReference search() {
+    	if(contactList != null)
+    		contactList.clear();
     	if(searchString.length() < 3) {
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR , 'Input at least 3 characters to perform search.'));
         	return null;
@@ -43,6 +45,7 @@ global with sharing class PM5S1Extension {
     		accountCount = 0;
     	if(contactList != null)
     		contactList.clear();
+    	searchString='';
     	return null;
     }
     public pagereference getContacts() {
@@ -82,5 +85,10 @@ global with sharing class PM5S1Extension {
     		return true;
     	else
     		return false;
+    }
+    @RemoteAction
+    global static list<Account> autoComplete(String str){
+    	list<Account> accountAutoList = [SELECT Name FROM Account WHERE Name LIKE :str+'%'];
+    	return accountAutoList;
     }
 }

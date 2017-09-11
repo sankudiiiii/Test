@@ -2,36 +2,36 @@
 	<head>
 		<style>
 			#datetable {
-				float:right;
+				float : right;
 				text-align : center;
-				border-collapse:collapse;
+				border-collapse : collapse;
 				border : 1px solid;
-				margin:5%;
+				margin : 5%;
 			}
 			#datetable th,#datetable td {
-				border:1px solid;
+				border : 1px solid;
 			}
 			#inv {
 				font-size : 30px;
-				text-align:right;
-				margin-right:10%;
-				margin-top:10%;
-				color:#009EFF;
+				text-align : right;
+				margin-right : 10%;
+				margin-top : 10%;
+				color : #009EFF;
 			}
 			#comp {
 				font-size : 20px;
-				text-align:left;
+				text-align : left;
 			}
 			#infotable {
-				margin:10% 0;
-				border-collapse:collapse;
-				width:50%;
+				margin : 10% 0;
+				border-collapse : collapse;
+				width : 50%;
 			}
 			#infotable th {
-				border:1px solid;
+				border : 1px solid;
 			}
 			th {
-				background-color:#E2DCF7;
+				background-color : #E2DCF7;
 			}
 			#desctable td {
 				border-right : 1px black solid;
@@ -41,20 +41,21 @@
 				border : 1px black solid;
 			}
 			#desctable {
-				width:100%;
-				border:1px black solid;
+				width : 100%;
+				border : 1px black solid;
 			}
 			#long {
-				border:1px black solid;
+				border : 1px black solid;
 			}
 			p {
-				margin-top:10%;
-				text-align:center;
+				margin-top : 10%;
+				text-align : center;
 			}
 			.rt {
-				text-align:right;
+				text-align : right;
 			}
 		</style>
+		
 	</head>
 	<apex:pageblock >
 		<apex:outputpanel id="dateblock">
@@ -69,71 +70,66 @@
 					<td>{!dt}</td>
 				</tr>
 			</table>
-				<caption id='comp'>{!acc.name}</caption>
-				<apex:outputtext value="{!acc.billingstreet}"></apex:outputtext><br></br>
-				<apex:outputtext value="{!acc.billingcity}, {!acc.billingstate}, {!acc.billingpostalcode}"></apex:outputtext><br></br>
-				<apex:outputtext value="Phone : {!acc.phone}"></apex:outputtext>
+			<caption id='comp'>{!accountInstance.Name}</caption>
+			<apex:outputtext value="{!accountInstance.billingstreet}"></apex:outputtext><br></br>
+			<apex:outputtext value="{!accountInstance.billingcity}, {!accountInstance.billingstate}, {!accountInstance.billingpostalcode}"></apex:outputtext><br></br>
+			<apex:outputtext value="Phone : {!accountInstance.phone}"></apex:outputtext>
 			<table id='infotable'>
 				<tr>
 					<th>BILL TO</th>
 				</tr>
 				<tr>
-					<td>{!opp.name}</td>
+					<td>{!opportunityInstance.name}</td>
 				</tr>
 				<tr>
-					<td>{!acc.name}</td>
+					<td>{!accountInstance.name}</td>
 				</tr>
 				<tr>
-					<td>{!acc.billingstreet}</td>
+					<td>{!accountInstance.billingstreet}</td>
 				</tr>
 				<tr>
-					<td>{!acc.billingcity}, {!acc.billingstate}, {!acc.billingpostalcode}</td>
+					<td>{!accountInstance.billingcity}, {!accountInstance.billingstate}, {!accountInstance.billingpostalcode}</td>
 				</tr>
 				<tr>
-					<td>Phone : {!acc.phone}</td>
+					<td>Phone : {!accountInstance.phone}</td>
 				</tr>
 				<tr>
-					<td>{!acc.email_address__c}</td>
+					<td>{!accountInstance.email_address__c}</td>
 				</tr>
 			</table>
 			<table id='desctable' cellspacing="0">
-		<tr>
-			<th>Description</th>
-			<th class='rt'>Amount</th>
-		</tr>
-		<tr>
-			<td>Service fee</td>
-			<td class='rt'>{!li.service_fee__c}</td>
-		</tr>
-		<tr>
-			<td>Labour {!li.labour_hour__c} hrs at ${!li.labour_rate__c}/hr</td>
-			<td class='rt'>{!labour}</td>
-		</tr>
-		<tr>
-			<td>Line Item {!li.quantity} at ${!li.unitprice}/line item</td>
-			<td class='rt'>{!licost}</td>
-		</tr>
-		<tr>
-			<td>Discount ({!li.discount}%)</td>
-			<td class='rt'>-{!discount}</td>
-		</tr>
-		<tr>
-			<td>Tax ({!li.tax__c}% after discount)</td>
-			<td class='rt'>{!taxamount}</td>
-		</tr>
-		<tr>
-			<td class='brdr'  id="long"><i>Thank you for your business!</i></td>
-			<td class='rt brdr'  id="long"><h4>Total {!total}</h4></td>
-		</tr>
-	</table>
-			
-			
+				<tr>
+					<th>Description</th>
+					<th class='rt'>Amount</th>
+				</tr>
+				<tr>
+					<td>Service fee</td>
+					<td class='rt'>{!OpportunityLineItemInstance.service_fee__c}</td>
+				</tr>
+				<tr>
+					<td>Labour {!OpportunityLineItemInstance.labour_hour__c} hrs at ${!OpportunityLineItemInstance.labour_rate__c}/hr</td>
+					<td class='rt'>{!labour}</td>
+				</tr>
+				<tr>
+					<td>Line Item {!OpportunityLineItemInstance.quantity} at ${!OpportunityLineItemInstance.unitprice}/line item</td>
+					<td class='rt'>{!lineItemCost}</td>
+				</tr>
+				<tr>
+					<td>Discount ({!OpportunityLineItemInstance.discount}%)</td>
+					<td class='rt'>-{!discount}</td>
+				</tr>
+				<tr>
+					<td>Tax ({!OpportunityLineItemInstance.tax__c}% after discount)</td>
+					<td class='rt'>{!taxamount}</td>
+				</tr>
+				<tr>
+					<td class='brdr'  id="long"><i>Thank you for your business!</i></td>
+					<td class='rt brdr'  id="long"><h4>Total {!total}</h4></td>
+				</tr>
+			</table>
 		</apex:outputpanel>
 	</apex:pageblock>
-	
-	
-
 	<p>If you have any questions about this invoice, please contact<br></br>
-	{!usr.name}, {!usr.phone}, {!usr.email}</p>
+	{!userInstance.name}, {!userInstance.phone}, {!userInstance.email}</p>
 	
 </apex:page>

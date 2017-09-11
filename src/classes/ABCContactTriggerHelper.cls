@@ -1,22 +1,26 @@
 public with sharing class ABCContactTriggerHelper {
-	public static void executable(list<contact> conlist){
-		list<contact> con = new list<contact>();
-		for(Integer i = 0 ; i<conlist.size();i++){
-			if(conlist[i].email!=null){
-				con.add(conlist.get(i));
+	public static void executable(list<Contact> contactList) {
+		list<Contact> contactListtoExecute = new list<Contact>();
+		for(Integer i = 0 ; i < contactList.size() ; i++) {
+			if(contactList[i].Email != null){
+				contactListtoExecute.add(contactList.get(i));
 			}
 		}
-		execute(con);
+		execute(contactListtoExecute);
 	}	
-    public static void execute(list<contact> conlist){
-    	Map<id,String> emailMap = new Map<id,String>();
-    	for(Account acc : [select id,website from account where website != null]){
-    		emailMap.put(acc.id,acc.website);
+    public static void execute(list<Contact> contactList) {
+    	Map<Id,String> emailMap = new Map<Id,String>();
+    	for(Account accountInstance : [SELECT Id
+    						  			  , Website 
+    						  			  FROM Account 
+    						  			  WHERE Website != null
+    					  			  ]) {
+    		emailMap.put(accountInstance.Id , accountInstance.Website);
     	}
-    	for(contact con : conlist){
-   			for(id i : emailMap.keySet()){
-   				if(emailMap.get(i).endswithignorecase(con.email.substringafterlast('@'))){
-   					con.accountid=i;
+    	for(Contact contactInstance : contactList){
+   			for(Id accountId : emailMap.keySet()){
+   				if(emailMap.get(accountId).endswithignorecase(contactInstance.Email.substringafterlast('@'))){
+   					contactInstance.accountid = accountId;
     				break;
    				}
     		}
