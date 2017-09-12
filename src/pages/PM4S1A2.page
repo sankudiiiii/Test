@@ -1,8 +1,8 @@
 <apex:page standardController="Account" recordSetVar="accountList" sideBar="false" showHeader="false" extensions="PM4S1A2Extension">
 	<apex:pageBlock id="pageBlockId">
-		<apex:form>
+		<apex:form >
 			<apex:pageBlockTable value="{!accountList}" var="accountInstance">
-				<apex:column>
+				<apex:column >
 					<apex:facet name="header">Account Name</apex:facet>
 					<apex:commandLink action="{!fetchContacts}" value="{!accountInstance.Name}" reRender="contactBlockId,opportunityBlockId,pageBlockId">
 						<apex:param name="accountId" value="{!accountInstance.id}" assignTO="{!accountId}"></apex:param>

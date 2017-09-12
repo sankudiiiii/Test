@@ -3,8 +3,18 @@
     <contactEmail>mandharesanket79284@gmail.com</contactEmail>
     <label>Lead Manipulation</label>
     <oauthConfig>
-        <callbackUrl>https://www.google.com</callbackUrl>
+        <callbackUrl>https://login.salesforce.com</callbackUrl>
         <consumerKey>3MVG9d8..z.hDcPIZJbow_cYM34gJQ600ho883t1X06nhdMo2J_09unzzxqVsYqZ.mB2fZlKOwal18orWQxGt</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
         <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+        <scopes>CustomPermissions</scopes>
+        <scopes>Wave</scopes>
+        <scopes>Eclair</scopes>
     </oauthConfig>
 </ConnectedApp>

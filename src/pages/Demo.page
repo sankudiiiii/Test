@@ -1,0 +1,11 @@
+<apex:page standardController="Account" extensions="Demo">
+<apex:form >
+<apex:selectList value="{!str}" size="10" multiSelect="true" id="fieldPicklist">
+<apex:actionSupport action="{!abc}" event="onchange" rerender="qaz"/>
+<apex:selectOptions value="{!so}" />
+</apex:selectList>
+</apex:form>
+<apex:pageblock id="qaz">
+<apex:outputtext value="{!str}"></apex:outputtext>
+</apex:pageblock>
+</apex:page>

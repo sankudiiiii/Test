@@ -1,0 +1,78 @@
+<apex:page controller="QueryBuilderController" showHeader="false" sideBar="false">
+	<head>
+		<style>
+			#outerTable {
+				width : 58%;
+				margin : 0 20%;
+			}
+		</style>
+	</head>
+		<apex:pageBlock id="formPageBlock">
+		<table id="outerTable">
+				<apex:form >
+				<tr>
+					<td><apex:outputLabel >Select Object : </apex:outputLabel></td>
+					<td>
+						<apex:selectList value="{!objectName}" size="1" multiSelect="false" label="Select Object">
+							<apex:selectOptions value="{!objectNameList}" />
+							<apex:actionSupport action="{!setToSelect}" event="onchange" rerender="queryPageBlock,fieldPicklist"/>
+						</apex:selectList>
+					</td>
+				</tr>
+				<tr>
+					<td><apex:outputLabel >Select Fields : </apex:outputLabel></td>
+					<td>
+						<table id="innerTable">
+						<tr>
+						<td>
+						<apex:selectList value="{!fieldList}" size="10" multiSelect="true" id="fieldPicklist">
+							<apex:actionSupport event="onchange" rerender="queryPageBlock"/>
+							<apex:selectOptions value="{!toSelect}" />
+						</apex:selectList>
+						</td>
+						<td>
+						<apex:commandButton value=">>" /><br></br>
+						<apex:commandButton value="<<" />
+						</td>
+						<td>
+						<apex:selectList value="{!removeFieldList}" size="10" multiSelect="true" disabled="true" label="Selected Fields" id="selectedFields">
+							<apex:selectOptions value="{!selected}" />
+						</apex:selectList>
+						</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><apex:outputLabel >Maximum Number of Records to Display : </apex:outputLabel></td>
+					<td>
+						<apex:selectList value="{!recordLimit}" size="1" multiSelect="false"  onChange="RerenderQueryField();" label="Select Limit">
+							<apex:selectOptions value="{!recordLimitList}" />
+						</apex:selectList>
+					</td>
+				</tr>
+				<tr>
+					<td><apex:outputLabel >Sort As : </apex:outputLabel></td>
+					<td>
+						<apex:selectRadio value="{!recordSortOrder}" label="Select Sort Order" onChange="RerenderQueryField();">
+							<apex:selectOptions value="{!recordSortOrderList}" />
+						</apex:selectRadio>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<apex:commandButton action="{!executeQuery}" value="Execute Query" rerender="queryPageBlock"/>
+					</td>
+				</tr>
+			</apex:form>
+		</table>
+		</apex:pageBlock>
+	<apex:pageBlock id="queryPageBlock" >
+		<apex:facet name="header">SOQL Query</apex:facet>
+		<apex:outputText value="{!objectName},{!fieldList},{!recordLimit},{!recordSortOrder},{!searchString}"></apex:outputText>
+	</apex:pageBlock>
+	<apex:pageBlock >
+		
+	</apex:pageBlock>
+</apex:page>

@@ -37,7 +37,7 @@
 				<apex:column value="{!accountInstance.Enrollment_Year__c}"></apex:column>
 				<apex:column >
 					<apex:facet name="header">Related Contacts</apex:facet>
-					<apex:form>
+					<apex:form >
 						<apex:commandLink action="{!setContacts}" value="Related Contacts" rerender="contactPanelId,alphaPanelId">
 							<apex:param name="accountId" value="{!accountInstance.id}" assignTO="{!accountId}"></apex:param>
 						</apex:commandLink>	
@@ -45,7 +45,7 @@
 				</apex:column>
 			</apex:pageBlockTable>
 		</apex:outputPanel>
-		<apex:outputPanel>
+		<apex:outputPanel >
 			<apex:outputPanel id="alphaPanelId">
 			<apex:form style="text-align:right" rendered="{! contactList.size>0}" >
 				<apex:repeat value="{!alphaList}" var="alphaInstance">
@@ -58,7 +58,7 @@
 			<apex:outputPanel id="contactPanelId">
 				<apex:pageBlockTable value="{!contactList}" var="contactInstance" rendered="{! contactList.size>0}">
 					<apex:facet name="header">Contacts Related to Account {!accountId}</apex:facet>
-					<apex:column>
+					<apex:column >
 						<apex:facet name="header">Action</apex:facet>
 						<apex:form >
 							<apex:commandLink onclick="del('{!contactInstance.id}');location.reload(true);" value="del" rerender="contactPanelId"></apex:commandLink>
