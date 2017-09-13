@@ -1,11 +1,18 @@
-<apex:page standardController="Account" extensions="Demo">
+<apex:page standardController="Account" extensions="Demo" docType="html-5.0">
 <apex:form >
 <apex:selectList value="{!str}" size="10" multiSelect="true" id="fieldPicklist">
 <apex:actionSupport action="{!abc}" event="onchange" rerender="qaz"/>
 <apex:selectOptions value="{!so}" />
 </apex:selectList>
+<apex:inputText list="{!lList}" />
 </apex:form>
 <apex:pageblock id="qaz">
 <apex:outputtext value="{!str}"></apex:outputtext>
+<apex:repeat value="{!acc}" var="ac">
+<apex:repeat value="{!abc}" var="a">
+<apex:outputText value="{!ac[a]}">
+</apex:outputText>
+</apex:repeat>
+</apex:repeat>
 </apex:pageblock>
 </apex:page>

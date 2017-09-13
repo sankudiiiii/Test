@@ -1,14 +1,14 @@
 <apex:page standardcontroller="OpportunityLineItem" renderAs="pdf" extensions="ABCContainersInvoicesExtension" applyHtmlTag="false" showheader="false" sidebar="false">
 	<head>
 		<style>
-			#datetable {
+			#dateTable {
 				float : right;
 				text-align : center;
 				border-collapse : collapse;
 				border : 1px solid;
 				margin : 5%;
 			}
-			#datetable th,#datetable td {
+			#dateTable th,#dateTable td {
 				border : 1px solid;
 			}
 			#inv {
@@ -22,25 +22,25 @@
 				font-size : 20px;
 				text-align : left;
 			}
-			#infotable {
+			#infoTable {
 				margin : 10% 0;
 				border-collapse : collapse;
 				width : 50%;
 			}
-			#infotable th {
+			#infoTable th {
 				border : 1px solid;
 			}
 			th {
 				background-color : #E2DCF7;
 			}
-			#desctable td {
+			#descTable td {
 				border-right : 1px black solid;
 				border-left : 1px black solid;
 			}			
-			#desctable th {
+			#descTable th {
 				border : 1px black solid;
 			}
-			#desctable {
+			#descTable {
 				width : 100%;
 				border : 1px black solid;
 			}
@@ -57,10 +57,10 @@
 		</style>
 		
 	</head>
-	<apex:pageblock >
-		<apex:outputpanel id="dateblock">
+	<apex:pageBlock >
+		<apex:outputPanel id="dateBlock">
 			<caption id='inv'>INVOICE</caption>
-			<table id='datetable'>		
+			<table id='dateTable'>		
 				<tr>
 					<th>Invoice Number</th>
 					<th>Date</th>
@@ -71,33 +71,33 @@
 				</tr>
 			</table>
 			<caption id='comp'>{!accountInstance.Name}</caption>
-			<apex:outputtext value="{!accountInstance.billingstreet}"></apex:outputtext><br></br>
-			<apex:outputtext value="{!accountInstance.billingcity}, {!accountInstance.billingstate}, {!accountInstance.billingpostalcode}"></apex:outputtext><br></br>
-			<apex:outputtext value="Phone : {!accountInstance.phone}"></apex:outputtext>
-			<table id='infotable'>
+			<apex:outputText value="{!accountInstance.Billingstreet}"></apex:outputText><br></br>
+			<apex:outputText value="{!accountInstance.BillingCity}, {!accountInstance.BillingState}, {!accountInstance.BillingPostalCode}"></apex:outputText><br></br>
+			<apex:outputText value="Phone : {!accountInstance.Phone}"></apex:outputText>
+			<table id='infoTable'>
 				<tr>
 					<th>BILL TO</th>
 				</tr>
 				<tr>
-					<td>{!opportunityInstance.name}</td>
+					<td>{!opportunityInstance.Name}</td>
 				</tr>
 				<tr>
-					<td>{!accountInstance.name}</td>
+					<td>{!accountInstance.Name}</td>
 				</tr>
 				<tr>
-					<td>{!accountInstance.billingstreet}</td>
+					<td>{!accountInstance.BillingStreet}</td>
 				</tr>
 				<tr>
-					<td>{!accountInstance.billingcity}, {!accountInstance.billingstate}, {!accountInstance.billingpostalcode}</td>
+					<td>{!accountInstance.BillingCity}, {!accountInstance.BillingState}, {!accountInstance.BillingPostalCode}</td>
 				</tr>
 				<tr>
-					<td>Phone : {!accountInstance.phone}</td>
+					<td>Phone : {!accountInstance.Phone}</td>
 				</tr>
 				<tr>
 					<td>{!accountInstance.email_address__c}</td>
 				</tr>
 			</table>
-			<table id='desctable' cellspacing="0">
+			<table id='descTable' cellspacing="0">
 				<tr>
 					<th>Description</th>
 					<th class='rt'>Amount</th>
@@ -128,8 +128,8 @@
 				</tr>
 			</table>
 		</apex:outputpanel>
-	</apex:pageblock>
+		<apex:facet name="footer">
 	<p>If you have any questions about this invoice, please contact<br></br>
-	{!userInstance.name}, {!userInstance.phone}, {!userInstance.email}</p>
-	
+	{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p></apex:facet>
+	</apex:pageblock>
 </apex:page>

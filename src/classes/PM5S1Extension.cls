@@ -1,8 +1,10 @@
 global with sharing class PM5S1Extension {
     public String searchString{get; set;}
     public list<Account> accountList{get; set;}
+    public list<String> autoList{get; set;}
     public Integer accountCount{get; set;}
     public ID accountId{get; set;}
+    public String selectedAccount {get; set;}
     public String start{get; set;}
     public list<Contact> contactList{get; set;}
     public list<String> alphaList = new list<String> {'All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -13,6 +15,11 @@ global with sharing class PM5S1Extension {
     public PM5S1Extension(ApexPages.StandardSetController controller) {
     	accountCount = 0;
     	accountList = new list<Account>();
+    	autoList = new list<String>();
+    	List<Account> tempList = [select name from Account];
+    	for(Account a : tempList){
+    		autoList.add(a.name);
+    	}
     	contactList = new list<Contact>();
     }
     public PageReference search() {
@@ -85,10 +92,5 @@ global with sharing class PM5S1Extension {
     		return true;
     	else
     		return false;
-    }
-    @RemoteAction
-    global static list<Account> autoComplete(String str){
-    	list<Account> accountAutoList = [SELECT Name FROM Account WHERE Name LIKE :str+'%'];
-    	return accountAutoList;
     }
 }

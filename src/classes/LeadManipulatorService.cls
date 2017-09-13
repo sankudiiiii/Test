@@ -1,73 +1,93 @@
-@RestResource(URLMapping='/LeadManipulatorService/*')
+@RestResource(URLMapping = '/LeadManipulatorService/*')
 global with sharing class LeadManipulatorService {
     global class ResponseWrapper{
-    	public boolean isSuccess;
-    	public id leadId;
+    	public Boolean isSuccess;
+    	public Id leadId;
     	public String leadName;
     	public String status;
     }
     @HTTPPost
-    global static ResponseWrapper createLeadRecord(String firstName, String lastName, String email, String phone, String company){
-    	ResponseWrapper rw = new ResponseWrapper();
-    	Lead leadObject = new lead(firstname=firstName,lastname=lastName,email=email,phone=phone,company=company);
+    global static ResponseWrapper createLeadRecord(String firstName , String lastName , String email , String phone , String company) {
+    	ResponseWrapper responseWrapperInstance = new ResponseWrapper();
+    	Lead leadObject = new lead(firstname = firstName , lastname = lastName , email = email , phone = phone , company = company);
     	try{
     		insert leadObject;
-    		rw.isSuccess = true;
-    		rw.leadId = leadObject.id;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = 'Success';
+    		responseWrapperInstance.isSuccess = true;
+    		responseWrapperInstance.leadId = leadObject.id;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = 'Success';
     	} catch (Exception e){
-    		rw.isSuccess = false;
-    		rw.leadId = null;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = e.getMessage();
+    		responseWrapperInstance.isSuccess = false;
+    		responseWrapperInstance.leadId = null;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = e.getMessage();
     	}
-    	return rw;
+    	return responseWrapperInstance;
     }
     @HTTPDelete
-    global static ResponseWrapper deleteLeadRecord(){
-    	ResponseWrapper rw = new ResponseWrapper();
+    global static ResponseWrapper deleteLeadRecord() {
+    	ResponseWrapper responseWrapperInstance = new ResponseWrapper();
     	RestRequest request = RestContext.request;
-    	String fn = RestContext.request.params.get('firstName');
-    	String ln = RestContext.request.params.get('lastName');
-    	String em = RestContext.request.params.get('email');
-    	String ph = RestContext.request.params.get('phone');
+    	String firstname = RestContext.request.params.get('firstName');
+    	String lastName = RestContext.request.params.get('lastName');
+    	String email = RestContext.request.params.get('email');
+    	String phone = RestContext.request.params.get('phone');
     	Lead leadObject = new Lead();
     	try{
-    		leadObject = [select id,firstname,lastname from lead where firstname=:fn and lastname=:ln and email=:em and phone=:ph limit 1];
+    		leadObject = [
+    			SELECT Id
+    				 , Firstname
+    				 , Lastname 
+    			  FROM Lead 
+    			 WHERE Firstname = :firstName 
+    			   AND Lastname = :lastName 
+    			   AND Email = :email 
+    			   AND phone = :phone 
+    			 LIMIT 1
+    		];
     		delete leadObject;
-    		rw.isSuccess = true;
-    		rw.leadId = null;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = 'Success';
+    		responseWrapperInstance.isSuccess = true;
+    		responseWrapperInstance.leadId = null;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = 'Success';
     	} catch (Exception e){
-    		rw.isSuccess = false;
-    		rw.leadId = leadObject.id;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = e.getMessage();
+    		responseWrapperInstance.isSuccess = false;
+    		responseWrapperInstance.leadId = leadObject.id;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = e.getMessage();
     	}
-    	return rw;
+    	return responseWrapperInstance;
     }
     @HTTPPatch
-    global static ResponseWrapper updateLeadRecord(String firstName, String lastName, String email, String phone){
-    	ResponseWrapper rw = new ResponseWrapper();
+    global static ResponseWrapper updateLeadRecord(String firstName , String lastName , String email , String phone) {
+    	ResponseWrapper responseWrapperInstance = new ResponseWrapper();
     	Lead leadObject = new Lead();
     	try{
-    		leadObject = [select id,firstname,lastname,email,phone from lead where firstname=:firstname and lastname=:lastname limit 1];
-    		leadObject.email=email;
-    		leadObject.phone=phone;
+    		leadObject = [
+    			SELECT Id
+    				 , Firstname
+    				 , Lastname
+    				 , Email
+    				 , Phone 
+    			  FROM Lead 
+    			 WHERE Firstname = :firstName 
+    			   AND Lastname=:lastName 
+    			 LIMIT 1
+    		];
+    		leadObject.Email = email;
+    		leadObject.Phone = phone;
     		update leadObject;
-    		rw.isSuccess = true;
-    		rw.leadId = leadObject.id;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = 'Success';
+    		responseWrapperInstance.isSuccess = true;
+    		responseWrapperInstance.leadId = leadObject.id;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = 'Success';
     	} catch (Exception e){
-    		rw.isSuccess = false;
-    		rw.leadId = leadObject.id;
-    		rw.leadName = leadObject.firstname + ' ' +leadObject.lastName;
-    		rw.status = e.getMessage();
+    		responseWrapperInstance.isSuccess = false;
+    		responseWrapperInstance.leadId = leadObject.id;
+    		responseWrapperInstance.leadName = leadObject.firstname + ' ' + leadObject.lastName;
+    		responseWrapperInstance.status = e.getMessage();
     	}
-    	return rw;
+    	return responseWrapperInstance;
     }
 }
 /*

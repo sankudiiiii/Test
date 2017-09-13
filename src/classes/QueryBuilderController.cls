@@ -1,112 +1,174 @@
 public with sharing class QueryBuilderController {
     public String objectName{get; set;}
-    
-    public List<String> fieldList{get; set;}
-    public List<String> removeFieldList{get; set;}
-    public List<SelectOption> toSelect;
-    public List<SelectOption> selected{get; set;}
-    public String searchString;
-    
-    public String recordLimit{get; set;}
+    public List<SelectOption> objectNameList;
     public String recordSortOrder{get; set;}
+    public List<SelectOption> recordSortOrderList;
+    public String recordLimit{get; set;}
+    public List<SelectOption> recordLimitList;
+    public List<String> addFieldList{get; set;}
+    public List<SelectOption> toSelectList;
+    public List<String> removeFieldList{get; set;}
+    public List<SelectOption> selectedList;
+    public String orderByField{get; set;}
+    public List<SelectOption> orderByList;
+    public String searchString;
+    public List<sObject> sObjectList{get; set;}
+    public List<String> fieldValues;
     
     public QueryBuilderController(){
-    	objectName='';
-    	fieldList = new List<String>();
-    	toSelect = new List<SelectOption>();
-    	selected = new List<SelectOption>();
-    	searchString='';
+    	objectNameList = new List<SelectOption>();
+    	setObjectNameList(new List<SelectOption>());
+    	recordSortOrderList = new List<SelectOption>();
+    	setRecordSortOrderList(new List<SelectOption>());
+    	recordLimitList = new List<SelectOption>();
+    	setRecordLimitList(new List<SelectOption>());
+    	addFieldList = new List<String>();
+    	toSelectList = new List<SelectOption>();
+		removeFieldList = new List<String>();
+		selectedList = new List<SelectOption>();
+		orderByList = new List<SelectOption>();
+    	orderByList.add(new SelectOption('NONE','--- SELECT ORDER BY FIELD ---'));
+    	fieldValues = new List<String>();
     }
-    public QueryBuilderController(ApexPages.StandardController controller){
-    	objectName='';
-    	fieldList = new List<String>();
-    	toSelect = new List<SelectOption>();
-    	selected = new List<SelectOption>();
-    	searchString='';
-    }
-    public List<SelectOption> getObjectNameList(){
-    	List<SelectOption> objectNameOptionList = new List<SelectOption>();
-    	List<SelectOption> objectNameOptionList1 = new List<SelectOption>();
-    	objectNameOptionList.add(new SelectOption('NONE','--- SELECT OBJECT ---'));
+    
+    public void setObjectNameList(List<SelectOption> oNameList){
+    	objectNameList.add(new SelectOption('NONE','--- SELECT OBJECT ---'));
     	for(Schema.SObjectType objectNames : Schema.getGlobalDescribe().values())
     		if(objectNames.getDescribe().isAccessible() && objectNames.getDescribe().isCreateable() && objectNames.getDescribe().isQueryable())
-    			objectNameOptionList1.add(new SelectOption(objectNames.getDescribe().getName(),objectNames.getDescribe().getName()));
-    	objectNameOptionList1.sort();
-    	objectNameOptionList.addall(objectNameOptionList1);
-    	objectName=objectNameOptionList[0].getValue();
-    	return objectNameOptionList;
+    			oNameList.add(new SelectOption(objectNames.getDescribe().getName(),objectNames.getDescribe().getName()));
+    	oNameList.sort();
+    	objectNameList.addall(oNameList);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public List<SelectOption> getToSelect(){
-    	return toSelect;
+    public List<SelectOption> getObjectNameList(){
+    	return objectNameList;
     }
-    public void setToSelect(){
+    public void setRecordSortOrderList(List<SelectOption> rSortOrderList){
+    	rSortOrderList.add(new SelectOption('ASC','Ascending'));
+    	rSortOrderList.add(new SelectOption('DESC','Descending'));
+    	recordSortOrderList = rSortOrderList;
+    	recordSortOrder='ASC';
+    }
+    public List<SelectOption> getRecordSortOrderList(){
+    	return recordSortOrderList;
+    }
+    public void setRecordLimitList(List<SelectOption> rLimitList){
+    	rLimitList.add(new SelectOption('500','500'));
+    	rLimitList.add(new SelectOption('1000','1000'));
+    	rLimitList.add(new SelectOption('5000','5000'));
+    	rLimitList.add(new SelectOption('50000','50000'));
+    	recordLimitList.addAll(rLimitList);
+    	recordLimit = '500';
+    }
+    public List<SelectOption> getRecordLimitList(){
+    	return recordLimitList;
+    }
+    public void setToSelectList(List<SelectOption> tSelect){
     	if(objectName != '' && objectName != 'NONE'){
     		Schema.SObjectType token = Schema.getGlobalDescribe().get(objectName);
 	    	Schema.DescribeSObjectResult tokenDescribe = token.getDescribe();
     		for(Schema.SObjectField fieldName : tokenDescribe.fields.getMap().values())
-    			if(fieldName.getDescribe().isAccessible())
-    				toSelect.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
-    		toSelect.sort();
+    			if(fieldName.getDescribe().isAccessible() && fieldName.getDescribe().getType()!=Schema.DisplayType.address && fieldName.getDescribe().getType()!=Schema.DisplayType.base64 && fieldName.getDescribe().getType()!=Schema.DisplayType.DataCategoryGroupReference && fieldName.getDescribe().getType()!=Schema.DisplayType.EncryptedString)
+    				tSelect.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    		tSelect.sort();
     	}
-    	fieldList=new List<String>();
+    	toSelectList.addAll(tSelect);
+    }
+    public List<SelectOption> getToSelectList(){
+    	return toSelectList;
+    }
+    public void setSelectedList(List<SelectOption> slected){
+    	selectedList.addAll(slected);
+    }
+    public List<SelectOption> getSelectedList(){
+    	return selectedList;
+    }
+    public void setOrderByList(List<SelectOption>  oByList){
+    	if(objectName != '' && objectName != 'NONE'){
+    		Schema.SObjectType token = Schema.getGlobalDescribe().get(objectName);
+	    	Schema.DescribeSObjectResult tokenDescribe = token.getDescribe();
+    		for(Schema.SObjectField fieldName : tokenDescribe.fields.getMap().values())
+    			if(fieldName.getDescribe().isAccessible() && fieldName.getDescribe().getType()!=Schema.DisplayType.MultiPicklist && fieldName.getDescribe().getType()!=Schema.DisplayType.address && fieldName.getDescribe().getType()!=Schema.DisplayType.EncryptedString && fieldName.getDescribe().getType()!=Schema.DisplayType.TextArea && fieldName.getDescribe().getType()!=Schema.DisplayType.base64)
+    				oByList.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    		oByList.sort();
+    	}
+    	orderByList.add(new SelectOption('NONE','--- SELECT ORDER BY FIELD ---'));
+    	orderByList.addAll(oByList);
+    }
+    public List<SelectOption> getOrderByList(){
+    	return orderByList;
+    }
+    public String getSearchString(){
+    	return searchString;
+    }
+    public void setSearchString(){
+    	searchString='';
+    	if(selectedList.size()>0 && objectName != null && objectName != 'NONE' && orderByField != null && orderByField != 'NONE' && recordLimit != null && recordLimit != 'NONE'){
+    	String fieldString = '';
+    	for(SelectOption option : selectedList){
+    		if(fieldString != '')
+    			fieldString += ',';
+    		fieldString += option.getValue();
+    	}
+    	searchString = 'SELECT ' + fieldString + ' FROM ' + objectName + ' ORDER BY ' + orderByField + ' ' + recordSortOrder + ' NULLS LAST LIMIT ' + recordLimit;
+    	}
+    }
+    public List<String> getFieldValues(){
+    	return fieldValues;
+    }
+    public List<String> setFieldValues(){
+    	for(SelectOption option : selectedList){
+    		fieldValues.add(option.getValue());
+    	}
+    	System.debug(fieldValues);
+    	return fieldValues;
+    }
+    
+    public void setFieldAndOrderLists(){
+    	toSelectList.clear();
+    	selectedList.clear();
+    	orderByList.clear();
+    	setToSelectList(new List<SelectOption>());
+    	setOrderByList(new List<SelectOption>());
+    	setSearchString();
     }
     public PageReference add(){
-    	for(String str : fieldList){
+    	for(String str : addFieldList){
     		Integer j;
-    		for(Integer i = 0 ; i < toSelect.size() ; i++){
-    			if(toSelect[i].getLabel()==str){
+    		for(Integer i = 0 ; i < toSelectList.size() ; i++){
+    			if(toSelectList[i].getLabel()==str){
     				j=i;
     				break;
     			}
     		}
-    		selected.add(toSelect.get(j));
-    		toSelect.remove(j);
+    		selectedList.add(toSelectList.get(j));
+    		toSelectList.remove(j);
     	}
-    	System.debug(fieldList);
+    	setSearchString();
     	return null;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public List<SelectOption> getRecordLimitList(){
-    	List<SelectOption> recordLimitList = new List<SelectOption>();
-    	recordLimitList.add(new SelectOption('NONE','--- SELECT LIMIT ---'));
-    	recordLimitList.add(new SelectOption('500','500'));
-    	recordLimitList.add(new SelectOption('1000','1000'));
-    	recordLimitList.add(new SelectOption('5000','5000'));
-    	recordLimitList.add(new SelectOption('50000','50000'));
-    	return recordLimitList;
-    }
-    public List<SelectOption> getRecordSortOrderList(){
-    	List<SelectOption> recordSortOrderList = new List<SelectOption>();
-    	recordSortOrderList.add(new SelectOption('ASC','Ascending'));
-    	recordSortOrderList.add(new SelectOption('DESC','Descending'));
-    	recordSortOrder='ASC';
-    	return recordSortOrderList;
-    }
-    public String getSearchString(){
-    	if(fieldList.size()>0)
-    		searchString='asdksjadhjsa hdfj ahs';
-    	return searchString;
+    public PageReference remove(){
+    	for(String str : removeFieldList){
+    		Integer j;
+    		for(Integer i = 0 ; i < selectedList.size() ; i++){
+    			if(selectedList[i].getLabel()==str){
+    				j=i;
+    				break;
+    			}
+    		}
+    		toSelectList.add(selectedList.get(j));
+    		selectedList.remove(j);
+    	}
+    	setSearchString();
+    	return null;
     }
     public PageReference executeQuery(){
-    	
+    	setSearchString();
+    	fieldValues.clear();
+    	setFieldValues();
+    	if(searchString=='' || searchString==null)
+    		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR , 'Please Select All Fields'));
+    	else
+    		sObjectList = Database.query(searchString);
     	return null;
     }
 }

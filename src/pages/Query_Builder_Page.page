@@ -1,13 +1,14 @@
 <apex:page controller="QueryBuilderController" showHeader="false" sideBar="false">
-	<head>
+	<!-- <head>
 		<style>
 			#outerTable {
 				width : 58%;
 				margin : 0 20%;
 			}
 		</style>
-	</head>
+	</head> -->
 		<apex:pageBlock id="formPageBlock">
+		<apex:pageMessages id="showMessage" rendered="true" />
 		<table id="outerTable">
 				<apex:form >
 				<tr>
@@ -15,64 +16,80 @@
 					<td>
 						<apex:selectList value="{!objectName}" size="1" multiSelect="false" label="Select Object">
 							<apex:selectOptions value="{!objectNameList}" />
-							<apex:actionSupport action="{!setToSelect}" event="onchange" rerender="queryPageBlock,fieldPicklist"/>
+							<apex:actionSupport action="{!setFieldAndOrderLists}" event="onchange" rerender="formPageBlock,queryPageBlock"/>
 						</apex:selectList>
 					</td>
 				</tr>
 				<tr>
 					<td><apex:outputLabel >Select Fields : </apex:outputLabel></td>
 					<td>
+						<apex:pageblock id="msp">
 						<table id="innerTable">
 						<tr>
 						<td>
-						<apex:selectList value="{!fieldList}" size="10" multiSelect="true" id="fieldPicklist">
-							<apex:actionSupport event="onchange" rerender="queryPageBlock"/>
-							<apex:selectOptions value="{!toSelect}" />
+						<apex:selectList value="{!addFieldList}" size="10" multiSelect="true" id="fieldPicklist">
+							<apex:selectOptions value="{!toSelectList}" />
 						</apex:selectList>
 						</td>
 						<td>
-						<apex:commandButton value=">>" /><br></br>
-						<apex:commandButton value="<<" />
+						<apex:commandButton action="{!add}" value=">>" rerender="fieldPicklist,queryPageBlock,selectedFields,formPageBlock"/><br></br>
+						<apex:commandButton action="{!remove}" value="<<" rerender="fieldPicklist,queryPageBlock,selectedFields,formPageBlock"/>
 						</td>
 						<td>
 						<apex:selectList value="{!removeFieldList}" size="10" multiSelect="true" disabled="true" label="Selected Fields" id="selectedFields">
-							<apex:selectOptions value="{!selected}" />
+							<apex:selectOptions value="{!selectedList}" />
 						</apex:selectList>
 						</td>
 						</tr>
 						</table>
+					</apex:pageblock>
 					</td>
 				</tr>
 				<tr>
-					<td><apex:outputLabel >Maximum Number of Records to Display : </apex:outputLabel></td>
+					<td><apex:outputLabel >Select Record Order By Field : </apex:outputLabel></td>
 					<td>
-						<apex:selectList value="{!recordLimit}" size="1" multiSelect="false"  onChange="RerenderQueryField();" label="Select Limit">
-							<apex:selectOptions value="{!recordLimitList}" />
+						<apex:selectList value="{!orderByField}" size="1" multiSelect="false" label="Select Order By Field" id="orderByPicklist">
+							<apex:actionSupport action="{!setSearchString}" event="onchange" rerender="queryPageBlock"/>
+							<apex:selectOptions value="{!orderByList}" />
 						</apex:selectList>
 					</td>
 				</tr>
 				<tr>
 					<td><apex:outputLabel >Sort As : </apex:outputLabel></td>
 					<td>
-						<apex:selectRadio value="{!recordSortOrder}" label="Select Sort Order" onChange="RerenderQueryField();">
+						<apex:selectRadio value="{!recordSortOrder}" label="Select Sort Order">
 							<apex:selectOptions value="{!recordSortOrderList}" />
+							<apex:actionSupport action="{!setSearchString}" event="onchange" rerender="queryPageBlock"/>
 						</apex:selectRadio>
+					</td>
+				</tr>
+				<tr>
+					<td><apex:outputLabel >Maximum Number of Records to Display : </apex:outputLabel></td>
+					<td>
+						<apex:selectList value="{!recordLimit}" size="1" multiSelect="false" label="Select Limit">
+							<apex:selectOptions value="{!recordLimitList}" />
+							<apex:actionSupport action="{!setSearchString}" event="onchange" rerender="queryPageBlock"/>
+						</apex:selectList>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td>
-						<apex:commandButton action="{!executeQuery}" value="Execute Query" rerender="queryPageBlock"/>
+						<apex:commandButton action="{!executeQuery}" value="Execute Query" rerender="OutputPageBlock,formPageBlock"/>
 					</td>
 				</tr>
 			</apex:form>
 		</table>
-		</apex:pageBlock>
 	<apex:pageBlock id="queryPageBlock" >
 		<apex:facet name="header">SOQL Query</apex:facet>
-		<apex:outputText value="{!objectName},{!fieldList},{!recordLimit},{!recordSortOrder},{!searchString}"></apex:outputText>
+		<apex:outputText value="{!searchString}"></apex:outputText>
 	</apex:pageBlock>
-	<apex:pageBlock >
-		
+	<apex:pageBlock id="OutputPageBlock">
+		<apex:pageBlockTable value="{!sObjectList}" var="sObjectInstance">
+			<apex:repeat value="{!fieldValues}" var="fieldValue">
+				<apex:column value="{!sObjectInstance[fieldValue]}" />
+			</apex:repeat>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
 	</apex:pageBlock>
 </apex:page>

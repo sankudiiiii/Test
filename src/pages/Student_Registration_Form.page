@@ -1,32 +1,32 @@
-<apex:page standardcontroller="Student__c" extensions="StudentRegistrationExtension" language="{!lang}" id="abc" showheader="false" sidebar="false">
-<apex:pageblock id="abc">
+<apex:page standardController="Student__c" extensions="StudentRegistrationExtension" language="{!language}" id="abc" showHeader="false" sideBar="false">
+<apex:pageBlock id="abc">
 <apex:form >
 	{!$Label.Change_Language}
-	<apex:selectlist value="{!lang}" size="1" multiselect="false">
-		<apex:selectoptions value="{!so}">
-		</apex:selectoptions>
+	<apex:selectList value="{!language}" size="1" multiselect="false">
+		<apex:selectOptions value="{!optionList}">
+		</apex:selectOptions>
 		<apex:actionSupport event="onchange" action="{!changelang}" reRender="abc" />
-	</apex:selectlist>
+	</apex:selectList>
 </apex:form>
 <apex:form >
-	<apex:pageblock >
-	<apex:pageblocksection >
-	<apex:inputfield value="{!Student__c.name}" /><br></br>
-	<apex:inputfield value="{!Student__c.Roll_Number__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.Gender__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.Course__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.SSC_Percentage__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.HSC_Percentage__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.Country__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.State__c}" /><br></br>
-	<apex:inputfield value="{!Student__c.City__c}" /><br></br>
-	<apex:commandButton action="{!insertRecord}" value="Save" onComplete="return fun()" />
-	</apex:pageblocksection>
-	</apex:pageblock>
+	<apex:pageBlock >
+	<apex:pageBlockSection >
+	<apex:inputField value="{!Student__c.name}" /><br></br>
+	<apex:inputField value="{!Student__c.Roll_Number__c}" /><br></br>
+	<apex:inputField value="{!Student__c.Gender__c}" /><br></br>
+	<apex:inputField value="{!Student__c.Course__c}" /><br></br>
+	<apex:inputField value="{!Student__c.SSC_Percentage__c}" /><br></br>
+	<apex:inputField value="{!Student__c.HSC_Percentage__c}" /><br></br>
+	<apex:inputField value="{!Student__c.Country__c}" /><br></br>
+	<apex:inputField value="{!Student__c.State__c}" /><br></br>
+	<apex:inputField value="{!Student__c.City__c}" /><br></br>
+	<apex:commandButton action="{!insertRecord}" value="Save" onComplete="return successFunction()" />
+	</apex:pageBlockSection>
+	</apex:pageBlock>
 </apex:form>
-</apex:pageblock>
+</apex:pageBlock>
 <script>
-	function fun(){
+	function successFunction(){
 		window.alert('Your admission application has been submitted successfully');
 		return true;
 	}

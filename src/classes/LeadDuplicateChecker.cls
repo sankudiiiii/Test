@@ -1,47 +1,42 @@
-global with sharing class LeadDuplicateChecker implements Database.Batchable<sObject>,Database.Stateful{
-	global list<sObject> deleteSet = new list<sObject>();
-	global Map<String,set<lead>> leadMap = new Map<String,set<lead>>();
+global with sharing class LeadDuplicateChecker implements Database.Batchable<sObject> , Database.Stateful {
+	global List<sObject> deleteSet = new List<sObject>();
+	global Map<String,set<Lead>> leadMap = new Map<String,set<Lead>>();
     global Database.QueryLocator start(Database.BatchableContext bc) {
-		return Database.getQueryLocator('select '+ System.label.Lead_Duplicate_Check_Fields+',createddate from lead where '+ System.label.Lead_Duplicate_Check_Fields+' != null');
+		return Database.getQueryLocator('SELECT ' + System.label.Lead_Duplicate_Check_Fields + ' , Createddate FROM Lead WHERE '+ System.label.Lead_Duplicate_Check_Fields + ' != null');
 	}
-	global void execute(Database.BatchableContext BC, list<sObject> soList){
-		list<lead> leadlist = soList;
+	global void execute(Database.BatchableContext BC , List<sObject> sObjectList) {
+		List<Lead> leadList = sObjectList;
 		String compareField = System.label.Lead_Duplicate_Check_Fields;
-		for(lead l : leadList){
-			if(leadMap.containsKey((String)l.get(compareField))){
-				set<lead> leadset = leadMap.get((String)l.get(compareField));
-				leadset.add(l);
-				leadMap.put((String)l.get(compareField),leadset);
+		for(lead leadInstance : leadList) {
+			if(leadMap.containsKey((String)leadInstance.get(compareField))) {
+				Set<Lead> leadSet = leadMap.get((String)leadInstance.get(compareField));
+				leadSet.add(leadInstance);
+				leadMap.put((String)leadInstance.get(compareField),leadSet);
 			} else {
-				set<lead> leadset = new set<lead>();
-				leadset.add(l);
-				leadMap.put((String)l.get(compareField),leadset);
+				Set<Lead> leadSet = new Set<Lead>();
+				leadSet.add(leadInstance);
+				leadMap.put((String)leadInstance.get(compareField),leadSet);
 			}
 		}
-		for(String s : leadMap.keySet()){
-			if(leadMap.get(s).size()>1){
+		for(String fieldName : leadMap.keySet()) {
+			if(leadMap.get(fieldName).size() > 1) {
 				lead winner;
-				for(lead s1 : leadMap.get(s)){
-					for(lead s2 : leadMap.get(s)){
-						if(s1!=s2){
-							if(s1.createddate>s2.createddate){
-								winner = s2;
-							} else {
-								winner = s1;
-							}
+				for(lead lead1 : leadMap.get(fieldName))
+					for(lead lead2 : leadMap.get(fieldName))
+						if(lead1 != lead2) {
+							if(lead1.createddate > lead2.createddate)
+								winner = lead2;
+							else
+								winner = lead1;
 						}
-					}
-				}
-				for(lead s1 : leadMap.get(s)){
-					if(s1 != winner){
+				for(lead s1 : leadMap.get(fieldName))
+					if(s1 != winner)
 						deleteset.add(s1);
-					}
-				}
 			}
 		}
 		delete deleteset;
 	}
-	global void finish(Database.BatchableContext BC){
+	global void finish(Database.BatchableContext BC) {
 		
 	}
 }

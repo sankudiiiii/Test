@@ -1,4 +1,4 @@
-<apex:page standardcontroller="OpportunityLineItem" extensions="ABCContainersInvoicesExtension" tabstyle="Opportunity" applyHtmlTag="false" showheader="false" sidebar="false">
+<apex:page standardController="OpportunityLineItem" extensions="ABCContainersInvoicesExtension" tabStyle="Opportunity" applyHtmlTag="false" showHeader="false" sideBar="false">
 	<!-- <head>
 		<style>
 			table {
@@ -14,25 +14,25 @@
 	<head>
 		<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}" rel="stylesheet"/>
 	</head>
-	<apex:sectionheader title="ABC Containers" subtitle="Line Items"/>
+	<apex:sectionHeader title="ABC Containers" subTitle="Line Items"/>
 	<table class="tbl" >
 		<tr>
-		<apex:outputpanel styleClass="label">
-			<th><apex:outputlabel styleClass="dt" value="Opportunity Line Item" /></th>
-			<th><apex:outputlabel styleClass="dt" value="Opportunity" /></th>
-			<th><apex:outputlabel styleClass="dt" value="Product" /></th>
-			<th><apex:outputlabel styleClass="dt" value="Invoice" /></th>
-		</apex:outputpanel>
+		<apex:outputPanel styleClass="label">
+			<th><apex:outputLabel styleClass="dt" value="Opportunity Line Item" /></th>
+			<th><apex:outputLabel styleClass="dt" value="Opportunity" /></th>
+			<th><apex:outputLabel styleClass="dt" value="Product" /></th>
+			<th><apex:outputLabel styleClass="dt" value="Invoice" /></th>
+		</apex:outputPanel>
 		</tr>
-		<apex:outputpanel styleClass="label">
+		<apex:outputPanel styleClass="label">
 			<apex:repeat value="{!opportunityLineItemList}" var="lineItem">
 				<tr>
-				<td><apex:outputfield styleClass="dt" value="{!lineItem.Name}" /></td>
-				<td><apex:outputfield styleClass="dt" value="{!lineItem.Opportunityid}" /></td>
-				<td><apex:outputfield styleClass="dt" value="{!lineItem.Product2id}" /></td>
-				<td><apex:outputlink styleClass="dt" value="https://c.ap5.visual.force.com/apex/ABCTrials?id={!lineItem.id}&no={!count}" >Generate Invoice
-				</apex:outputlink></td></tr>
+				<td><apex:outputField styleClass="dt" value="{!lineItem.Name}" /></td>
+				<td><apex:outputField styleClass="dt" value="{!lineItem.Opportunityid}" /></td>
+				<td><apex:outputField styleClass="dt" value="{!lineItem.Product2id}" /></td>
+				<td><apex:outputLink styleClass="dt" value="https://c.ap5.visual.force.com/apex/ABCTrials?id={!lineItem.id}&no={!count}" >Generate Invoice
+				</apex:outputLink></td></tr>
 			</apex:repeat>			
-		</apex:outputpanel>
+		</apex:outputPanel>
 	</table>
 </apex:page>

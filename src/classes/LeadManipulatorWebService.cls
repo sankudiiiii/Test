@@ -1,56 +1,72 @@
 global with sharing class LeadManipulatorWebService {
-    global class WrapperResponse{
+    global class WrapperResponse {
     	webservice boolean isSuccess;
     	webservice String lead;
     	webservice String status;
     }
-    webservice static WrapperResponse createLeadRecord(String firstname,String lastname,String email,String phone,String company){
-    	WrapperResponse wr = new WrapperResponse();
-    	Lead leadInstance = new Lead(firstname=firstname,lastname=lastname,email=email,phone=phone,company=company);
+    webservice static WrapperResponse createLeadRecord (String firstname , String lastname , String email , String phone , String company){
+    	WrapperResponse wrapperResponseObj = new WrapperResponse();
+    	Lead leadInstance = new Lead(firstname = firstname , lastname = lastname , email = email , phone = phone , company = company);
     	try{
     		insert leadInstance;
-    		wr.isSuccess=true;
-    		wr.lead=leadInstance.id;
-    		wr.status='Success';
+    		wrapperResponseObj.isSuccess = true;
+    		wrapperResponseObj.lead = leadInstance.Id;
+    		wrapperResponseObj.status = 'Success';
     	} catch (Exception e) {
-    		wr.isSuccess=false;
-    		wr.lead='';
-    		wr.status=e.getMessage();
+    		wrapperResponseObj.isSuccess = false;
+    		wrapperResponseObj.lead = '';
+    		wrapperResponseObj.status = e.getMessage();
     	}
-    	return wr;
+    	return wrapperResponseObj;
     }
-    webservice static WrapperResponse deleteLeadRecord(String firstname,String lastname,String email,String phone){
-    	WrapperResponse wr = new WrapperResponse();
-    	Lead leadInstance = new lead();
+    webservice static WrapperResponse deleteLeadRecord (String firstname , String lastname , String email , String phone) {
+    	WrapperResponse wrapperResponseObj = new WrapperResponse();
+    	Lead leadInstance = new Lead();
     	try{
-    		leadInstance = [select id,firstname,lastname from lead where firstname=:firstname and lastname=:lastname and email=:email and phone=:phone];
+    		leadInstance = [
+    			SELECT Id
+    				 , Firstname
+    				 , Lastname 
+    			  FROM Lead 
+    			 WHERE Firstname = :firstname 
+    			   AND Lastname = :lastname 
+    			   AND Email = :email 
+    			   AND Phone = :phone
+    		];
     		delete leadInstance;
-    		wr.isSuccess=true;
-    		wr.lead=leadInstance.firstname + ' ' +leadInstance.lastName;
-    		wr.status='Success';
+    		wrapperResponseObj.isSuccess = true;
+    		wrapperResponseObj.lead = leadInstance.firstname + ' ' + leadInstance.lastName;
+    		wrapperResponseObj.status = 'Success';
     	} catch (Exception e) {
-    		wr.isSuccess=false;
-    		wr.lead='';
-    		wr.status=e.getMessage();
+    		wrapperResponseObj.isSuccess = false;
+    		wrapperResponseObj.lead = '';
+    		wrapperResponseObj.status = e.getMessage();
     	}
-    	return wr;
+    	return wrapperResponseObj;
     }
-    webservice static WrapperResponse updateLeadRecord(String firstname,String lastname,String email,String phone){
-    	WrapperResponse wr = new WrapperResponse();
-    	Lead leadInstance = new lead();
+    webservice static WrapperResponse updateLeadRecord (String firstname , String lastname , String email , String phone){
+    	WrapperResponse wrapperResponseObj = new WrapperResponse();
+    	Lead leadInstance = new Lead();
     	try{
-    		leadInstance = [select id,email,phone from lead where firstname=:firstname and lastname=:lastname];
-    		leadInstance.email=email;
-    		leadInstance.phone=phone;
+    		leadInstance = [
+    			SELECT Id
+    				 , Email
+    				 , Phone 
+    			  FROM Lead 
+    			 WHERE Firstname = :firstname 
+    			   AND lastname = :lastname
+    		];
+    		leadInstance.Email = email;
+    		leadInstance.Phone = phone;
     		update leadInstance;
-    		wr.isSuccess=true;
-    		wr.lead=leadInstance.id;
-    		wr.status='Success';
+    		wrapperResponseObj.isSuccess = true;
+    		wrapperResponseObj.lead = leadInstance.Id;
+    		wrapperResponseObj.status = 'Success';
     	} catch (Exception e) {
-    		wr.isSuccess=false;
-    		wr.lead='';
-    		wr.status=e.getMessage();
+    		wrapperResponseObj.isSuccess = false;
+    		wrapperResponseObj.lead = '';
+    		wrapperResponseObj.status = e.getMessage();
     	}
-    	return wr;
+    	return wrapperResponseObj;
     }
 }

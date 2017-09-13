@@ -1,10 +1,10 @@
-<apex:page standardController="Account" sideBar="false" showHeader="false" recordSetVar="accounts" extensions="PM5S1Extension">
+<apex:page standardController="Account" sideBar="false" showHeader="false" recordSetVar="accounts" extensions="PM5S1Extension" docType="html-5.0">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
 	<script>
 		function searchOnEnter(eventInstance , eventElement) {
 			if(eventInstance.keyCode == 13)
 				CallApexMethod();
-			else
-				Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',eventElement.value,function(result,event){if(result) console.log(result);eventElement.setAttribute("list",result);},{ buffer: false, escape: true, timeout: 30000 });
 			return false;
 		}
 		/*
@@ -23,9 +23,10 @@
 	<apex:pageBlock id="pageBlockId">
 		<apex:pageMessages id="showMessage" rendered="true" />
 		<apex:form style="text-align:center">
-			<apex:actionFunction name="CallApexMethod" action="{!search}"/>
+	        <apex:actionFunction name="CallApexMethod" action="{!search}"/>
+	        <apex:actionFunction name="CallRender" rerender="inputValue"/>
 			<apex:outputText >Account Name : </apex:outputText>
-			<apex:inputText value="{!searchString}" onkeyup="return searchOnEnter(event,this)" id="inputValue"></apex:inputText>
+			<apex:inputText value="{!searchString}" onkeyup="return searchOnEnter(event,this)" id="inputValue" list="{!autoList}"></apex:inputText>
 			<apex:commandButton id="submitButtonId" action="{!search}" value="SEARCH" rerender="pageBlockId"></apex:commandButton>
 			<apex:commandLink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="pageBlockId"></apex:commandLink>
 		</apex:form>

@@ -1,24 +1,24 @@
 public with sharing class CountryCityDependancyController {
-    public String c1{get;set;}
+    public String selectedCountry{get; set;}
+    public String selectedCity{get; set;}
     
-    public CountryCityDependancyController(){}
+    public CountryCityDependancyController() {}
     
-    public list<selectoption> getCountries(){
-    	Map<String,Country__c> m1 = Country__c.getAll();
-    	List<SelectOption> options = new List<SelectOption>();
-    	for(String s : m1.keySet()){
-    		options.add(new selectOption(s,s));
-    	}
-    	return options;
+    public list<selectoption> getCountries() {
+    	Map<String , Country__c> countryMap = Country__c.getAll();
+    	List<SelectOption> optionList = new List<SelectOption>();
+    	for(String country : countryMap.keySet())
+    		optionList.add(new selectOption(country , country));
+    	return optionList;
     }
     
-    public list<selectoption> getCities(){
-    	Map<String,City__c> m1 = City__c.getAll();
-    	List<SelectOption> options = new List<SelectOption>();
-    	for(String s : m1.keySet()){
-    		if(m1.get(s).country__c==c1)
-    		options.add(new selectOption(s,s));
+    public list<selectoption> getCities() {
+    	Map<String,City__c> cityMap = City__c.getAll();
+    	List<SelectOption> optionList = new List<SelectOption>();
+    	for(String city : cityMap.keySet()){
+    		if(cityMap.get(city).country__c == selectedCountry)
+    		optionList.add(new selectOption(city , city));
     	}
-    	return options;
+    	return optionList;
     }
 }

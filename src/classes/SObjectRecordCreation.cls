@@ -1,30 +1,27 @@
-global with sharing class SObjectRecordCreation implements Database.Batchable<sObject>,Database.Stateful{
-	list<sobject> slist = new list<sobject>();
+global with sharing class SObjectRecordCreation implements Database.Batchable<sObject> , Database.Stateful {
+	List<sObject> sList = new List<sObject>();
 	global Database.QueryLocator start(Database.BatchableContext bc) {
-		return Database.getQueryLocator('select Object_Record__c,event_processed__c from event where Event_Processed__c=false');
+		return Database.getQueryLocator('SELECT Object_Record__c , event_processed__c FROM Event WHERE Event_Processed__c = false');
 	}
-	global void execute(Database.BatchableContext BC, list<sObject> soList){
-		list<Schema.SObjectType> objTyp = Schema.getGlobalDescribe().Values();
-		list<event> eventlist = solist;
-		for(event e : eventlist){
-			Map<String, Object> m = (Map<String, Object>)JSON.deserializeUntyped(e.Object_Record__c);
-			for(Schema.SObjectType obj : objtyp){
-				if(obj.getDescribe().getname()==(String)m.get('Object Name')){
-					sobject s = obj.newsobject();
-					Map<String,Object> mm = (Map<String,Object>)m.get('JSON');
-					for(String sss : mm.keySet()){
-						s.put(sss,(String)mm.get(sss));
-					}
-					slist.add(s);
+	global void execute(Database.BatchableContext BC, List<sObject> sObjectList) {
+		list<Schema.SObjectType> objType = Schema.getGlobalDescribe().Values();
+		List<Event> eventList = sObjectlist;
+		for(Event eventInstance : eventList) {
+			Map<String , Object> jsonMap = (Map<String , Object>)JSON.deserializeUntyped(eventInstance.Object_Record__c);
+			for(Schema.SObjectType obj : objtype){
+				if(obj.getDescribe().getname() == (String)jsonMap.get('Object Name')) {
+					sObject sObj = obj.newSObject();
+					Map<String , Object> fieldList = (Map<String , Object>)jsonMap.get('JSON');
+					for(String fieldName : fieldList.keySet())
+						sObj.put(fieldName , (String)fieldList.get(fieldName));
+					slist.add(sObj);
 					break;
 				}
 			}
-			e.event_processed__c=true;
+			eventInstance.event_processed__c = true;
 		}
-		update eventlist;
+		update eventList;
 		insert slist;
 	}
-	global void finish(Database.BatchableContext BC){
-		System.debug(slist);
-	}
+	global void finish(Database.BatchableContext BC) {}
 }
