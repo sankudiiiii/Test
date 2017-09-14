@@ -1,62 +1,24 @@
-<apex:page standardcontroller="OpportunityLineItem" renderAs="pdf" extensions="ABCContainersInvoicesExtension" applyHtmlTag="false" showheader="false" sidebar="false">
+<apex:page standardcontroller="Opportunity" renderAs="pdf" extensions="ABCContainersInvoicesExtension" applyHtmlTag="false" showheader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false">
 	<head>
-		<style>
-			#dateTable {
-				float : right;
-				text-align : center;
-				border-collapse : collapse;
-				border : 1px solid;
-				margin : 5%;
-			}
-			#dateTable th,#dateTable td {
-				border : 1px solid;
-			}
-			#inv {
-				font-size : 30px;
-				text-align : right;
-				margin-right : 10%;
-				margin-top : 10%;
-				color : #009EFF;
-			}
-			#comp {
-				font-size : 20px;
-				text-align : left;
-			}
-			#infoTable {
-				margin : 10% 0;
-				border-collapse : collapse;
-				width : 50%;
-			}
-			#infoTable th {
-				border : 1px solid;
-			}
-			th {
-				background-color : #E2DCF7;
-			}
-			#descTable td {
-				border-right : 1px black solid;
-				border-left : 1px black solid;
-			}			
-			#descTable th {
-				border : 1px black solid;
-			}
-			#descTable {
-				width : 100%;
-				border : 1px black solid;
-			}
-			#long {
-				border : 1px black solid;
-			}
-			p {
-				margin-top : 10%;
-				text-align : center;
-			}
-			.rt {
-				text-align : right;
-			}
-		</style>
-		
+		<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersInvoices.css')}" rel="stylesheet"/>
+		<style type="text/css" media="print">
+                @page {
+                    margin-bottom: 3cm;
+                    @bottom-center {
+                     content: element(footer);
+                    }
+                }
+                div.footer {
+                    display: block;
+                    margin: 10px;
+                    position: running(footer);
+                }
+            </style>
 	</head>
+		<div class="footer" name="footer">
+	<p>If you have any questions about this invoice, please contact<br></br>
+	{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p>
+	</div>
 	<apex:pageBlock >
 		<apex:outputPanel id="dateBlock">
 			<caption id='inv'>INVOICE</caption>
@@ -67,7 +29,7 @@
 				</tr>
 				<tr>
 					<td>#{!invoiceNo}</td>
-					<td>{!dt}</td>
+					<td>{!invoiceDate}</td>
 				</tr>
 			</table>
 			<caption id='comp'>{!accountInstance.Name}</caption>
@@ -97,39 +59,53 @@
 					<td>{!accountInstance.email_address__c}</td>
 				</tr>
 			</table>
-			<table id='descTable' cellspacing="0">
+			<table id='descTable' cellspacing="0">	
+				<apex:variable var="total" value="{! 0 }" />
 				<tr>
 					<th>Description</th>
 					<th class='rt'>Amount</th>
 				</tr>
+				<apex:repeat value="{!opportunityLineItemList}" var="opportunityLineItem">
 				<tr>
-					<td>Service fee</td>
-					<td class='rt'>{!OpportunityLineItemInstance.service_fee__c}</td>
+					<td>Product : {!opportunityLineItem.Product2.Name}</td>
+					<td></td>
 				</tr>
 				<tr>
-					<td>Labour {!OpportunityLineItemInstance.labour_hour__c} hrs at ${!OpportunityLineItemInstance.labour_rate__c}/hr</td>
-					<td class='rt'>{!labour}</td>
+					<td>- Unit Price</td>
+					<td class='rt'>{!opportunityLineItem.UnitPrice}</td>
 				</tr>
 				<tr>
-					<td>Line Item {!OpportunityLineItemInstance.quantity} at ${!OpportunityLineItemInstance.unitprice}/line item</td>
-					<td class='rt'>{!lineItemCost}</td>
+					<td>- Quantity </td>
+					<td class='rt'>{!opportunityLineItem.Quantity}</td>
 				</tr>
 				<tr>
-					<td>Discount ({!OpportunityLineItemInstance.discount}%)</td>
-					<td class='rt'>-{!discount}</td>
+					<td>- Service Fees </td>
+					<td class='rt'>
+						<apex:variable var="serviceFees" value="{! (opportunityLineItem.UnitPrice * opportunityLineItem.Quantity / 100.00) * 100}" />
+						<apex:outputText value="{!serviceFees}"/>
+					</td>
 				</tr>
 				<tr>
-					<td>Tax ({!OpportunityLineItemInstance.tax__c}% after discount)</td>
-					<td class='rt'>{!taxamount}</td>
+					<td>- Discount ({!opportunityLineItem.Discount}%)</td>
+					<td class='rt'>
+						<apex:variable var="discount" value="{! (serviceFees * opportunityLineItem.Discount / 100 / 100.00) * 100}" />
+						<apex:outputText value="{!discount}"/>
+					</td>
 				</tr>
+				<tr>
+					<td>- Opportunity Line Item Price</td>
+					<td class='rt'>
+						<apex:variable var="lineItemCost" value="{! ((serviceFees - discount) / 100) * 100}" />
+						<apex:variable var="total" value="{! ((total + lineItemCost) / 100) * 100}" />
+						<apex:outputText value="{!lineItemCost}"/>
+					</td>
+				</tr>
+				</apex:repeat>
 				<tr>
 					<td class='brdr'  id="long"><i>Thank you for your business!</i></td>
-					<td class='rt brdr'  id="long"><h4>Total {!total}</h4></td>
+					<td class='rt brdr'  id="long"><h4><apex:outputText value="Total {!total}"/></h4></td>
 				</tr>
 			</table>
 		</apex:outputpanel>
-		<apex:facet name="footer">
-	<p>If you have any questions about this invoice, please contact<br></br>
-	{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p></apex:facet>
 	</apex:pageblock>
 </apex:page>

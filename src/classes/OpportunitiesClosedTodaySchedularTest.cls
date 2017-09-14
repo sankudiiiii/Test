@@ -1,12 +1,17 @@
 @isTest
 private class OpportunitiesClosedTodaySchedularTest {
-	@isTest public static void OpportunitiesClosedTodaySchedularTest(){
+	@isTest public static void OpportunitiesClosedTodaySchedularTest() {
 		TestDataFactory.generateOpportunitiesClosedTodayTestData();
-		OpportunitiesClosedTodaySchedular octs = new OpportunitiesClosedTodaySchedular();
+		OpportunitiesClosedTodaySchedular opportunitiesClosedTodaySchedularInstance = new OpportunitiesClosedTodaySchedular();
 		String cron = '0 59 23 * * ?';
-		Id i = System.schedule('ClosedOpportunities', cron , octs);
-		CronTrigger ct = [select cronexpression,state from CronTrigger where id=:i];
-		System.assertEquals(cron,ct.cronexpression,'CRON expression error');
-		System.assertNotEquals(null,ct.state,'job not executed');
+		Id cronTriggerId = System.schedule('ClosedOpportunities' , cron , opportunitiesClosedTodaySchedularInstance);
+		CronTrigger cronTriggerInstance = [
+			SELECT CronExpression
+				 , State 
+			  FROM CronTrigger 
+			 WHERE Id = :cronTriggerId
+		];
+		System.assertEquals(cron , cronTriggerInstance.CronExpression , 'CRON expression error');
+		System.assertNotEquals(null , cronTriggerInstance.State , 'job not executed');
 	}
 }

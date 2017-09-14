@@ -74,6 +74,7 @@ global with sharing class PM5S1Extension {
     				   FROM   contact 
     				   WHERE  accountid =: accountId
     				  ];
+    	start = 'All';
     	return null;
     } 
     @RemoteAction

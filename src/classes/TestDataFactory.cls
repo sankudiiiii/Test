@@ -1,140 +1,129 @@
 @isTest
 public class TestDataFactory {
-    public static void generateTestData(){
-    	list<account> al = new list<account>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		al.add(new Account(name=String.fromCharArray(new List<integer>{i})+'Account'));
-    	}
-    	insert al;
-    	list<contact> cl = new list<contact>();
-    	for(account a :al){
-    		for(Integer i = 65; i<=75 ;i++){
-    			cl.add(new Contact(lastname=String.fromCharArray(new List<integer>{i})+'ContactOf'+a.name,experience__c=i));
-    		}
-    	}
-    	insert cl;
+    public static void generateTestData() {
+    	List<Account> accountList = new List<Account>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		accountList.add(new Account(Name = String.fromCharArray(new List<Integer>{i}) + 'Account'));
+    	insert accountList;
+    	List<Contact> contactList = new List<Contact>();
+    	for(Account accountInstance :accountList)
+    		for(Integer i = 65 ; i <=75 ; i++)
+    			contactList.add(new Contact(LastName = String.fromCharArray(new List<integer>{i}) + 'ContactOf' + accountInstance.Name , experience__c = i));
+    	insert contactList;
     }
-    public static void generateABCContactTriggerTestData(){
-    	list<account> acclist = new list<account>();
-    	acclist.add(new account(name='ESPL',website='www.eternussolutions.com'));
-    	acclist.add(new account(name='SFDC',website='www.salesforce.com'));
-    	insert acclist;
+    public static void generateABCContactTriggerTestData() {
+    	List<Account> accountList = new List<Account>();
+    	accountList.add(new Account(Name = 'ESPL' , Website = 'www.eternussolutions.com'));
+    	accountList.add(new Account(Name = 'SFDC' , Website = 'www.salesforce.com'));
+    	for(Integer i = 0; i <= 200 ; i++){
+    		accountList.add(new Account(Name = String.fromCharArray(new List<integer>{i}) + 'Account'));
+    	}
+    	insert accountList;
     }
-    public static void generateABCContainersTestData(){
-    	product2 p = new product2(name='pro',isActive = true);
-    	insert p;
-    	account a = new account(name='acc',billingstreet='JM Road',billingstate='Delhi',email_address__c='a@b.c',billingpostalcode='411030',phone='1234567');
-    	insert a;
-    	user u = new user(lastname='ln',phone='5684239',email='ln@user.com',Username='ln@user.com', Alias='ln', CommunityNickname='ln', TimeZoneSidKey='America/Los_Angeles', LocaleSidKey='en_US', EmailEncodingKey='UTF-8', ProfileId='00e7F000001TR4x', LanguageLocaleKey='en_US');
-    	insert u;
-    	opportunity opp = new opportunity(name='opp',accountid=a.id,ownerid=u.id,stagename='qualification',closedate=System.today());
-    	insert opp;
+    public static void generateABCContainersTestData() {
+    	product2 productInstance = new product2(Name = 'pro' , isActive = true);
+    	insert productInstance;
+    	Account accountInstance = new Account(Name = 'acc' , BillingStreet = 'JM Road' , BillingState = 'Delhi' , email_address__c = 'a@b.c' , BillingPostalCode = '411030' , Phone='1234567');
+    	insert accountInstance;
+    	user userInstance = new user(LastName = 'ln' , Phone = '5684239' , Email = 'ln@user.com' , UserName = 'ln@user.com' , Alias = 'ln' , CommunityNickName = 'ln' , TimeZoneSIdKey = 'America/Los_Angeles' , LocaleSIdKey = 'en_US' , EmailEncodingKey = 'UTF-8', ProfileId = '00e7F000001TR4x' , LanguageLocaleKey = 'en_US');
+    	insert userInstance;
+    	Opportunity OpportunityInstance = new Opportunity(Name = 'opp' , AccountId = accountInstance.Id , OwnerId = userInstance.Id , StageName = 'qualification' , Closedate = System.today());
+    	insert OpportunityInstance;
 		Id pricebookId = Test.getStandardPricebookId();
-		Product2 prod = new Product2(Name = 'Product X',ProductCode = 'Pro-X',isActive = true);
-		insert prod;
-		PricebookEntry pbEntry = new PricebookEntry(Pricebook2Id = pricebookId,Product2Id = prod.Id,UnitPrice = 100.00,IsActive = true);
-		insert pbEntry;
-		OpportunityLineItem oli = new OpportunityLineItem(OpportunityId = opp.Id,Quantity = 5,PricebookEntryId = pbEntry.Id,discount=5,service_fee__c=500,labour_hour__c=8,labour_rate__c=300,tax__c=5,servicedate=System.today());
-		oli.totalprice=oli.quantity*pbEntry.UnitPrice;
-		insert oli;
+		Product2 productInstance2 = new Product2(Name = 'Product X' , ProductCode = 'Pro-X' , isActive = true);
+		insert productInstance2;
+		PricebookEntry priceBookEntryInstance = new PricebookEntry(Pricebook2Id = pricebookId , Product2Id = productInstance2.Id , UnitPrice = 100.00 , IsActive = true);
+		insert priceBookEntryInstance;
+		OpportunityLineItem OpportunityLineItemInstance = new OpportunityLineItem(OpportunityId = OpportunityInstance.Id , Quantity = 5 , PricebookEntryId = priceBookEntryInstance.Id , Discount = 5 , service_fee__c = 500 , labour_hour__c = 8 , labour_rate__c = 300 , tax__c = 5 , ServiceDate = System.today());
+		OpportunityLineItemInstance.Totalprice = OpportunityLineItemInstance.Quantity * priceBookEntryInstance.UnitPrice;
+		insert OpportunityLineItemInstance;
     }    
-    public static void generateSearchData(){
-    	list<account> al = new list<account>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		al.add(new Account(name=i+'Account'));
-    	}
-    	insert al;
-    	list<contact> cl = new list<contact>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		cl.add(new Contact(lastname=i+'Contact',experience__c=i));
-    	}
-    	insert cl;
-    	list<lead> ll = new list<lead>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		ll.add(new lead(lastname=i+'Lead',company='Test'));
-    	}
-    	insert ll;
-    	list<opportunity> ol = new list<opportunity>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		ol.add(new opportunity(name=i+'Opportunity',closedate=System.today(),stagename='Prospecting'));
-    	}
-    	insert ol;
+    public static void generateSearchData() {
+    	List<Account> accountList = new List<Account>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		accountList.add(new Account(Name = i + 'Account'));
+    	insert accountList;
+    	List<Contact> contactList = new List<Contact>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		contactList.add(new Contact(LastName = i + 'Contact' , experience__c = i));
+    	insert contactList;
+    	List<Lead> leadList = new List<Lead>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		leadList.add(new Lead(LastName = i + 'Lead' , Company = 'Test'));
+    	insert leadList;
+    	List<Opportunity> opportunityList = new List<Opportunity>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		opportunityList.add(new Opportunity(Name = i + 'Opportunity' , Closedate = System.today() , StageName = 'Prospecting'));
+    	insert opportunityList;
     }
-    public static void generateRelatedSearchData(){
-    	list<account> al = new list<account>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		al.add(new Account(name=String.fromCharArray(new List<integer>{i})+'Account'));
-    	}
-    	insert al;
-    	list<contact> cl = new list<contact>();
-    	list<opportunity> ol = new list<opportunity>();
-    	for(account a :al){
-    		for(Integer i = 65; i<=70 ;i++){
-    			cl.add(new Contact(lastname=i+'ContactOf'+a.name,experience__c=i,accountid=a.id));
-    			ol.add(new opportunity(name=i+'Opportunity',closedate=System.today(),stagename='Prospecting',accountid=a.id));
+    public static void generateRelatedSearchData() {
+    	List<Account> accountList = new List<Account>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		accountList.add(new Account(Name = String.fromCharArray(new List<Integer>{i}) + 'Account'));
+    	insert accountList;
+    	List<Contact> contactList = new List<Contact>();
+    	List<Opportunity> opportunityList = new List<Opportunity>();
+    	for(Account accountInstance : accountList)
+    		for(Integer i = 65 ; i <= 70 ; i++){
+    			contactList.add(new Contact(LastName = i + 'ContactOf' + accountInstance.Name , experience__c = i , AccountId = accountInstance.Id));
+    			opportunityList.add(new Opportunity(Name = i + 'Opportunity' , Closedate = System.today() , StageName = 'Prospecting' , AccountId = accountInstance.Id));
     		}
-    	}
-    	insert cl;
-    	insert ol;
+    	insert contactList;
+    	insert opportunityList;
     }
-    public static void generateCountryCityTestData(){
-    	Country__c co = new Country__c();
-    	co.name='India';
-    	insert co;
-    	City__c ct = new City__c();
-    	ct.name='Kolkata';
-    	ct.Country__c='India';
-    	insert ct;
+    public static void generateCountryCityTestData() {
+    	Country__c countrySettingInsatnce = new Country__c();
+    	countrySettingInsatnce.Name = 'India';
+    	insert countrySettingInsatnce;
+    	City__c citySettingInstance = new City__c();
+    	citySettingInstance.Name = 'Kolkata';
+    	citySettingInstance.Country__c = 'India';
+    	insert citySettingInstance;
     }
-    public static void generateStudentRegistrationTestData(){
-    	Student__c s = new Student__c(name='ABC');
-    	insert s;
+    public static void generateStudentRegistrationTestData() {
+    	Student__c studentInstance = new Student__c(Name = 'ABC');
+    	insert studentInstance;
     }
-    public static void generateOpportunitiesClosedTodayTestData(){
-    	list<account> al = new list<account>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		al.add(new Account(name=String.fromCharArray(new List<integer>{i})+'Account'));
-    	}
-    	insert al;
-    	list<contact> cl = new list<contact>();
-    	list<opportunity> ol = new list<opportunity>();
-    	for(account a :al){
-    		for(Integer i = 65; i<=70 ;i++){
-    			cl.add(new Contact(lastname=i+'ContactOf'+a.name,experience__c=i,accountid=a.id,level__c='Primary',email='abc@xyz.com'));
-    			ol.add(new opportunity(name=i+'Opportunity',closedate=System.today(),stagename='Closed Won',accountid=a.id,amount=1000));
+    public static void generateOpportunitiesClosedTodayTestData() {
+    	List<Account> accountList = new List<Account>();
+    	for(Integer i = 65; i <= 75 ; i++)
+    		accountList.add(new Account(Name = String.fromCharArray(new List<integer>{i}) + 'Account'));
+    	insert accountList;
+    	List<Contact> contactList = new List<Contact>();
+    	List<Opportunity> opportunityList = new List<Opportunity>();
+    	for(Account accountInstance : accountList)
+    		for(Integer i = 65 ; i <= 70 ; i++){
+    			contactList.add(new Contact(LastName = i + 'ContactOf' + accountInstance.Name , experience__c = i , AccountId = accountInstance.Id , level__c = 'Primary' , Email = 'abc@xyz.com'));
+    			opportunityList.add(new Opportunity(Name = i + 'Opportunity' , CloseDate = System.today() , StageName = 'Closed Won' , AccountId = accountInstance.Id , Amount = 1000));
     		}
-    	}
-    	insert cl;
-    	insert ol;
-    	list<contact> cl1 = new list<contact>();
-    	list<opportunity> ol1 = new list<opportunity>();
-    	for(account a :al){
-    		for(Integer i = 65; i<=70 ;i++){
-    			cl1.add(new Contact(lastname=i+'ContactOf'+a.name,experience__c=i,accountid=a.id));
-    			ol1.add(new opportunity(name=i+'Opportunity',closedate=System.today(),stagename='Prospecting',accountid=a.id,amount=2000));
+    	insert contactList;
+    	insert opportunityList;
+    	List<Contact> contactList1 = new List<Contact>();
+    	List<Opportunity> opportunityList1 = new List<Opportunity>();
+    	for(Account accountInstance : accountList)
+    		for(Integer i = 65 ; i <= 70 ; i++){
+    			contactList1.add(new Contact(LastName = i + 'ContactOf' + accountInstance.Name , experience__c = i , AccountId = accountInstance.Id));
+    			opportunityList1.add(new Opportunity(Name = i + 'Opportunity' , CloseDate = System.today() , StageName = 'Prospecting' , AccountId = accountInstance.Id , Amount = 2000));
     		}
-    	}
-    	insert cl1;
-    	insert ol1;
+    	insert contactList1;
+    	insert opportunityList1;
     }
-    public static void generateLeadDuplicateCheckerTestData(){
-    	lead ll = new lead(lastname='Lead',company='Test',email='abc@xyz.com');
-    	insert ll;
-    	list<lead> ll1 = new list<lead>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		ll1.add(new lead(lastname=i+'Lead',company='Test',email='abc@xyz.com'));
-    	}
-    	insert ll1;
+    public static void generateLeadDuplicateCheckerTestData() {
+    	Lead leadList = new Lead(LastName = 'Lead' , Company = 'Test' , Email = 'abc@xyz.com');
+    	insert leadList;
+    	List<Lead> leadList1 = new List<Lead>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		leadList1.add(new Lead(LastName = i + 'Lead' , Company = 'Test' , Email = 'abc@xyz.com'));
+    	insert leadList1;
     }
-    public static void generateSObjectRecordCreationTestData(){
-    	list<event> el = new list<event>();
-    	for(Integer i = 65; i<=75 ;i++){
-    		el.add(new event(subject=i+'Event',StartDateTime=System.today(),EndDateTime=System.today(),event_processed__c=false,Object_Record__c='{"JSON":{"Name" : "Eternus Solutions Pune"},"Object Name" : "Account"}'));
-    	}
-    	insert el;
+    public static void generateSObjectRecordCreationTestData() {
+    	List<Event> eventList = new List<Event>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		eventList.add(new event(Subject = i + 'Event' , StartDateTime = System.today() , EndDateTime = System.today() , event_processed__c = false , Object_Record__c = '{"JSON" : {"Name" : "Eternus Solutions Pune"} , "Object Name" : "Account"}'));
+    	insert eventList;
     }
-    public static void generateLeadManipulatorServiceTestData(){
-    	lead l = new lead(firstname='A',lastname='B',email='c@d.e',phone='6',company='g');
-    	insert l;
+    public static void generateLeadManipulatorServiceTestData() {
+    	Lead leadInstance = new Lead(FirstName = 'A' , LastName = 'B' , Email = 'c@d.e' , Phone = '6' , Company = 'g');
+    	insert leadInstance;
     }
 }

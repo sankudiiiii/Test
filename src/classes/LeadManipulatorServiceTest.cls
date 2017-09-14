@@ -1,69 +1,69 @@
 @isTest
 private class LeadManipulatorServiceTest {
-	@isTest public static void createLeadRecordPositiveTest(){
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.createLeadRecord('A','B','c@d.e','6','g');
-		System.assertEquals(true,rw.isSuccess,'Insertion failed');
-		System.assertNotEquals(null,rw.leadId,'Insertion failed');
-		System.assertEquals('A B',rw.leadName,'Insertion failed');
-		System.assertEquals('Success',rw.status,'Insertion failed');
+	@isTest public static void createLeadRecordPositiveTest() {
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.createLeadRecord('A' , 'B' , 'c@d.e' , '6' , 'g');
+		System.assertEquals(true , responseWrapperInstance.isSuccess , 'Insertion failed');
+		System.assertNotEquals(null , responseWrapperInstance.leadId , 'Insertion failed');
+		System.assertEquals('A B' , responseWrapperInstance.leadName , 'Insertion failed');
+		System.assertEquals('Success' , responseWrapperInstance.status , 'Insertion failed');
 	}
-	@isTest public static void createLeadRecordNegativeTest(){
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.createLeadRecord('A','B','c@d.e','6',null);
-		System.assertEquals(false,rw.isSuccess,'Insertion Success');
-		System.assertEquals(null,rw.leadId,'Insertion Success');
-		System.assertEquals('A B',rw.leadName,'Insertion Success');
-		System.assertNotEquals('Success',rw.status,'Insertion Success');
+	@isTest public static void createLeadRecordNegativeTest() {
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.createLeadRecord('A' , 'B' , 'c@d.e' , '6' , null);
+		System.assertEquals(false , responseWrapperInstance.isSuccess , 'Insertion Success');
+		System.assertEquals(null , responseWrapperInstance.leadId , 'Insertion Success');
+		System.assertEquals('A B' , responseWrapperInstance.leadName , 'Insertion Success');
+		System.assertNotEquals('Success' , responseWrapperInstance.status , 'Insertion Success');
 	}
-	@isTest public static void updateLeadRecordPositiveTest(){
+	@isTest public static void updateLeadRecordPositiveTest() {
 		TestDataFactory.generateLeadManipulatorServiceTestData();
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.updateLeadRecord('A','B','c@d.e','6');
-		System.assertEquals(true,rw.isSuccess,'Updation failed');
-		System.assertNotEquals(null,rw.leadId,'Updation failed');
-		System.assertEquals('A B',rw.leadName,'Updation failed');
-		System.assertEquals('Success',rw.status,'Updation failed');
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.updateLeadRecord('A' , 'B' , 'c@d.e' , '6');
+		System.assertEquals(true , responseWrapperInstance.isSuccess , 'Updation failed');
+		System.assertNotEquals(null , responseWrapperInstance.leadId , 'Updation failed');
+		System.assertEquals('A B' , responseWrapperInstance.leadName , 'Updation failed');
+		System.assertEquals('Success' , responseWrapperInstance.status , 'Updation failed');
 	}
-	@isTest public static void updateLeadRecordNegativeTest(){
+	@isTest public static void updateLeadRecordNegativeTest() {
 		TestDataFactory.generateLeadManipulatorServiceTestData();
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.updateLeadRecord('A','CB','c@d.e','6');
-		System.assertEquals(false,rw.isSuccess,'Updation Successful');
-		System.assertEquals(null,rw.leadId,'Updation Successful');
-		System.assertEquals('null null',rw.leadName,'Updation Successful');
-		System.assertNotEquals('Success',rw.status,'Updation Successful');
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.updateLeadRecord('A' , 'CB' , 'c@d.e' , '6');
+		System.assertEquals(false , responseWrapperInstance.isSuccess , 'Updation Successful');
+		System.assertEquals(null , responseWrapperInstance.leadId , 'Updation Successful');
+		System.assertEquals('null null' , responseWrapperInstance.leadName , 'Updation Successful');
+		System.assertNotEquals('Success' , responseWrapperInstance.status , 'Updation Successful');
 	}
-	@isTest public static void deleteLeadRecordPositiveTest(){
+	@isTest public static void deleteLeadRecordPositiveTest() {
 		TestDataFactory.generateLeadManipulatorServiceTestData();
-		RestRequest req = new RestRequest(); 
-        RestResponse res = new RestResponse();
-        req.requestURI = '/services/apexrest/LeadManipulatorService';  
-        req.addParameter('firstname', 'A');
-        req.addParameter('lastname', 'B');
-        req.addParameter('email', 'c@d.e');
-        req.addParameter('phone', '6');
-        req.httpMethod = 'DELETE';
-        RestContext.request = req;
-        RestContext.response = res;
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.deleteLeadRecord();
-		System.assertEquals(true,rw.isSuccess,'Deletion failed');
-		System.assertEquals(null,rw.leadId,'Deletion failed');
-		System.assertEquals('A B',rw.leadName,'Deletion failed');
-		System.assertEquals('Success',rw.status,'Deletion failed');
+		RestRequest requestInstance = new RestRequest(); 
+        RestResponse responseInstance = new RestResponse();
+        requestInstance.requestURI = '/services/apexrest/LeadManipulatorService';  
+        requestInstance.addParameter('firstname' , 'A');
+        requestInstance.addParameter('lastname' , 'B');
+        requestInstance.addParameter('email' , 'c@d.e');
+        requestInstance.addParameter('phone' , '6');
+        requestInstance.httpMethod = 'DELETE';
+        RestContext.request = requestInstance;
+        RestContext.response = responseInstance;
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.deleteLeadRecord();
+		System.assertEquals(true , responseWrapperInstance.isSuccess , 'Deletion failed');
+		System.assertEquals(null , responseWrapperInstance.leadId , 'Deletion failed');
+		System.assertEquals('A B' , responseWrapperInstance.leadName , 'Deletion failed');
+		System.assertEquals('Success' , responseWrapperInstance.status , 'Deletion failed');
 	}
-	@isTest public static void deleteLeadRecordNegativeTest(){
+	@isTest public static void deleteLeadRecordNegativeTest() {
 		TestDataFactory.generateLeadManipulatorServiceTestData();
-		RestRequest req = new RestRequest(); 
-        RestResponse res = new RestResponse();
-        req.requestURI = '/services/apexrest/LeadManipulatorService';  
-        req.addParameter('firstname', 'A');
-        req.addParameter('lastname', 'B');
-        req.addParameter('email', 'c@d.e');
-        req.addParameter('phone', '67');
-        req.httpMethod = 'DELETE';
-        RestContext.request = req;
-        RestContext.response = res;
-		LeadManipulatorService.ResponseWrapper rw = LeadManipulatorService.deleteLeadRecord();
-		System.assertEquals(false,rw.isSuccess,'Deletion Successful');
-		System.assertEquals(null,rw.leadId,'Deletion Successful');
-		System.assertEquals('null null',rw.leadName,'Deletion Successful');
-		System.assertNotEquals('Success',rw.status,'Deletion Successful');
+		RestRequest requestInstance = new RestRequest(); 
+        RestResponse responseInstance = new RestResponse();
+        requestInstance.requestURI = '/services/apexrest/LeadManipulatorService';  
+        requestInstance.addParameter('firstname' , 'A');
+        requestInstance.addParameter('lastname' , 'B');
+        requestInstance.addParameter('email' , 'c@d.e');
+        requestInstance.addParameter('phone' , '67');
+        requestInstance.httpMethod = 'DELETE';
+        RestContext.request = requestInstance;
+        RestContext.response = responseInstance;
+		LeadManipulatorService.ResponseWrapper responseWrapperInstance = LeadManipulatorService.deleteLeadRecord();
+		System.assertEquals(false , responseWrapperInstance.isSuccess , 'Deletion Successful');
+		System.assertEquals(null , responseWrapperInstance.leadId , 'Deletion Successful');
+		System.assertEquals('null null' , responseWrapperInstance.leadName , 'Deletion Successful');
+		System.assertNotEquals('Success' , responseWrapperInstance.status , 'Deletion Successful');
 	}
 }

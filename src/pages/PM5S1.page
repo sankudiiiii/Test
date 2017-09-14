@@ -62,7 +62,9 @@
 					<apex:column >
 						<apex:facet name="header">Action</apex:facet>
 						<apex:form >
-							<apex:commandLink onclick="del('{!contactInstance.id}');location.reload(true);" value="del" rerender="contactPanelId"></apex:commandLink>
+							<apex:commandLink onclick="del('{!contactInstance.id}');" value="del">
+								<apex:actionSupport action="{!setContacts}" rerender="contactPanelId" event="oncomplete"></apex:actionSupport>
+							</apex:commandLink>
 						</apex:form>
 					</apex:column>
 					<apex:column value="{!contactInstance.Id}"></apex:column>

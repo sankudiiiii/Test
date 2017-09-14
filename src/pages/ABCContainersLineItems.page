@@ -1,19 +1,5 @@
 <apex:page standardController="OpportunityLineItem" extensions="ABCContainersInvoicesExtension" tabStyle="Opportunity" applyHtmlTag="false" showHeader="false" sideBar="false">
-	<!-- <head>
-		<style>
-			table {
-				width : 80%;
-				margin:0 10%;
-				border-collapse:collapse;
-			}
-			td,th {
-				border : 1px black solid;
-			}
-		</style>
-	</head> -->
-	<head>
-		<link href="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}" rel="stylesheet"/>
-	</head>
+	<apex:stylesheet value="{!URLFOR($Resource.ABCCSS, 'ABCContainersLineItems.css')}"/>
 	<apex:sectionHeader title="ABC Containers" subTitle="Line Items"/>
 	<table class="tbl" >
 		<tr>

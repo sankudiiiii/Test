@@ -1,13 +1,23 @@
 @isTest
 private class SObjectRecordCreationTest {
-	@isTest public static void SObjectRecordCreationTest(){
+	@isTest public static void SObjectRecordCreationTest() {
 		TestDataFactory.generateSObjectRecordCreationTestData();
-		SObjectRecordCreation ldc = new SObjectRecordCreation();
-		ApexClass ac = [SELECT Id FROM ApexClass WHERE Name = 'SObjectRecordCreation'];
-		ID i = Database.executeBatch(ldc,200);
-		AsyncApexJob aaj = [select jobtype,status,ApexClassID from AsyncApexJob where id =:i];
-		System.assertNotEquals(null,aaj.jobtype,'Batch not executed');
-		System.assertNotEquals(null,aaj.status,'Job type error');
-		System.assertEquals(ac.id,aaj.ApexClassID,'Apex class error');
+		SObjectRecordCreation sObjectRecordCreationInstance = new SObjectRecordCreation();
+		ApexClass apexClassInstance = [
+			SELECT Id 
+			  FROM ApexClass 
+			 WHERE Name = 'SObjectRecordCreation'
+		];
+		ID asyncApexJobId = Database.executeBatch(sObjectRecordCreationInstance , 200);
+		AsyncApexJob asyncApexJobInstance = [
+			SELECT JobType
+				 , Status
+				 , ApexClassID 
+			  FROM AsyncApexJob 
+			 WHERE Id =:asyncApexJobId
+		];
+		System.assertNotEquals(null , asyncApexJobInstance.JobType , 'Batch not executed');
+		System.assertNotEquals(null , asyncApexJobInstance.Status , 'Job type error');
+		System.assertEquals(apexClassInstance.Id , asyncApexJobInstance.ApexClassID , 'Apex class error');
 	}
 }

@@ -1,13 +1,23 @@
 @isTest
 private class OpportunitiesClosedTodayTest {
-	@isTest public static void OpportunitiesClosedTodayTest(){
+	@isTest public static void OpportunitiesClosedTodayTest() {
 		TestDataFactory.generateOpportunitiesClosedTodayTestData();
-		OpportunitiesClosedToday oct = new OpportunitiesClosedToday();
-		ApexClass ac = [SELECT Id FROM ApexClass WHERE Name = 'OpportunitiesClosedToday'];
-		ID i = Database.executeBatch(oct,200);
-		AsyncApexJob aaj = [select jobtype,status,ApexClassID from AsyncApexJob where id =:i];
-		System.assertNotEquals(null,aaj.jobtype,'Batch not executed');
-		System.assertNotEquals(null,aaj.status,'Job type error');
-		System.assertEquals(ac.id,aaj.ApexClassID,'Apex class error');
+		OpportunitiesClosedToday opportunitiesClosedTodayInstance = new OpportunitiesClosedToday();
+		ApexClass apexClassInstance = [
+			SELECT Id 
+			  FROM ApexClass 
+			 WHERE Name = 'OpportunitiesClosedToday'
+		];
+		ID asyncApexJobId = Database.executeBatch(opportunitiesClosedTodayInstance , 200);
+		AsyncApexJob asyncApexJobInstance = [
+			SELECT JobType
+				 , Status
+				 , ApexClassID 
+			  FROM AsyncApexJob 
+			 WHERE Id = :asyncApexJobId
+		];
+		System.assertNotEquals(null , asyncApexJobInstance.JobType , 'Batch not executed');
+		System.assertNotEquals(null , asyncApexJobInstance.Status , 'Job type error');
+		System.assertEquals(apexClassInstance.Id , asyncApexJobInstance.ApexClassID , 'Apex class error');
 	}
 }

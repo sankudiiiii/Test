@@ -1,76 +1,145 @@
 @isTest
 private class ABCContainersTest {
-	public static testmethod void ABCContainersInvoicesExtensionTest(){
+	public static testmethod void ABCContainersInvoicesExtensionTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select id from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		System.assertNotEquals(null,ae.li,'Constructor not initialized');
-		System.assertNotEquals(null,ae.controller,'Constructor not initialized');
-		System.assertNotEquals(null,ae.lineitems,'Constructor not initialized');
-		System.assertEquals(0,ae.labour,'Constructor not initialized');
-		System.assertEquals(0,ae.taxamount,'Constructor not initialized');
-		System.assertEquals(0,ae.discount,'Constructor not initialized');
-		System.assertEquals(0,ae.total,'Constructor not initialized');
-		System.assertEquals(0,ae.licost,'Constructor not initialized');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT id 
+			  FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		System.assertNotEquals(null , extensionInstance.opportunityLineItemInstance , 'Constructor not initialized');
+		System.assertNotEquals(null , extensionInstance.controller , 'Constructor not initialized');
+		System.assertNotEquals(null , extensionInstance.opportunityLineItemList , 'Constructor not initialized');
+		System.assertEquals(0 , extensionInstance.labour , 'Constructor not initialized');
+		System.assertEquals(0 , extensionInstance.taxamount , 'Constructor not initialized');
+		System.assertEquals(0 , extensionInstance.discount , 'Constructor not initialized');
+		System.assertEquals(0 , extensionInstance.total , 'Constructor not initialized');
+		System.assertEquals(0 , extensionInstance.lineItemCost , 'Constructor not initialized');
 	}
-	public static testmethod void getLineitemsSizeGreaterThanZeroTest(){
+	public static testmethod void getLineitemsSizeGreaterThanZeroTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select id from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		list<opportunitylineitem> li = [select id from opportunitylineitem];
-		ae.lineitems = li;
-		System.assertEquals(li,ae.getLineitems(),'Line item not initialized');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT id 
+			  FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		List<OpportunityLineItem> opportunityLineItemList = [
+			SELECT id 
+			  FROM OpportunityLineItem
+		];
+		extensionInstance.opportunityLineItemList = opportunityLineItemList;
+		System.assertEquals(opportunityLineItemList , extensionInstance.getopportunityLineItemList() , 'Line item not initialized');
 	}
-	public static testmethod void getLineitemsSizeZeroTest(){
+	public static testmethod void getLineitemsSizeZeroTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select id from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		list<opportunitylineitem> li = [select UnitPrice, TotalPrice, Quantity, Product2Id, Opportunityid, Name, ListPrice from opportunitylineitem];
-		System.assertEquals(li,ae.getLineitems(),'Line item not initialized');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT id 
+			  FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		List<OpportunityLineItem> opportunityLineItemList = [
+			SELECT UnitPrice
+				 , TotalPrice
+				 , Quantity
+				 , Product2Id
+				 , Opportunityid
+				 , Name
+				 , ListPrice 
+			 FROM OpportunityLineItem
+		];
+		System.assertEquals(opportunityLineItemList , extensionInstance.getopportunityLineItemList() , 'Line item not initialized');
 	}
-	public static testmethod void getLiPositiveTest(){
+	public static testmethod void getLiPositiveTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select name, UnitPrice, ServiceDate, Quantity,  OpportunityId,discount, service_fee__c,labour_hour__c,labour_rate__c,tax__c from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		System.assertEquals(oli,ae.getLi(),'Opportunitylineitem not defined by the controller');
-		System.assertNotEquals(null,ae.opp,'Opportunitylineitem not defined by the controller');
-		System.assertNotEquals(null,ae.acc,'Opportunitylineitem not defined by the controller');
-		System.assertNotEquals(null,ae.usr,'Opportunitylineitem not defined by the controller');
-		Decimal labour=oli.labour_hour__c*oli.labour_rate__c;
-    	Decimal licost=Math.round(oli.unitprice*oli.quantity/10)*10.00;
-    	Decimal discount = Math.round((oli.service_fee__c+labour+licost)*oli.discount/100/10)*10.00;
-    	Decimal taxamount = Math.round((oli.service_fee__c+labour+licost-discount)*oli.tax__c/100/10)*10.00;
-    	Decimal total = oli.service_fee__c+labour+licost-discount+taxamount;
-		System.assertEquals(labour,ae.labour,'Line Item not initialized');
-		System.assertEquals(taxamount,ae.taxamount,'Line Item not initialized');
-		System.assertEquals(discount,ae.discount,'Line Item not initialized');
-		System.assertEquals(total,ae.total,'Line Item not initialized');
-		System.assertEquals(licost,ae.licost,'Line Item not initialized');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT Name
+				 , UnitPrice
+				 , ServiceDate
+				 , Quantity
+				 , OpportunityId
+				 , discount
+				 , service_fee__c
+				 , labour_hour__c
+				 , labour_rate__c
+				 , tax__c 
+			 FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		System.assertEquals(opportunityLineItemInstance , extensionInstance.getopportunityLineItemInstance() , 'opportunityLineItem not defined by the controller');
+		System.assertNotEquals(null , extensionInstance.opportunityInstance , 'opportunityLineItem not defined by the controller');
+		System.assertNotEquals(null , extensionInstance.accountInstance , 'opportunityLineItem not defined by the controller');
+		System.assertNotEquals(null , extensionInstance.userInstance , 'opportunityLineItem not defined by the controller');
+		Decimal labour = opportunityLineItemInstance.labour_hour__c * opportunityLineItemInstance.labour_rate__c;
+    	Decimal licost = Math.round(opportunityLineItemInstance.unitprice * opportunityLineItemInstance.quantity / 10) * 10.00;
+    	Decimal discount = Math.round((opportunityLineItemInstance.service_fee__c + labour + licost) * opportunityLineItemInstance.discount / 100 / 10) * 10.00;
+    	Decimal taxamount = Math.round((opportunityLineItemInstance.service_fee__c + labour + licost - discount) * opportunityLineItemInstance.tax__c / 100 / 10) * 10.00;
+    	Decimal total = opportunityLineItemInstance.service_fee__c + labour + licost - discount + taxamount;
+		System.assertEquals( labour , extensionInstance.labour , 'Line Item not initialized');
+		System.assertEquals( taxamount , extensionInstance.taxamount , 'Line Item not initialized');
+		System.assertEquals( discount , extensionInstance.discount , 'Line Item not initialized');
+		System.assertEquals( total , extensionInstance.total , 'Line Item not initialized');
+		System.assertEquals( licost , extensionInstance.lineItemCost , 'Line Item not initialized');
 	}
-	public static testmethod void getLiNegativeTest(){
+	public static testmethod void getLiNegativeTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select name, UnitPrice, ServiceDate, Quantity,  OpportunityId,discount, service_fee__c,labour_hour__c,labour_rate__c,tax__c from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		System.assertEquals(oli,ae.getLi(),'Controller record mismatch');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT Name
+				 , UnitPrice
+				 , ServiceDate
+				 , Quantity
+				 , OpportunityId
+				 , discount
+				 , service_fee__c
+				 , labour_hour__c
+				 , labour_rate__c
+				 , tax__c 
+			 FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		System.assertEquals(opportunityLineItemInstance , extensionInstance.getopportunityLineItemInstance() , 'Controller record mismatch');
 	}
-	public static testmethod void getCountTest(){
+	public static testmethod void getCountTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select name, UnitPrice, ServiceDate, Quantity,  OpportunityId,discount, service_fee__c,labour_hour__c,labour_rate__c,tax__c from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		System.assertEquals(1,ae.getCount(),'Count not initialized');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT Name
+				 , UnitPrice
+				 , ServiceDate
+				 , Quantity
+				 , OpportunityId
+				 , discount
+				 , service_fee__c
+				 , labour_hour__c
+				 , labour_rate__c
+				 , tax__c 
+			 FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		System.assertEquals(1 , extensionInstance.getCount() , 'Count not initialized');
 	}
-	public static testmethod void getDtTest(){
+	public static testmethod void getDtTest() {
 		TestDataFactory.generateABCContainersTestData();
-		Opportunitylineitem oli = [select name, UnitPrice, ServiceDate, Quantity,  OpportunityId,discount, service_fee__c,labour_hour__c,labour_rate__c,tax__c from Opportunitylineitem];
-		ApexPages.StandardController sc = new ApexPages.StandardController(oli);
-		ABCContainersInvoicesExtension ae = new ABCContainersInvoicesExtension(sc);
-		String dt = oli.servicedate.day().format()+'/'+oli.servicedate.month().format()+'/'+oli.servicedate.year().format().remove(',');
-    	System.assertEquals(dt,ae.getDt(),'No date found');
+		OpportunityLineItem opportunityLineItemInstance = [
+			SELECT Name
+				 , UnitPrice
+				 , ServiceDate
+				 , Quantity
+				 , OpportunityId
+				 , discount
+				 , service_fee__c
+				 , labour_hour__c
+				 , labour_rate__c
+				 , tax__c 
+			  FROM OpportunityLineItem
+		];
+		ApexPages.StandardController controller = new ApexPages.StandardController(opportunityLineItemInstance);
+		ABCContainersInvoicesExtension extensionInstance = new ABCContainersInvoicesExtension(controller);
+		String dt = opportunityLineItemInstance.servicedate.day().format() + '/' + opportunityLineItemInstance.servicedate.month().format() + '/' + opportunityLineItemInstance.servicedate.year().format().remove(',');
+    	System.assertEquals(dt , extensionInstance.getDt() , 'No date found');
 	}
 }

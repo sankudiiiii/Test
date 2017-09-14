@@ -26,13 +26,14 @@ public with sharing class PM4S1A1Controller {
     	leadList.clear();
     	if(searchString.deleteWhiteSpace().length() > 1) {
     		String soslSearchString = searchString + '*';
-    		resultList = [FIND 		:soslSearchString 
-    					  IN 		NAME FIELDS 
-    					  RETURNING Account (Name)
-    					  		  , Contact (Name)
-    					  		  , Opportunity (Name) 
-    					  		  , Lead (Name)
-    					 ];
+    		resultList = [
+    				 FIND :soslSearchString 
+    				   IN NAME FIELDS 
+    			RETURNING Account (Name)
+    					, Contact (Name)
+    					, Opportunity (Name) 
+    					, Lead (Name)
+    		];
     	}
     	for(list<sObject> results : resultList){
     		if(results.getsObjectType().getdescribe().getLabel() == 'Opportunity')
