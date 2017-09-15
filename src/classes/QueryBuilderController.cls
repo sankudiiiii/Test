@@ -14,6 +14,7 @@ public with sharing class QueryBuilderController {
     public String searchString;
     public List<sObject> sObjectList{get; set;}
     public List<String> fieldValues;
+    public String nameField{get; set;}
     
     public QueryBuilderController(){
     	objectNameList = new List<SelectOption>();
@@ -66,9 +67,14 @@ public with sharing class QueryBuilderController {
     	if(objectName != '' && objectName != 'NONE'){
     		Schema.SObjectType token = Schema.getGlobalDescribe().get(objectName);
 	    	Schema.DescribeSObjectResult tokenDescribe = token.getDescribe();
-    		for(Schema.SObjectField fieldName : tokenDescribe.fields.getMap().values())
-    			if(fieldName.getDescribe().isAccessible() && fieldName.getDescribe().getType()!=Schema.DisplayType.address && fieldName.getDescribe().getType()!=Schema.DisplayType.base64 && fieldName.getDescribe().getType()!=Schema.DisplayType.DataCategoryGroupReference && fieldName.getDescribe().getType()!=Schema.DisplayType.EncryptedString)
+    		for(Schema.SObjectField fieldName : tokenDescribe.fields.getMap().values()){
+    			if(!fieldName.getDescribe().isNamefield() && fieldName.getDescribe().isAccessible() && fieldName.getDescribe().getType()!=Schema.DisplayType.address && fieldName.getDescribe().getType()!=Schema.DisplayType.base64 && fieldName.getDescribe().getType()!=Schema.DisplayType.DataCategoryGroupReference && fieldName.getDescribe().getType()!=Schema.DisplayType.EncryptedString)
     				tSelect.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    			else if(fieldName.getDescribe().isNamefield()){
+    				selectedList.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    				nameField=fieldName.getDescribe().getName();
+    			}
+    		}
     		tSelect.sort();
     	}
     	toSelectList.addAll(tSelect);
@@ -101,12 +107,13 @@ public with sharing class QueryBuilderController {
     	return searchString;
     }
     public void setSearchString(){
-    	searchString='';
+    	sObjectList = null;
+    	searchString = '';
     	if(selectedList.size()>0 && objectName != null && objectName != 'NONE' && orderByField != null && orderByField != 'NONE' && recordLimit != null && recordLimit != 'NONE'){
     	String fieldString = '';
     	for(SelectOption option : selectedList){
     		if(fieldString != '')
-    			fieldString += ',';
+    			fieldString += ', ';
     		fieldString += option.getValue();
     	}
     	searchString = 'SELECT ' + fieldString + ' FROM ' + objectName + ' ORDER BY ' + orderByField + ' ' + recordSortOrder + ' NULLS LAST LIMIT ' + recordLimit;
@@ -116,14 +123,14 @@ public with sharing class QueryBuilderController {
     	return fieldValues;
     }
     public List<String> setFieldValues(){
-    	for(SelectOption option : selectedList){
+    	for(SelectOption option : selectedList)
     		fieldValues.add(option.getValue());
-    	}
     	System.debug(fieldValues);
     	return fieldValues;
     }
     
     public void setFieldAndOrderLists(){
+    	orderByField='NONE';
     	toSelectList.clear();
     	selectedList.clear();
     	orderByList.clear();
@@ -134,12 +141,11 @@ public with sharing class QueryBuilderController {
     public PageReference add(){
     	for(String str : addFieldList){
     		Integer j;
-    		for(Integer i = 0 ; i < toSelectList.size() ; i++){
+    		for(Integer i = 0 ; i < toSelectList.size() ; i++)
     			if(toSelectList[i].getLabel()==str){
     				j=i;
     				break;
     			}
-    		}
     		selectedList.add(toSelectList.get(j));
     		toSelectList.remove(j);
     	}
@@ -149,26 +155,38 @@ public with sharing class QueryBuilderController {
     public PageReference remove(){
     	for(String str : removeFieldList){
     		Integer j;
-    		for(Integer i = 0 ; i < selectedList.size() ; i++){
-    			if(selectedList[i].getLabel()==str){
+    		for(Integer i = 0 ; i < selectedList.size() ; i++)
+    			if(selectedList[i].getLabel()==str) {
     				j=i;
     				break;
     			}
-    		}
     		toSelectList.add(selectedList.get(j));
     		selectedList.remove(j);
     	}
     	setSearchString();
     	return null;
     }
-    public PageReference executeQuery(){
+    public PageReference executeQuery() {
     	setSearchString();
     	fieldValues.clear();
     	setFieldValues();
-    	if(searchString=='' || searchString==null)
+    	if(searchString == '' || searchString == null)
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR , 'Please Select All Fields'));
     	else
     		sObjectList = Database.query(searchString);
     	return null;
+    }
+    public boolean getContainFieldName() {
+    	Integer j = -1;
+    	for(Integer i = 0 ; i < fieldValues.size() ; i++)
+    		if(fieldValues[i] == nameField){
+    			j=i;
+    			break;
+    		}	
+    	if(j != -1) {
+    		fieldValues.remove(j);
+    		return true;
+    	} else
+    		return false;
     }
 }

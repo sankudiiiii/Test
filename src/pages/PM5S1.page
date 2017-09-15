@@ -5,8 +5,34 @@
 		function searchOnEnter(eventInstance , eventElement) {
 			if(eventInstance.keyCode == 13)
 				CallApexMethod();
+			else {
+				$(".searching").autocomplete({ minLength: 1,overflow:scroll,
+               
+               source: function( request, response ) {
+                              
+                   console.log('request.term',request.term);
+               
+                   Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',request.term, function(result, event){
+                       response( result );
+                   });
+               },
+               
+               
+               select: function( event, ui ) {
+                   var terms =  [this.value];
+                   terms.pop();
+                   terms.push( ui.item.value );  
+                   this.value = terms;
+                   return false;
+               },
+               focus: function() {
+                   return false;
+               },
+            },{escape: true});
+			}
 			return false;
 		}
+		
 		/*
 	    function del(i) {
  		    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.deleteContact}',i,function(result,event){if(result) alert(i+'The contact has been deleted');},{ buffer: false, escape: true, timeout: 30000 });	    
@@ -26,7 +52,7 @@
 	        <apex:actionFunction name="CallApexMethod" action="{!search}"/>
 	        <apex:actionFunction name="CallRender" rerender="inputValue"/>
 			<apex:outputText >Account Name : </apex:outputText>
-			<apex:inputText value="{!searchString}" onkeyup="return searchOnEnter(event,this)" id="inputValue" list="{!autoList}"></apex:inputText>
+			<apex:inputText styleclass="searching" value="{!searchString}" onkeyup="return searchOnEnter(event,this)" id="inputValue"></apex:inputText>
 			<apex:commandButton id="submitButtonId" action="{!search}" value="SEARCH" rerender="pageBlockId"></apex:commandButton>
 			<apex:commandLink action="{!clear}" value="CLEAR SEARCH RESULTS" rerender="pageBlockId"></apex:commandLink>
 		</apex:form>

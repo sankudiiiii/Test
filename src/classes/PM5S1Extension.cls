@@ -2,6 +2,7 @@ global with sharing class PM5S1Extension {
     public String searchString{get; set;}
     public list<Account> accountList{get; set;}
     public list<String> autoList{get; set;}
+    public String autoString{get; set;}
     public Integer accountCount{get; set;}
     public ID accountId{get; set;}
     public String selectedAccount {get; set;}
@@ -93,5 +94,13 @@ global with sharing class PM5S1Extension {
     		return true;
     	else
     		return false;
+    }
+    @RemoteAction
+    global static List<String> autoComplete(String nameValue) {
+    	List<String> nameList = new List<String>();
+    	List<Account> accountAutoList = [SELECT Name from Account WHERE Name LIKE :nameValue+'%'];
+    	for(Account accountObj : accountAutoList)
+    		nameList.add(accountObj.Name);
+    	return nameList;
     }
 }

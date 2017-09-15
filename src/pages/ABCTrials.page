@@ -5,21 +5,22 @@
                 @page {
                     margin-bottom: 3cm;
                     @bottom-center {
-                     content: element(footer);
-                    }
+                    content: element(footer);
+     	   			}
+     	   			border: 1px solid black;
                 }
                 div.footer {
                     display: block;
                     margin: 10px;
                     position: running(footer);
                 }
-            </style>
+    	</style>
 	</head>
-		<div class="footer" name="footer">
+		<div class="footer">
 	<p>If you have any questions about this invoice, please contact<br></br>
 	{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p>
 	</div>
-	<apex:pageBlock >
+	<apex:pageBlock id = "pageBlockId">
 		<apex:outputPanel id="dateBlock">
 			<caption id='inv'>INVOICE</caption>
 			<table id='dateTable'>		
