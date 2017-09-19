@@ -126,4 +126,10 @@ public class TestDataFactory {
     	Lead leadInstance = new Lead(FirstName = 'A' , LastName = 'B' , Email = 'c@d.e' , Phone = '6' , Company = 'g');
     	insert leadInstance;
     }
+    public static void QueryBuilderTestData(){
+    	List<Account> accountList = new List<Account>();
+    	for(Integer i = 65 ; i <= 75 ; i++)
+    		accountList.add(new Account(Name = 'Account' + i , Website = 'www.salesforce.com'));
+    	insert accountList;
+    }
 }

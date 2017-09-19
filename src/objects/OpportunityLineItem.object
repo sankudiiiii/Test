@@ -106,4 +106,16 @@
     <fields>
         <fullName>UnitPrice</fullName>
     </fields>
+    <webLinks>
+        <fullName>Generate_Invoice</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Generate Invoice</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://c.ap5.visual.force.com/apex/ABCTrials?id={!Opportunity.Id}</url>
+    </webLinks>
 </CustomObject>

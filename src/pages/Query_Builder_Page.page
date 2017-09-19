@@ -1,23 +1,5 @@
 <apex:page controller="QueryBuilderController" showHeader="false" sideBar="false">
-	<head>
-		<style>
-			.table {
-				display : table;
-				border-spacing: 5px;
-    			border-collapse: separate;
-			}
-			.tr {
-				display : table-row;
-			}
-			.td {
-				display : table-cell;
-				vertical-align: middle;%;
-			}
-			.outer {
-				margin : 0 30%;
-			}
-		</style>
-	</head>
+	<apex:stylesheet value="{!URLFOR($Resource.Query_Builder_Stylesheet)}"/>
 	<apex:pageBlock id="formPageBlock" title="Query Builder">
 		<apex:pageMessages id="showMessage" rendered="true" />
 		<div class="table outer">
@@ -93,14 +75,16 @@
 			<apex:outputText value="{!searchString}"></apex:outputText>
 		</apex:pageBlock>
 		<apex:pageBlock id="OutputPageBlock" title="Query Results" rendered="{! sObjectList != null}">
-			<apex:pageBlockTable value="{!sObjectList}" var="sObjectInstance">
-				<apex:column headerValue="Record Name" rendered="{! containFieldName }">
-					<apex:outputLink target="_blank" value="{!$Label.Base_URL}{!sObjectInstance['Id']}">{!sObjectInstance[nameField]}</apex:outputLink>
-				</apex:column>
-				<apex:repeat value="{!fieldValues}" var="fieldValue">
-					<apex:column value="{!sObjectInstance[fieldValue]}" />
-				</apex:repeat>
-			</apex:pageBlockTable>
+			<div style="overflow:scroll;height:500px">
+				<apex:pageBlockTable value="{!sObjectList}" var="sObjectInstance">
+					<apex:column headerValue="Record Name" rendered="{! containFieldName }">
+						<apex:outputLink target="_blank" value="{!$Label.Base_URL}{!sObjectInstance['Id']}">{!sObjectInstance[nameField]}</apex:outputLink>
+					</apex:column>
+					<apex:repeat value="{!fieldValues}" var="fieldValue">
+						<apex:column value="{!sObjectInstance[fieldValue]}" />
+					</apex:repeat>
+				</apex:pageBlockTable>
+			</div>
 		</apex:pageBlock>
 	</apex:pageBlock>
 </apex:page>

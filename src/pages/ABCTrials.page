@@ -16,11 +16,11 @@
                 }
     	</style>
 	</head>
-		<div class="footer">
-	<p>If you have any questions about this invoice, please contact<br></br>
-	{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p>
+	<div class="footer">
+		<p>If you have any questions about this invoice, please contact<br></br>
+			{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p>
 	</div>
-	<apex:pageBlock id = "pageBlockId">
+	<apex:pageBlock id="pageBlockId">
 		<apex:outputPanel id="dateBlock">
 			<caption id='inv'>INVOICE</caption>
 			<table id='dateTable'>		

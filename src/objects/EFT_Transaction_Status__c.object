@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -60,21 +56,23 @@
         <fullName>Method_Name__c</fullName>
         <externalId>false</externalId>
         <label>Method Name</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Credit Card Address Verify</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Credit Card PIN Verify</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit Card Address Verify</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Credit Card PIN Verify</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>SalesHeader__c</fullName>
@@ -101,21 +99,23 @@
         <fullName>Transaction_Status__c</fullName>
         <externalId>false</externalId>
         <label>Transaction Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Accepted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Declined</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Declined</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>EFT Transaction Status</label>
     <listViews>

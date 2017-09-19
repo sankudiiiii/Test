@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Base_URL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Base URL</shortDescription>
+        <value>https://ap5.salesforce.com/</value>
+    </labels>
+    <labels>
+        <fullName>Change_Language</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Change Language</shortDescription>
+        <value>Change Language</value>
+    </labels>
+    <labels>
+        <fullName>HTML_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HTML Label</shortDescription>
+        <value>&lt;i&gt;SANKET&lt;/i&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Language</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Language</shortDescription>
+        <value>en,es,fr</value>
+    </labels>
+    <labels>
+        <fullName>Lead_Duplicate_Check_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lead Duplicate Check Fields</shortDescription>
+        <value>email</value>
+    </labels>
+    <labels>
+        <fullName>Multilingual_Custom_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Multilingual Custom Label</shortDescription>
+        <value>This is English Label</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+</CustomLabels>

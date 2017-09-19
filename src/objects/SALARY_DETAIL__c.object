@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -139,29 +135,31 @@
         <fullName>Mode_of_Payment__c</fullName>
         <externalId>false</externalId>
         <label>Mode of Payment</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Cash</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cheque</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NEFT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>RTGS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cash</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Cheque</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>NEFT</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>RTGS</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>PF_Deduction__c</fullName>

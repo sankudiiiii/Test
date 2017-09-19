@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -82,49 +78,53 @@
         <fullName>Course__c</fullName>
         <externalId>false</externalId>
         <label>Course</label>
-        <picklist>
-            <picklistValues>
-                <fullName>B.Arch</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>B.C.A</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>B.E</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>M.C.A</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>B.Arch</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>B.C.A</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>B.E</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>M.C.A</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Gender__c</fullName>
         <externalId>false</externalId>
         <label>Gender</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Female</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Male</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>HSC_Percentage__c</fullName>

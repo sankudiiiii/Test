@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Students</value>
+    </caseValues>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <picklistValues>
+            <masterLabel>Bachelor of Architecture</masterLabel>
+            <translation><!-- Bachelor of Architecture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bachelor of Computer Applications</masterLabel>
+            <translation><!-- Bachelor of Computer Applications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bachelor of Engineering</masterLabel>
+            <translation><!-- Bachelor of Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masters in Computer Applications</masterLabel>
+            <translation><!-- Masters in Computer Applications --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Gender --></label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- HSC Percentage --></label>
+        <name>HSC_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Roll Number --></label>
+        <name>Roll_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SSC Percentage --></label>
+        <name>SSC_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- please fill all the details. --></errorMessage>
+        <name>VR1</name>
+    </validationRules>
+</CustomObjectTranslation>

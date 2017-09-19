@@ -7,17 +7,13 @@
 				CallApexMethod();
 			else {
 				$(".searching").autocomplete({ minLength: 1,overflow:scroll,
-               
                source: function( request, response ) {
-                              
                    console.log('request.term',request.term);
-               
                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',request.term, function(result, event){
+                       console.log(result);
                        response( result );
                    });
                },
-               
-               
                select: function( event, ui ) {
                    var terms =  [this.value];
                    terms.pop();

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Students</value>
+    </caseValues>
+    <fields>
+        <label>Ciudad</label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label>País</label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label>Curso</label>
+        <name>Course__c</name>
+        <picklistValues>
+            <masterLabel>Bachelor of Architecture</masterLabel>
+            <translation>Licenciado en Arquitectura</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bachelor of Computer Applications</masterLabel>
+            <translation>Licenciatura en Aplicaciones Informáticas</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bachelor of Engineering</masterLabel>
+            <translation>Bachillerato de Ingeniería</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masters in Computer Applications</masterLabel>
+            <translation>Maestría en Aplicaciones Informáticas</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Género</label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation>Hembra</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation>Masculino</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Porcentaje de HSC</label>
+        <name>HSC_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>Número de rollo</label>
+        <name>Roll_Number__c</name>
+    </fields>
+    <fields>
+        <label>Porcentaje de SSC</label>
+        <name>SSC_Percentage__c</name>
+    </fields>
+    <fields>
+        <label>Estado</label>
+        <name>State__c</name>
+    </fields>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Nombre</nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- please fill all the details. --></errorMessage>
+        <name>VR1</name>
+    </validationRules>
+</CustomObjectTranslation>

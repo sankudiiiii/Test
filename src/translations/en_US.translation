@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label><!-- Base URL --></label>
+        <name>Base_URL</name>
+    </customLabels>
+    <customLabels>
+        <label>Change Language</label>
+        <name>Change_Language</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HTML Label --></label>
+        <name>HTML_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Language --></label>
+        <name>Language</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Lead Duplicate Check Fields --></label>
+        <name>Lead_Duplicate_Check_Fields</name>
+    </customLabels>
+    <customLabels>
+        <label>This is English Label</label>
+        <name>Multilingual_Custom_Label</name>
+    </customLabels>
+    <customLabels>
+        <label>Save</label>
+        <name>Save</name>
+    </customLabels>
+</Translations>

@@ -1,5 +1,5 @@
 <apex:page controller="CountryCityDependancyController">
-<apex:form  id="form1">
+<apex:form id="form1">
 <apex:selectList value="{!selectedCountry}" size="1" multiSelect="false">
 	<apex:actionSupport event="onchange" reRender="form1"/>
 	<apex:selectOptions value="{!countries}" />

@@ -1,6 +1,5 @@
 trigger AccountTrigger on Account (before insert, before update, before delete, after insert, after update, after delete) {
     Trigger_Setting__c m = Trigger_Setting__c.getvalues((ID)UserInfo.getUserId());
-    System.debug(m);
     if(m.AccountTrigger__c==true){
     if(trigger.isinsert){
         if(trigger.isbefore) {

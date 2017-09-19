@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>EA</fullName>
+        <description>EA</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Project_End_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>EU</fullName>
+        <description>EU</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Project_End_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Project</fullName>
+        <description>New Project</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>sankudiiiii@79284.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/New_Project</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>EU</fullName>
+        <field>Manager_Email__c</field>
+        <formula>Manager__r.Email__c</formula>
+        <name>EU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Closed</fullName>
+        <field>Status__c</field>
+        <literalValue>Closed</literalValue>
+        <name>Status Closed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Assign Calender Task</fullName>
+        <actions>
+            <name>New_Project</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Calender_Task</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Project__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <offsetFromField>Project__c.End_Date__c</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>End Date</fullName>
+        <actions>
+            <name>EU</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>End_Date__c &gt;  TODAY()</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>EU</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Project__c.End_Date__c</offsetFromField>
+            <timeLength>-5</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Status Closed</fullName>
+        <actions>
+            <name>Status_Closed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>TODAY()  ==  End_Date__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Calender_Task</fullName>
+        <assignedTo>sankudiiiii@79284.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Project__c.End_Date__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>In Progress</status>
+        <subject>Calender Task</subject>
+    </tasks>
+</Workflow>

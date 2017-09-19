@@ -14,8 +14,7 @@ public with sharing class QueryBuilderController {
     public String searchString;
     public List<sObject> sObjectList{get; set;}
     public List<String> fieldValues;
-    public String nameField{get; set;}
-    
+    public String nameField{get; set;}    
     public QueryBuilderController(){
     	objectNameList = new List<SelectOption>();
     	setObjectNameList(new List<SelectOption>());
@@ -30,8 +29,7 @@ public with sharing class QueryBuilderController {
 		orderByList = new List<SelectOption>();
     	orderByList.add(new SelectOption('NONE','--- SELECT ORDER BY FIELD ---'));
     	fieldValues = new List<String>();
-    }
-    
+    }    
     public void setObjectNameList(List<SelectOption> oNameList){
     	objectNameList.add(new SelectOption('NONE','--- SELECT OBJECT ---'));
     	for(Schema.SObjectType objectNames : Schema.getGlobalDescribe().values())
@@ -71,7 +69,9 @@ public with sharing class QueryBuilderController {
     			if(!fieldName.getDescribe().isNamefield() && fieldName.getDescribe().isAccessible() && fieldName.getDescribe().getType()!=Schema.DisplayType.address && fieldName.getDescribe().getType()!=Schema.DisplayType.base64 && fieldName.getDescribe().getType()!=Schema.DisplayType.DataCategoryGroupReference && fieldName.getDescribe().getType()!=Schema.DisplayType.EncryptedString)
     				tSelect.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
     			else if(fieldName.getDescribe().isNamefield()){
-    				selectedList.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    				List<SelectOption> slectedList = new List<SelectOption>();
+    				slectedList.add(new SelectOption(fieldName.getDescribe().getName(),fieldName.getDescribe().getName()));
+    				setSelectedList(slectedList);
     				nameField=fieldName.getDescribe().getName();
     			}
     		}
@@ -110,13 +110,13 @@ public with sharing class QueryBuilderController {
     	sObjectList = null;
     	searchString = '';
     	if(selectedList.size()>0 && objectName != null && objectName != 'NONE' && orderByField != null && orderByField != 'NONE' && recordLimit != null && recordLimit != 'NONE'){
-    	String fieldString = '';
-    	for(SelectOption option : selectedList){
-    		if(fieldString != '')
-    			fieldString += ', ';
-    		fieldString += option.getValue();
-    	}
-    	searchString = 'SELECT ' + fieldString + ' FROM ' + objectName + ' ORDER BY ' + orderByField + ' ' + recordSortOrder + ' NULLS LAST LIMIT ' + recordLimit;
+    		String fieldString = '';
+    		for(SelectOption option : selectedList){
+	    		if(fieldString != '')
+    				fieldString += ', ';
+    			fieldString += option.getValue();
+	    	}
+    		searchString = 'SELECT ' + fieldString + ' FROM ' + objectName + ' ORDER BY ' + orderByField + ' ' + recordSortOrder + ' NULLS LAST LIMIT ' + recordLimit;
     	}
     }
     public List<String> getFieldValues(){
@@ -125,10 +125,8 @@ public with sharing class QueryBuilderController {
     public List<String> setFieldValues(){
     	for(SelectOption option : selectedList)
     		fieldValues.add(option.getValue());
-    	System.debug(fieldValues);
     	return fieldValues;
-    }
-    
+    }    
     public void setFieldAndOrderLists(){
     	orderByField='NONE';
     	toSelectList.clear();
