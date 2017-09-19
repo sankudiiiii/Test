@@ -114,6 +114,15 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Booking_DateTime__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Booking DateTime</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>CleanStatus</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>

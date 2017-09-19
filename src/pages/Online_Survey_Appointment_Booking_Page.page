@@ -1,0 +1,63 @@
+<apex:page controller="OnlineSurveyAppointmentBookingController" showHeader="false" sidebar="false" docType="html-5.0">
+	<head>
+		<style>
+			.table {
+				display : table;
+				width : 30%;
+				margin : 0 34%;
+			}
+			.tableRow {
+				display : table-row;
+			}
+			.tableCell {
+				display : table-cell;
+			}
+		</style>
+	</head>
+	<apex:pageBlock title="Online Survey Appointment Booking System" id="systemBlockId">
+		<apex:pageMessages id="showMessage" rendered="true" />
+		<apex:pageBlock title="Booking Details">
+			<apex:form >
+				<div class="table">
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Postal Code</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!customerPostalCode}"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Booking Date</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="date" value="{!bookingDate}"></apex:input>
+							<apex:commandButton action="{!getTimeAndDistance}" reRender="systemBlockId"></apex:commandButton>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel rendered="{! !isBlank(distance)}">Distance</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!distance}" disabled="true" rendered="{! !isBlank(distance)}"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel rendered="{! !isBlank(timeToReach)}">Time to Reach</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!timeToReach}" disabled="true" rendered="{! !isBlank(timeToReach)}"></apex:input>
+						</div>
+					</div>
+				</div>
+			</apex:form>
+		</apex:pageBlock>
+		<apex:pageBlock title="Time Slot Details">
+		</apex:pageBlock>
+		<apex:pageBlock title="Customer Details">
+		</apex:pageBlock>
+	</apex:pageBlock>
+</apex:page>
