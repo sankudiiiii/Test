@@ -1,4 +1,13 @@
 <apex:page standardController="Account" sideBar="false" showHeader="false" recordSetVar="accounts" extensions="PM5S1Extension" docType="html-5.0">
+	<head>
+		<style>
+			.searching {
+				max-height: 50px;
+           		overflow-y: auto;
+           		overflow-x: hidden;
+			}
+		</style>	
+	</head>
 	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" />
 	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
 	<script>
@@ -6,7 +15,7 @@
 			if(eventInstance.keyCode == 13)
 				CallApexMethod();
 			else {
-				$(".searching").autocomplete({ minLength: 1,overflow:scroll,
+				$(".searching").autocomplete({ minLength: 1,
                source: function( request, response ) {
                    console.log('request.term',request.term);
                    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',request.term, function(result, event){
