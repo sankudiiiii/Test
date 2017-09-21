@@ -1,39 +1,37 @@
 <apex:page standardController="Account" sideBar="false" showHeader="false" recordSetVar="accounts" extensions="PM5S1Extension" docType="html-5.0">
+	<apex:includeScript value="https://code.jquery.com/jquery-1.10.2.js" />
+	<apex:includeScript value="https://code.jquery.com/ui/1.10.4/jquery-ui.js" />
+	<apex:stylesheet value="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
 	<head>
 		<style>
-			.searching {
-				max-height: 50px;
-           		overflow-y: auto;
-           		overflow-x: hidden;
-			}
-		</style>	
+			.ui-autocomplete { height: 200px; overflow-y: scroll; overflow-x: hidden;}
+		</style>
 	</head>
-	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" />
-	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
 	<script>
 		function searchOnEnter(eventInstance , eventElement) {
 			if(eventInstance.keyCode == 13)
 				CallApexMethod();
 			else {
-				$(".searching").autocomplete({ minLength: 1,
-               source: function( request, response ) {
-                   console.log('request.term',request.term);
-                   Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PM5S1Extension.autoComplete}',request.term, function(result, event){
-                       console.log(result);
-                       response( result );
-                   });
-               },
-               select: function( event, ui ) {
-                   var terms =  [this.value];
-                   terms.pop();
-                   terms.push( ui.item.value );  
-                   this.value = terms;
-                   return false;
-               },
-               focus: function() {
-                   return false;
-               },
-            },{escape: true});
+				$("[id$=inputValue]").autocomplete({ minLength: 1,
+               source: {!autoList},
+               onSelect: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    },
+         close:function(){
+             this.value=''
+         },
+         select: function (event, ui) { $('[id$=inputValue]').val(ui.item.val);
+},
+               autoFocus : true,
+               messages: {
+		       noResults: '',
+        	   results: function() {}
+    			},
+    			open: function() { 
+                $('.ui-menu')
+                    .width(170);
+            } ,
+               });
 			}
 			return false;
 		}

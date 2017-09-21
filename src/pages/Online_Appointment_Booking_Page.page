@@ -1,0 +1,165 @@
+<apex:page controller="OnlineSurveyAppointmentBookingController" showHeader="false" sidebar="false" docType="html-5.0">
+	<head>
+		<style>
+			.table {
+				display : table;
+				width : 30%;
+				margin : 0 34%;
+			}
+			.tableRow {
+				display : table-row;
+			}
+			.tableCell {
+				display : table-cell;
+				vertical-align : middle;
+				width : 50%;
+			}
+		</style>
+	</head>
+	<apex:pageBlock title="Online Survey Appointment Booking System" id="systemBlockId">
+		<apex:pageMessages id="showMessage" rendered="true" />
+		<apex:pageBlock title="Booking Details">
+			<apex:form >
+				<div class="table">
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Customer Postal Code</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!customerPostalCode}">
+								<apex:actionSupport event="onchange" rerender="systemBlockId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Appointment Booking Date</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="date" value="{!bookingDate}">
+								<apex:actionSupport event="onchange" rerender="systemBlockId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+						</div>
+						<div class="tableCell">
+							<apex:commandButton action="{!getTimeAndDistance}" reRender="systemBlockId" value="Check Availability" disabled="{! bookingDate==null || (customerPostalCode==null || customerPostalCode=='')}"></apex:commandButton>
+						</div>
+					</div>
+				</div>
+			</apex:form>
+		</apex:pageBlock>
+		<apex:pageBlock title="Time Slot Details" rendered="{! distance!=null && distance!='' && timeToReach!=null && timeToReach!=''}" id="timeBlockId">
+			<apex:form >
+				<div class="table">
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Distance</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!distance}" disabled="true"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Time to Reach</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!timeToReach}" disabled="true"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Time Slots Available on <br></br>{!bookingDate}</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:selectList value="{!selectedTimeSlot}" size="1" multiSelect="false">
+								<apex:selectOptions value="{!availableTimeSlotOptionList}"/>
+								<apex:actionSupport event="onchange" rerender="timeBlockId"></apex:actionSupport>
+							</apex:selectList>
+						</div>
+					</div>
+				</div>
+			</apex:form>
+		</apex:pageBlock>
+		<apex:pageBlock title="Customer Details" rendered="{! distance!=null && distance!='' && timeToReach!=null && timeToReach!=''}" id="infoId">
+			<apex:form >
+				<div class="table">
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >First Name</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!firstName}">
+								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Last Name</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!lastName}">
+								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Email</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="email" value="{!email}">
+								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Address Details</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!address}">
+								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+							</apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >City</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!city}" disabled="true"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >State</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!state}" disabled="true"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+							<apex:outPutLabel >Country</apex:outPutLabel>
+						</div>
+						<div class="tableCell">
+							<apex:input type="text" value="{!country}" disabled="true"></apex:input>
+						</div>
+					</div>
+					<div class="tableRow">
+						<div class="tableCell">
+						</div>
+						<div class="tableCell">
+							<apex:commandButton action="{!bookAppointment}" reRender="systemBlockId" value="Book Appointment" disabled="{! (firstName==null || firstName=='') || (lastName==null || lastName=='') || (email==null || email=='') || (address==null || address=='')}"></apex:commandButton>
+						</div>
+					</div>
+				</div>
+			</apex:form>
+		</apex:pageBlock>
+	</apex:pageBlock>
+</apex:page>

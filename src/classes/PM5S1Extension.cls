@@ -19,7 +19,7 @@ global with sharing class PM5S1Extension {
     	autoList = new list<String>();
     	List<Account> tempList = [select name from Account];
     	for(Account a : tempList){
-    		autoList.add(a.name);
+    		autoList.add('\''+a.name+'\'');
     	}
     	contactList = new list<Contact>();
     }
