@@ -1,21 +1,5 @@
 <apex:page controller="OnlineSurveyAppointmentBookingController" showHeader="false" sidebar="false" docType="html-5.0">
-	<head>
-		<style>
-			.table {
-				display : table;
-				width : 30%;
-				margin : 0 34%;
-			}
-			.tableRow {
-				display : table-row;
-			}
-			.tableCell {
-				display : table-cell;
-				vertical-align : middle;
-				width : 50%;
-			}
-		</style>
-	</head>
+	<apex:stylesheet value="{!URLFOR($Resource.Online_Appointment_Booking_Page_StyleSheet)}"/>
 	<apex:pageBlock title="Online Survey Appointment Booking System" id="systemBlockId">
 		<apex:pageMessages id="showMessage" rendered="true" />
 		<apex:pageBlock title="Booking Details">
@@ -26,8 +10,8 @@
 							<apex:outPutLabel >Customer Postal Code</apex:outPutLabel>
 						</div>
 						<div class="tableCell">
-							<apex:input type="text" value="{!customerPostalCode}">
-								<apex:actionSupport event="onchange" rerender="systemBlockId"></apex:actionSupport>
+							<apex:input type="text" value="{!customerPostalCode}" id="customerPostalCodeId">
+								<apex:actionSupport event="onchange" reRender="checkAvailabilityId,showMessage"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -36,8 +20,7 @@
 							<apex:outPutLabel >Appointment Booking Date</apex:outPutLabel>
 						</div>
 						<div class="tableCell">
-							<apex:input type="date" value="{!bookingDate}">
-								<apex:actionSupport event="onchange" rerender="systemBlockId"></apex:actionSupport>
+							<apex:input type="date" value="{!bookingDate}" html-min="{! minDate }" id="dateId">
 							</apex:input>
 						</div>
 					</div>
@@ -45,7 +28,7 @@
 						<div class="tableCell">
 						</div>
 						<div class="tableCell">
-							<apex:commandButton action="{!getTimeAndDistance}" reRender="systemBlockId" value="Check Availability" disabled="{! bookingDate==null || (customerPostalCode==null || customerPostalCode=='')}"></apex:commandButton>
+							<apex:commandButton action="{!getTimeAndDistance}" reRender="systemBlockId" value="Check Availability" disabled="{! bookingDate==null || (customerPostalCode==null || customerPostalCode=='')}" id="checkAvailabilityId"></apex:commandButton>
 						</div>
 					</div>
 				</div>
@@ -72,12 +55,12 @@
 					</div>
 					<div class="tableRow">
 						<div class="tableCell">
-							<apex:outPutLabel >Time Slots Available on <br></br>{!bookingDate}</apex:outPutLabel>
+							<apex:outPutLabel >Time Slots Available on <br></br>{!formattedBookingDate}</apex:outPutLabel>
 						</div>
 						<div class="tableCell">
 							<apex:selectList value="{!selectedTimeSlot}" size="1" multiSelect="false">
 								<apex:selectOptions value="{!availableTimeSlotOptionList}"/>
-								<apex:actionSupport event="onchange" rerender="timeBlockId"></apex:actionSupport>
+								<apex:actionSupport event="onchange" reRender="timeBlockId"></apex:actionSupport>
 							</apex:selectList>
 						</div>
 					</div>
@@ -93,7 +76,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="text" value="{!firstName}">
-								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+								<apex:actionSupport event="onchange" reRender="bookAppointmentId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -103,7 +86,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="text" value="{!lastName}">
-								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+								<apex:actionSupport event="onchange" reRender="bookAppointmentId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -113,7 +96,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="email" value="{!email}">
-								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+								<apex:actionSupport event="onchange" reRender="bookAppointmentId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -123,7 +106,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="text" value="{!address}">
-								<apex:actionSupport event="onchange" rerender="infoId"></apex:actionSupport>
+								<apex:actionSupport event="onchange" reRender="bookAppointmentId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -155,7 +138,8 @@
 						<div class="tableCell">
 						</div>
 						<div class="tableCell">
-							<apex:commandButton action="{!bookAppointment}" reRender="systemBlockId" value="Book Appointment" disabled="{! (firstName==null || firstName=='') || (lastName==null || lastName=='') || (email==null || email=='') || (address==null || address=='')}"></apex:commandButton>
+							<apex:commandButton action="{!bookAppointment}" reRender="systemBlockId" value="Book Appointment" disabled="{! (firstName==null || firstName=='') || (lastName==null || lastName=='') || (email==null || email=='') || (address==null || address=='')}" id="bookAppointmentId"></apex:commandButton>
+							<apex:commandButton action="{!reset}" reRender="systemBlockId" value="Cancel"></apex:commandButton>
 						</div>
 					</div>
 				</div>
