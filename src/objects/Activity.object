@@ -34,6 +34,13 @@
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Email_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Email Sent</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Event_Processed__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

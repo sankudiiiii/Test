@@ -21,6 +21,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     public List<Event> eventList;
     public List<Contact> contactList;
     public User adminUser;
+    public DateTime currentDateTime;
     public OnlineSurveyAppointmentBookingController() {
     	setCompanySetting(Survey_Appointment_Company_Setting__c.getValues('Company Location'));
     	setTimeSetting(Survey_Appointment_Time_Setting__c.getValues('Survey Appointment Time'));
@@ -31,6 +32,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	availableTimeSlotOptionList = new List<SelectOption>();
     	setMinDate(System.today());
     	bookingDate = System.today();
+    	currentDateTime = System.now();
     }
     public void setEventList(){
     	eventList = [
@@ -64,6 +66,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     		 					)
     		   AND IsActive = true 
     	];
+    	System.debug(userList);
 		if(userList.size() == 1)
 			adminUser = userList[0];
 		else
@@ -139,7 +142,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	List<Time> timeList = new List<Time>();
     	do {
     		boolean flag = true;
-    		for(Event eventObj : eventList){
+    		for(Event eventObj : getEventList()){
     			if(bookingDate == eventObj.ActivityDate)
     				if(startTime >= eventObj.StartDateTime.time() && startTime< eventObj.EndDateTime.time()){
     					flag = false;
@@ -153,14 +156,14 @@ public with sharing class OnlineSurveyAppointmentBookingController {
 		List<SelectOption> options = new List<SelectOption>();
     	for(Time dt : timeList) {
 			if(bookingDate == System.today()) {
-	    		if(System.now().time().hour() < 8 || (System.now().time().hour() == 8 && System.now().time().minute() < 30)) {			//from 12.30 
+	    		if(currentDateTime.time().hour() < 8 || (currentDateTime.time().hour() == 8 && currentDateTime.time().minute() < 30)) {			//from 12.30 
     				if(dt.hour() > 12 || (dt.hour() == 12 && dt.minute() >= 30))
     					options.add(new SelectOption(String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute()) , String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute())));
 	    		} else 		//now + 4
-    				if(dt.hour() > System.now().time().addHours(4).hour() || (dt.hour() == System.now().time().addHours(4).hour() && dt.minute() >= System.now().time().minute()))
+    				if(dt.hour() > currentDateTime.time().addHours(4).hour() || (dt.hour() == currentDateTime.time().addHours(4).hour() && dt.minute() >= currentDateTime.time().minute()))
     					options.add(new SelectOption(String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute()) , String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute())));
 	    	} else if(bookingDate == System.today().addDays(1)) {
-    			if(System.now().time().hour() < 17 || (System.now().time().hour() == 17 && System.now().time().minute() < 30))		//all
+    			if(currentDateTime.time().hour() < 17 || (currentDateTime.time().hour() == 17 && currentDateTime.time().minute() < 30))		//all
 					options.add(new SelectOption(String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute()) , String.valueOf(dt.hour()) + ':' + String.valueOf(dt.minute())));
     			else 		//from 12.30
 	   				if(dt.hour() > 12 || (dt.hour() == 12 && dt.minute() >= 30))
@@ -186,7 +189,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	state='';
     	country='';
     	setFormattedBookingDate(bookingDate);
-    	if(bookingDate == System.today() && (System.now().hour() > 15 || (System.now().hour() == 15 && System.now().minute() > 30)))
+    	if(bookingDate == System.today() && (currentDateTime.hour() > 15 || (currentDateTime.hour() == 15 && currentDateTime.minute() > 30)))
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.WARNING , messageSetting.Today_Timeout_Message__c));
     	else {
 	    	Decimal tempDistance;
@@ -229,12 +232,13 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	try {
     		Contact contactObj;
     		boolean notPreviousCustomer = true;
-    		for(Contact contactInstance : contactList)
+    		for(Contact contactInstance : getContactList())
     			if(email == contactInstance.Email) {
     				notPreviousCustomer = false;
     				contactObj = contactInstance;
     			}    				
     		if(notPreviousCustomer) {
+    			System.debug(lastName);
     			contactObj = new Contact(FirstName = firstName , LastName = lastName , email = email , OtherStreet = address , OtherCity = city , OtherState = state , OtherCountry = country , OtherPostalCode = customerPostalCode);
     			insert contactObj;
     		}
@@ -244,7 +248,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     		setTimeToReach('');
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM , messageSetting.Success_Message__c));
     		try {
-	    		Event eventObj = new Event(OwnerId = adminUser.Id , DurationInMinutes = (Integer) timeSetting.Time_Slot_Difference__c , WhoId = contactObj.Id , Subject = companySetting.Event_Subject__c , StartDateTime = bookingDateTime , EndDateTime = bookingDateTime.addMinutes((Integer) timeSetting.Time_Slot_Difference__c));
+	    		Event eventObj = new Event(OwnerId = getAdminUser().Id , DurationInMinutes = (Integer) timeSetting.Time_Slot_Difference__c , WhoId = contactObj.Id , Subject = companySetting.Event_Subject__c , StartDateTime = bookingDateTime , EndDateTime = bookingDateTime.addMinutes((Integer) timeSetting.Time_Slot_Difference__c));
     			insert eventObj;
     		} catch (DMLException e) {
     			List<Messaging.SingleEmailMessage> mailList = new List<Messaging.SingleEmailMessage>();
@@ -259,6 +263,7 @@ public with sharing class OnlineSurveyAppointmentBookingController {
 				Messaging.sendEmail(mailList , false);
     		}
     	} catch (DMLException e) {
+    		System.debug(e);
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR , e.getDMLMessage(0)));
     	}
     	return null;
