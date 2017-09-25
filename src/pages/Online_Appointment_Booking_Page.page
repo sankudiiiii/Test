@@ -11,7 +11,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="text" value="{!customerPostalCode}" id="customerPostalCodeId">
-								<apex:actionSupport event="onchange" reRender="checkAvailabilityId,showMessage"></apex:actionSupport>
+								<apex:actionSupport action="{!clearOnChange}" event="onchange" reRender="checkAvailabilityId,showMessage,systemBlockId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>
@@ -21,6 +21,7 @@
 						</div>
 						<div class="tableCell">
 							<apex:input type="date" value="{!bookingDate}" html-min="{! minDate }" id="dateId">
+								<apex:actionSupport action="{!clearOnChange}" event="onchange" reRender="checkAvailabilityId,showMessage,systemBlockId"></apex:actionSupport>
 							</apex:input>
 						</div>
 					</div>

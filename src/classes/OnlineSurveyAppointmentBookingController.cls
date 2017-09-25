@@ -142,13 +142,12 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	List<Time> timeList = new List<Time>();
     	do {
     		boolean flag = true;
-    		for(Event eventObj : getEventList()){
+    		for(Event eventObj : getEventList())
     			if(bookingDate == eventObj.ActivityDate)
     				if(startTime >= eventObj.StartDateTime.time() && startTime< eventObj.EndDateTime.time()){
     					flag = false;
     					break;
-    				}
-    		}    		
+    				}	
     		if(flag)
     			timeList.add(startTime);
 			startTime = startTime.addMinutes((Integer) timeSetting.Time_Slot_Difference__c);
@@ -272,5 +271,17 @@ public with sharing class OnlineSurveyAppointmentBookingController {
     	PageReference pageRef = new pageReference('/apex/Online_Appointment_Booking_Page'); 
     	pageRef.setRedirect(true);
 		return pageRef;
+    }
+    public PageReference clearOnChange(){
+    	setDistance('');
+    	setTimeToReach('');
+    	firstName='';
+    	lastName='';
+    	email='';
+    	address='';
+    	city='';
+    	state='';
+    	country='';
+    	return null;
     }
 }
