@@ -1,0 +1,15 @@
+<apex:page controller="Custom_Designs_Controller" showHeader="false" sidebar="false">
+	<apex:pageBlock >
+		<apex:pageBlockTable value="{!productList}" var="productObj">
+			<apex:column value="{!productObj.Name}"></apex:column>
+			<apex:column value="{!productObj.Image__c}"></apex:column>
+			<apex:column value="{!productObj.Image_Document_Id__c}"></apex:column>
+	<!-- 		<apex:column >
+				<apex:param value="{!productObj.Image_Document_Id__c}" assignTo="{!documentId}"></apex:param>
+				<apex:outputText value="{!image}"></apex:outputText>
+			</apex:column> -->
+			
+			<apex:column ><apex:outputText value="{!productObj.Image__c}"/></apex:column>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+</apex:page>
