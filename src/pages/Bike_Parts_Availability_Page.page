@@ -1,0 +1,9 @@
+<apex:page controller="Bike_Parts_Availability_Controller" showHeader="false" sidebar="false">
+	<apex:sectionHeader title="Custom Bike : {!customBike.Name}" />
+	<apex:pageBlock title="Parts Availability : {!availability}">
+		<apex:pageBlockTable value="{!accessoryList}" var="accessory">
+			<apex:column value="{!accessory.Name}" />
+			<apex:column value="{!accessory.Stock__c}" />
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+</apex:page>

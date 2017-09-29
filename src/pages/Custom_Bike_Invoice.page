@@ -1,0 +1,89 @@
+<apex:page standardcontroller="Opportunity" renderAs="pdf" extensions="Custom_Bike_Invoice_Extension" applyHtmlTag="false" showheader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false">
+	<head>
+		<style type="text/css" media="print">
+            #inv {
+				font-size : 30px;
+				margin : 10%;
+				color : #009EFF;
+			}
+			th {
+				background-color : #E2DCF7;
+			}
+			#descTable td {
+				border-right : 1px black solid;
+				border-left : 1px black solid;
+			}			
+			#descTable th {
+				border : 1px black solid;
+			}
+			#descTable {
+				width : 100%;
+				border : 1px black solid;
+			}
+			#long {
+				border : 1px black solid;
+			}
+			p {
+				margin-top : 10%;
+				text-align : center;
+			}
+			.rt {
+				text-align : right;
+			}
+			@page {
+                    margin-bottom: 3cm;
+                    @bottom-center {
+                    content: element(footer);
+     	   			}
+     	   			border: 1px solid black;
+                }
+                div.footer {
+                    display: block;
+                    margin: 10px;
+                    position: running(footer);
+                }
+    	</style>
+	</head>
+	<div class="footer">
+		<p>If you have any questions about this invoice, please contact<br></br>
+			{!userInstance.Name}, {!userInstance.Phone}, {!userInstance.Email}</p>
+	</div>
+	<apex:pageBlock id="pageBlockId">
+		<apex:outputPanel id="dateBlock">
+			<caption id='inv'>INVOICE</caption>
+			<table id='descTable' cellspacing="0">	
+				<apex:variable var="total" value="{! 0 }" />
+				<tr>
+					<th>Description</th>
+					<th class='rt'>Amount</th>
+				</tr>
+				<apex:repeat value="{!opportunityLineItemList}" var="opportunityLineItem">
+				<tr>
+					<td>Product : {!opportunityLineItem.Product2.Name}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>- Price</td>
+					<td class='rt'>{!opportunityLineItem.ListPrice}</td>
+				</tr>
+				<tr>
+					<td>- Quantity </td>
+					<td class='rt'>{!opportunityLineItem.Quantity}</td>
+				</tr>
+				<tr>
+					<td>- Opportunity Line Item Price</td>
+					<td class='rt'>
+						<apex:variable var="lineItemCost" value="{! ((opportunityLineItem.Quantity * opportunityLineItem.ListPrice) / 100.00) * 100}" />
+						<apex:variable var="total" value="{! ((total + lineItemCost) / 100) * 100}" />
+						<apex:outputText value="{!lineItemCost}"/>
+					</td>
+				</tr>
+				</apex:repeat>
+				<tr>
+					<td class='brdr'  id="long"><i>Thank you for your business!</i></td>
+					<td class='rt brdr'  id="long"><h4><apex:outputText value="Total {!total}"/></h4></td>
+				</tr>
+			</table>
+		</apex:outputpanel>
+	</apex:pageblock>
+</apex:page>

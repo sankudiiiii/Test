@@ -267,6 +267,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Image_del__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <formula>IMAGE( &quot;/servlet/servlet.FileDownload?file=0157F000000l7lY&quot;, &quot;Image&quot; , 200, 300)</formula>
+        <label>Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Is_Active__c</fullName>
         <defaultValue>true</defaultValue>
         <externalId>false</externalId>
@@ -543,7 +554,12 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
+        <filters>
+            <field>Image_del__c</field>
+            <operation>notEqual</operation>
+        </filters>
         <label>All Employees On Notice Period</label>
+        <language>en_US</language>
         <sharedTo>
             <role>HR_Manager</role>
         </sharedTo>
@@ -790,7 +806,11 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Image_del__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>Date_Of_Birth_Validation</fullName>

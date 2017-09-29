@@ -1,0 +1,12 @@
+<apex:page controller="Add_Bike_Parts_Controller" showHeader="false" sidebar="false">
+	<apex:sectionHeader title="Custom Bike : {!customBike.Name}" />
+	<apex:pageBlock title="Parts In stock" id="pageBlockId">
+		<apex:pageBlockTable value="{!accessoryList}" var="accessory">
+			<apex:column value="{!accessory.Name}" />
+			<apex:column value="{!accessory.Stock__c}" />
+		</apex:pageBlockTable>
+		<apex:form rendered="{! !added}">
+			<apex:commandButton value="Add Products" action="{!updateAccessoryList}" rerender="pageBlockId"/>
+		</apex:form>
+	</apex:pageBlock>
+</apex:page>

@@ -1,15 +1,9 @@
 <apex:page controller="Custom_Designs_Controller" showHeader="false" sidebar="false">
-	<apex:pageBlock >
+	<apex:pageBlock id="pageBlockId">
 		<apex:pageBlockTable value="{!productList}" var="productObj">
 			<apex:column value="{!productObj.Name}"></apex:column>
-			<apex:column value="{!productObj.Image__c}"></apex:column>
-			<apex:column value="{!productObj.Image_Document_Id__c}"></apex:column>
-	<!-- 		<apex:column >
-				<apex:param value="{!productObj.Image_Document_Id__c}" assignTo="{!documentId}"></apex:param>
-				<apex:outputText value="{!image}"></apex:outputText>
-			</apex:column> -->
-			
-			<apex:column ><apex:outputText value="{!productObj.Image__c}"/></apex:column>
+			<apex:column><apex:image url="https://c.ap5.content.force.com/servlet/servlet.ImageServer?id={!productObj.Image_Document_Id__c}&oid=00D7F000001ZgQs" alt="Image Not Available" height="100px" width="100px"/><apex:facet name="header">Image</apex:facet></apex:column>
+			<apex:column value="{!productObj.Description}"></apex:column>
 		</apex:pageBlockTable>
 	</apex:pageBlock>
 </apex:page>
