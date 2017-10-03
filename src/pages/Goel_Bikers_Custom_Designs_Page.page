@@ -1,9 +1,53 @@
 <apex:page controller="Custom_Designs_Controller" showHeader="false" sidebar="false">
+	<script>
+		var map;
+		var email = "";
+		var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		while(email==""){
+			var email = prompt("Please enter your email:", "");
+			if (reg.test(email) == false) 
+        	{
+            email="";
+        	}
+		}
+		function newLead(element) {
+			console.log(email);
+				Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.Custom_Designs_Controller.newLead}'
+				,email
+				,function(result,event){
+					if(result==null){
+					console.log(result);
+						map = window.open("/apex/Goel_Bikers_New_Lead_Page","popup","height=400,width=400","false");
+					}
+					console.log(map);
+					}
+				,{ buffer: false, escape: true, timeout: 30000 });
+				return false;
+     	}
+     	function inquire(Id){
+     		Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.Custom_Designs_Controller.inquire}'
+				,Id,email
+				,function(result,event){
+					if(result)
+					alert('You will recieve the information of the product via email');
+					else
+					alert('Failed to send the information of the product via email');
+					}
+				,{ buffer: false, escape: true, timeout: 30000 });
+				return false;
+     	}
+	</script>
 	<apex:pageBlock id="pageBlockId">
 		<apex:pageBlockTable value="{!productList}" var="productObj">
 			<apex:column value="{!productObj.Name}"></apex:column>
-			<apex:column><apex:image url="https://c.ap5.content.force.com/servlet/servlet.ImageServer?id={!productObj.Image_Document_Id__c}&oid=00D7F000001ZgQs" alt="Image Not Available" height="100px" width="100px"/><apex:facet name="header">Image</apex:facet></apex:column>
+			<apex:column ><apex:image url="https://c.ap5.content.force.com/servlet/servlet.ImageServer?id={!productObj.Image_Document_Id__c}&oid=00D7F000001ZgQs" alt="Image Not Available" height="100px" width="100px"/><apex:facet name="header">Image</apex:facet></apex:column>
 			<apex:column value="{!productObj.Description}"></apex:column>
+			<apex:column >
+				<apex:form>
+					<apex:commandButton value="Like" rerender="pageBlockId" disabled="false" onclick="newLead(this)"/>
+					<apex:commandButton value="Inquire" rerender="pageBlockId" disabled="false" onclick="newLead(this);inquire('{!productObj.Id}');" oncomplete=""></apex:commandButton>
+				</apex:form>
+			</apex:column>
 		</apex:pageBlockTable>
 	</apex:pageBlock>
 </apex:page>

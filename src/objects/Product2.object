@@ -43,8 +43,96 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Design_Process_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Design Process Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Deign Sent for Approval</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Design Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Design Rejected</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Available</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Not Available</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Added</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Not Added</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>DisplayUrl</fullName>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Engine__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Engine</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Engine</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Engine</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Exhaust__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Exhaust</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Exhaust</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Exhaust)</relationshipLabel>
+        <relationshipName>Exhaust</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ExternalDataSourceId</fullName>
@@ -61,12 +149,130 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Gauge__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Gauge</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Gauge</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Gauge)</relationshipLabel>
+        <relationshipName>Gauge</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Head_Light__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Head Light</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Head Light</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Head Light)</relationshipLabel>
+        <relationshipName>Head_Light</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Image_Document_Id__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Image Document Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Image__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <formula>IMAGE( &quot;/servlet/servlet.FileDownload?file=&quot;+ Image_Document_Id__c , &quot;Image not available&quot; , 200, 300)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IsActive</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>LogoOrSticker__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>LogoOrSticker</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>LogoOrSticker</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (LogoOrSticker)</relationshipLabel>
+        <relationshipName>LogoOrSticker</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Mirror__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mirror</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Mirrors</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Mirror)</relationshipLabel>
+        <relationshipName>Mirror</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Owner</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ProductCode</fullName>
@@ -77,19 +283,273 @@
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>Stock__c</fullName>
+        <externalId>false</externalId>
+        <label>Stock</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tail_Light__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Tail Light</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Rear Light</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Tail Light)</relationshipLabel>
+        <relationshipName>Tail_Light</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Turn_Signal__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Turn Signal</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Turn Signal</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Turn Signal)</relationshipLabel>
+        <relationshipName>Turn_Signal</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Wheel__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Wheel</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Product2.Family</field>
+                <operation>equals</operation>
+                <value>Wheel</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products (Wheel)</relationshipLabel>
+        <relationshipName>Wheel</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
     <listViews>
         <fullName>AllProducts</fullName>
         <filterScope>Everything</filterScope>
         <label>All Products</label>
     </listViews>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Accessory</fullName>
+        <active>true</active>
+        <label>Accessory</label>
+        <picklistValues>
+            <picklist>Design_Process_Status__c</picklist>
+            <values>
+                <fullName>Deign Sent for Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Added</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Not Added</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Family</picklist>
+            <values>
+                <fullName>Custom Bike</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gauge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LogoOrSticker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mirrors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turn Signal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wheel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>QuantityUnitOfMeasure</picklist>
+            <values>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Custom_Bike</fullName>
+        <active>true</active>
+        <label>Custom Bike</label>
+        <picklistValues>
+            <picklist>Design_Process_Status__c</picklist>
+            <values>
+                <fullName>Deign Sent for Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Added</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Not Added</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parts Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Family</picklist>
+            <values>
+                <fullName>Custom Bike</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exhaust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gauge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LogoOrSticker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mirrors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rear Light</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turn Signal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wheel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>QuantityUnitOfMeasure</picklist>
+            <values>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRODUCT2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.DESCRIPTION</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.NAME</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Image__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PRODUCT2.DESCRIPTION</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>PRODUCT2.FAMILY</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PRODUCT2.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PRODUCT2.DESCRIPTION</lookupPhoneDialogsAdditionalFields>
@@ -99,4 +559,34 @@
         <searchResultsAdditionalFields>PRODUCT2.DESCRIPTION</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT2.FAMILY</searchResultsAdditionalFields>
     </searchLayouts>
+    <webLinks>
+        <fullName>Add_Parts</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Parts</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>https://c.ap5.visual.force.com/apex/Bike_Parts_Add_Page?id={!Product2.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Check_Availability</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Check Availability</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://c.ap5.visual.force.com/apex/Bike_Parts_Availability_Page?id={!Product2.Id}</url>
+    </webLinks>
 </CustomObject>

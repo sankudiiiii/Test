@@ -1,0 +1,3 @@
+<apex:page standardcontroller="Opportunity" extensions="Mail_Invoice_Extension" applyHtmlTag="false" showheader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false">
+{!message}{!sent}{!opportunityInstance}
+</apex:page>

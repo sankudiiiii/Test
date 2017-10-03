@@ -1,0 +1,25 @@
+<apex:page standardController="Lead" showHeader="false" sidebar="false" extensions="Custom_Designs_Controller">
+	<script>
+		function setEmail(){
+			console.log(window.opener.email);
+			console.log(document.getElementById('{!$Component.theForm:pageBlock:pageBlockSection:leadEmail}').value);
+			window.opener.email = document.getElementById('{!$Component.theForm:pageBlock:pageBlockSection:leadEmail}').value;
+		}
+	</script>
+	<apex:form id="theForm">
+	<apex:pageBlock id="pageBlock">
+	<apex:pageBlockSection id="pageBlockSection">
+		<apex:inputField value="{!Lead.FirstName}"/>
+		<apex:inputField value="{!Lead.LastName}"/>
+		<apex:inputField value="{!Lead.Email}" id="leadEmail" required="true"/>
+		<apex:inputField value="{!Lead.Company}"/>
+		<apex:inputField value="{!Lead.Street}"/>
+		<apex:inputField value="{!Lead.City}"/>
+		<apex:inputField value="{!Lead.State}"/>
+		<apex:inputField value="{!Lead.PostalCode}"/>
+		<apex:inputField value="{!Lead.Country}"/>
+		<apex:commandButton action="{!saveRecord}" value="save" onClick="setEmail()"/>
+		</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

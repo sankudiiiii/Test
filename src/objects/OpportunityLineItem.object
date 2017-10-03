@@ -35,6 +35,15 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Customer_Email__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Customer Email</label>
+        <required>false</required>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
     </fields>
     <fields>
@@ -72,6 +81,51 @@
     </fields>
     <fields>
         <fullName>ProductCode</fullName>
+    </fields>
+    <fields>
+        <fullName>Product_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Deign Sent for Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Design Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Design Rejected</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Available</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Not Available</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Added</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parts Not Added</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Quantity</fullName>
@@ -116,6 +170,18 @@
         <openType>replace</openType>
         <protected>false</protected>
         <requireRowSelection>false</requireRowSelection>
-        <url>https://c.ap5.visual.force.com/apex/ABCTrials?id={!Opportunity.Id}</url>
+        <url>https://c.ap5.visual.force.com/apex/Custom_Bike_Invoice?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Product</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Product</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://ap5.salesforce.com/01t/e?retURL=%2F01t%2Fo&amp;RecordType=0127F000000Lrj2&amp;ent=Product2</url>
     </webLinks>
 </CustomObject>
