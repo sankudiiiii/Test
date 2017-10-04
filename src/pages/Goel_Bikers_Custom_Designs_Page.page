@@ -43,7 +43,7 @@
 			<apex:column ><apex:image url="https://c.ap5.content.force.com/servlet/servlet.ImageServer?id={!productObj.Image_Document_Id__c}&oid=00D7F000001ZgQs" alt="Image Not Available" height="100px" width="100px"/><apex:facet name="header">Image</apex:facet></apex:column>
 			<apex:column value="{!productObj.Description}"></apex:column>
 			<apex:column >
-				<apex:form>
+				<apex:form >
 					<apex:commandButton value="Like" rerender="pageBlockId" disabled="false" onclick="newLead(this)"/>
 					<apex:commandButton value="Inquire" rerender="pageBlockId" disabled="false" onclick="newLead(this);inquire('{!productObj.Id}');" oncomplete=""></apex:commandButton>
 				</apex:form>

@@ -7,7 +7,7 @@ public with sharing class Mail_Invoice_Extension {
     	opportunityLineItemList = new list<OpportunityLineItem>();
 		setOpportunityInstance((Opportunity)controller.getrecord());
     	sent = false;
-    	sendEmail();
+    	sendMail();
 	}
 	public Opportunity getOpportunityInstance() {
     	return opportunityInstance;
@@ -44,43 +44,17 @@ public with sharing class Mail_Invoice_Extension {
 	public String getMessage(){
 		return message;
 	}
-    public PageReference sendEmail(){
-    	PageReference pdf = Page.Custom_Bike_Invoice;
-    // add parent id to the parameters for standardcontroller
-    pdf.getParameters().put('id',opportunityInstance.Id);
-System.debug(pdf);
-    // the contents of the attachment from the pdf
-    Blob body;
-
-    try {
-
-      // returns the output of the page as a PDF
-      body = pdf.getContent();
-
-    // need to pass unit test -- current bug  
-    } catch (VisualforceException e) {
-      body = Blob.valueOf('Some Text');
-    }
-System.debug(body);
-    Messaging.EmailFileAttachment attach = new Messaging.EmailFileAttachment();
-    attach.setContentType('application/pdf');
-    attach.setFileName('testPdf.pdf');
-    attach.setInline(false);
-    attach.Body = body;
-	System.debug(attach);
-	List<String> addr = new List<String>();
-	for(OpportunityLineItem opportunityLineItemInstance : opportunityLineItemList)
-		addr.add(opportunityLineItemInstance.Customer_Email__c);
-    Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-    mail.setUseSignature(false);
-    mail.setToAddresses(addr);
-    mail.setSubject('PDF Email Demo');
-    mail.setHtmlBody('Here is the email you requested! Check the attachment!');
-    mail.setFileAttachments(new Messaging.EmailFileAttachment[] { attach }); 
-System.debug(mail);
-    // Send the email
-    Messaging.SendEmailResult[] res = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-    System.debug(res);
-    return null;
+    public void sendMail(){
+    List<Messaging.SingleEmailMessage> mailList = new List<Messaging.SingleEmailMessage>();
+			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+			String[] toAddresses = new String[]{};
+			for(OpportunityLineItem opportunityLineItemInstance : opportunityLineItemList)
+				toAddresses.add(opportunityLineItemInstance.Customer_Email__c);
+			mail.setToAddresses(toAddresses);
+			mail.setSubject('PDF Demo');
+			String textBody = 'Demo';
+			mail.setPlainTextBody(textBody);
+			mailList.add(mail);
+		Messaging.sendEmail(mailList , false);
     }
 }

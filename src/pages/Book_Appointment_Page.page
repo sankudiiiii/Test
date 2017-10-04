@@ -1,7 +1,7 @@
 <apex:page standardController="Event" extensions="Book_Appointment_Extension" showHeader="false" sidebar="false">
-	<apex:pageBlock>
-		<apex:form>
-			<apex:pageBlockSection>
+	<apex:pageBlock >
+		<apex:form >
+			<apex:pageBlockSection >
 				<apex:inputField value="{!Event.StartDateTime}" />
 				<apex:commandButton value="Save" action="{!saveRecord}" />
 			</apex:pageBlockSection>

@@ -2,12 +2,10 @@ public with sharing class Custom_Bike_Invoice_Extension {
 	public list<OpportunityLineItem> opportunityLineItemList;
 	public Opportunity opportunityInstance;
 	public User userInstance;
-	public String invoiceNo{get; set;}
 	public ApexPages.StandardController controller;
 	public Custom_Bike_Invoice_Extension(ApexPages.StandardController controller) {
     	opportunityLineItemList = new list<OpportunityLineItem>();
     	this.controller = controller;
-    	invoiceNo = '';
 		setOpportunityInstance((Opportunity)controller.getrecord());
 	}
 	public Opportunity getOpportunityInstance() {

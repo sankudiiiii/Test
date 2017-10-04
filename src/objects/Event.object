@@ -110,4 +110,16 @@
         <type>Lookup</type>
     </fields>
     <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>Book_Appointment</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Book Appointment</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://c.ap5.visual.force.com/apex/Book_Appointment_Page?OppId={!Opportunity.Id}</url>
+    </webLinks>
 </CustomObject>

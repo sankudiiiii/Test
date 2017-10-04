@@ -173,6 +173,19 @@
         <url>https://c.ap5.visual.force.com/apex/Custom_Bike_Invoice?id={!Opportunity.Id}</url>
     </webLinks>
     <webLinks>
+        <fullName>Mail_Invoice</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Mail Invoice</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://c.ap5.visual.force.com/apex/Mail_Invoice?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
         <fullName>New_Product</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>

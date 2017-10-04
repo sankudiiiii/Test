@@ -201,5 +201,8 @@ public class TestDataFactory {
 		insert logo;
 		Product2 gauge = new Product2(Name='gauge' , Stock__c = 10 , Family = 'Gauge');
 		insert gauge;
+		Product2 bike = new Product2(Name='bike' , Wheel__c = wheel.Id , Turn_Signal__c = turn.Id , Tail_Light__c = tail.Id , Mirror__c = mirror.Id , LogoOrSticker__c = logo.Id , Head_Light__c = head.Id , Gauge__c = gauge.Id , Exhaust__c = exhaust.Id , Engine__c = engine.Id);
+		insert bike;
+		System.debug(bike);
     }
 }
