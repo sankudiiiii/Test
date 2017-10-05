@@ -1,0 +1,21 @@
+<messaging:emailTemplate subject="Custom Bike Invoice" recipientType="Contact" relatedToType="Opportunity">
+    <messaging:plainTextEmailBody >
+        Invoice for the Custom Bike.
+        Thank you for your association with us.
+        -Goel Bikers
+    </messaging:plainTextEmailBody>
+    <messaging:attachment renderAs="PDF" filename="Invoice.pdf">
+        <html>
+            <body>
+                <p>You can display your {!relatedTo.name} cases as a PDF</p>
+                <table border="0" >
+                    <apex:repeat var="cx" value="{!relatedTo.OpportunityLineItems}">
+                    <tr>
+                        <td>{!cx.Name}</td>
+                    </tr>
+                    </apex:repeat> 
+                </table>
+            </body>
+        </html>
+    </messaging:attachment>
+</messaging:emailTemplate>

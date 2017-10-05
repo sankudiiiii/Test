@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -91,72 +95,49 @@
         <fullName>City__c</fullName>
         <externalId>false</externalId>
         <label>City</label>
+        <picklist>
+            <controllingField>State__c</controllingField>
+            <picklistValues>
+                <fullName>Bhopal</fullName>
+                <default>true</default>
+                <controllingFieldValues>MP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gandhi Nagar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Gujarat</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guntur</fullName>
+                <default>false</default>
+                <controllingFieldValues>AP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hyderabad</fullName>
+                <default>false</default>
+                <controllingFieldValues>AP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mumbai</fullName>
+                <default>false</default>
+                <controllingFieldValues>Maharashtra</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pune</fullName>
+                <default>false</default>
+                <controllingFieldValues>Maharashtra</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Surat</fullName>
+                <default>false</default>
+                <controllingFieldValues>Gujarat</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <controllingField>State__c</controllingField>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Bhopal</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>Gandhi Nagar</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Guntur</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Hyderabad</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Mumbai</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Pune</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Surat</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>AP</controllingFieldValue>
-                <valueName>Guntur</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>AP</controllingFieldValue>
-                <valueName>Hyderabad</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Gujarat</controllingFieldValue>
-                <valueName>Gandhi Nagar</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Gujarat</controllingFieldValue>
-                <valueName>Surat</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Maharashtra</controllingFieldValue>
-                <valueName>Mumbai</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Maharashtra</controllingFieldValue>
-                <valueName>Pune</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>MP</controllingFieldValue>
-                <valueName>Bhopal</valueName>
-            </valueSettings>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Current_Employee__c</fullName>
@@ -200,39 +181,37 @@
         <fullName>Education__c</fullName>
         <externalId>false</externalId>
         <label>Education</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BCA</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B Sc.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B Tech.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ME</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>BCA</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>BE</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>B Sc.</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>B Tech.</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>MCA</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>ME</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Email__c</fullName>
@@ -395,94 +374,90 @@
         <fullName>Skills__c</fullName>
         <externalId>false</externalId>
         <label>Skills</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Apex</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C#</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dot Net</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Force.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Java</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Apex</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>C#</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Dot Net</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Force.com</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Java</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Operations</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>PHP</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Project Management</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Project Planning</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>QA</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Salesforce</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>HR</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>State__c</fullName>
         <externalId>false</externalId>
         <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AP</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gujarat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maharashtra</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>AP</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>Gujarat</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Maharashtra</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>MP</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Status__c</fullName>

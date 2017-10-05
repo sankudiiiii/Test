@@ -1,7 +1,7 @@
 @isTest
 private class SurveyAppointmentBookingControllerTest {
 	public static testmethod void controllerInitializationTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		test.startTest();
 			OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		test.stopTest();
@@ -20,7 +20,7 @@ private class SurveyAppointmentBookingControllerTest {
     	System.assertEquals(min , controller.getMinDate() , 'Controller not initialized');
 	}
 	public static testmethod void getTimeAndDistanceTodayBefore830Test() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -50,7 +50,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertNotEquals(null , controller.selectedTimeSlot , '');
 	}
 	public static testmethod void getTimeAndDistanceToday830To1530Test() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -80,7 +80,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertNotEquals(null , controller.selectedTimeSlot , '');
 	}
 	public static testmethod void getTimeAndDistanceTodayAfter1530Test() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -92,7 +92,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(true , ApexPages.hasMessages() , '');
 	}
 	public static testmethod void getTimeAndDistanceTomorrowBrfore1730Test() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today().addDays(1);
@@ -122,7 +122,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertNotEquals(null , controller.selectedTimeSlot , '');
 	}
 	public static testmethod void getTimeAndDistanceTomorrowAfter1730Test() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today().addDays(1);
@@ -152,7 +152,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertNotEquals(null , controller.selectedTimeSlot , '');
 	}
 	public static testmethod void getTimeAndDistanceOtherDaysTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today().addDays(4);
@@ -182,7 +182,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertNotEquals(null , controller.selectedTimeSlot , '');
 	}
 	public static testmethod void unReachableTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleAPIUnreachableResultGeneratorMock());
 		controller.bookingDate = System.today().addDays(4);
@@ -194,7 +194,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(true , ApexPages.hasMessages() , '');
 	}
 	public static testmethod void failedResponseTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleAPIFailedResponseGeneratorMock());
 		controller.bookingDate = System.today().addDays(4);
@@ -206,7 +206,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(true , ApexPages.hasMessages() , '');
 	}
 	public static testmethod void failedResultTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleAPIFailedResultGeneratorMock());
 		controller.bookingDate = System.today().addDays(4);
@@ -218,8 +218,8 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(true , ApexPages.hasMessages() , '');
 	}
 	public static testmethod void eventExistsTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
-		TestDataFactory.generateSurveyAppointmentRecordTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentRecordTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -231,7 +231,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(14 , controller.availableTimeSlotOptionList.size() , '');
 	}
 	public static testmethod void bookAppointmentContactAndEventSuccessTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -257,7 +257,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(1 , eventList.size() , '');
 	}
 	public static testmethod void bookAppointmentContactFailureTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -283,7 +283,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(0 , eventList.size() , '');
 	}
 	public static testmethod void bookAppointmentEventFailureTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -310,8 +310,8 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(0 , eventList.size() , '');
 	}
 	public static testmethod void bookAppointmentContactPresentSuccessTest() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
-		TestDataFactory.generateSurveyAppointmentRecordTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentRecordTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -341,7 +341,7 @@ private class SurveyAppointmentBookingControllerTest {
 		controller.reset();
 	}
 	public static testmethod void checkEventOwner() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -371,7 +371,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals('System Administrator' , profileObj.Name , '');
 	}
 	public static testmethod void checkEventDuration() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -393,7 +393,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(30 , eventList[0].DurationInMinutes , '');
 	}
 	public static testmethod void checkEmailSent() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today();
@@ -415,7 +415,7 @@ private class SurveyAppointmentBookingControllerTest {
 		System.assertEquals(true , eventList[0].Email_Sent__c , '');
 	}
 	public static testmethod void checkReminderScheduled() {
-		TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
+		SurveyAppointment_TestDataFactory.generateSurveyAppointmentCustomSettingTestData();
 		OnlineSurveyAppointmentBookingController controller = new OnlineSurveyAppointmentBookingController();
 		Test.setMock(HttpCalloutMock.class , new GoogleDistanceAPIResponseGeneratorMock());
 		controller.bookingDate = System.today().addDays(4);

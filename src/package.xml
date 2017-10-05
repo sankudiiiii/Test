@@ -13,196 +13,11 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>Lead_Manipulation</members>
-        <name>ConnectedApp</name>
-    </types>
-    <types>
-        <members>Account.Active__c</members>
-        <members>Account.Contact_Count__c</members>
-        <members>Account.CustomerPriority__c</members>
-        <members>Account.Email_Address__c</members>
-        <members>Account.Enrollment_Year__c</members>
-        <members>Account.NumberofLocations__c</members>
-        <members>Account.SLAExpirationDate__c</members>
-        <members>Account.SLASerialNumber__c</members>
-        <members>Account.SLA__c</members>
-        <members>Account.UpsellOpportunity__c</members>
-        <members>Activity.Event_Processed__c</members>
-        <members>Activity.Object_Record__c</members>
-        <members>Asset.Line_Item_Id__c</members>
-        <members>Bill__c.Description__c</members>
-        <members>Bill__c.Status__c</members>
-        <members>C__c.A_MD__c</members>
-        <members>C__c.B_MD__c</members>
-        <members>CampaignMember.RSVP__c</members>
-        <members>Case.EngineeringReqNumber__c</members>
-        <members>Case.OpenSalesOrder__c</members>
-        <members>Case.Order_Date__c</members>
-        <members>Case.PotentialLiability__c</members>
-        <members>Case.Product__c</members>
-        <members>Case.SLAViolation__c</members>
-        <members>Case.Sales_Order_Number__c</members>
-        <members>Case.Transaction_Status__c</members>
-        <members>Child__c.Parent_Name__c</members>
-        <members>City__c.Country__c</members>
-        <members>Client__c.Description__c</members>
-        <members>Client__c.Email_Address__c</members>
-        <members>Client__c.Mobile_Number__c</members>
-        <members>Client__c.Point_of_Contact__c</members>
-        <members>Contact.Education__c</members>
-        <members>Contact.Experience__c</members>
-        <members>Contact.Languages__c</members>
-        <members>Contact.Level__c</members>
-        <members>DEPARTMENT__c.Department_Name__c</members>
-        <members>DEPARTMENT__c.Description__c</members>
-        <members>DemoCO__c.Bill__c</members>
-        <members>EFT_Transaction_Status__c.Method_Name__c</members>
-        <members>EFT_Transaction_Status__c.SalesHeader__c</members>
-        <members>EFT_Transaction_Status__c.Transaction_Date__c</members>
-        <members>EFT_Transaction_Status__c.Transaction_Status__c</members>
-        <members>EMPLOYEE__c.Address__c</members>
-        <members>EMPLOYEE__c.Age__c</members>
-        <members>EMPLOYEE__c.Annual_CTC__c</members>
-        <members>EMPLOYEE__c.City__c</members>
-        <members>EMPLOYEE__c.Current_Employee__c</members>
-        <members>EMPLOYEE__c.Date_of_Birth__c</members>
-        <members>EMPLOYEE__c.Date_of_Joining__c</members>
-        <members>EMPLOYEE__c.Department__c</members>
-        <members>EMPLOYEE__c.Education__c</members>
-        <members>EMPLOYEE__c.Email__c</members>
-        <members>EMPLOYEE__c.First_Name__c</members>
-        <members>EMPLOYEE__c.Full_Name__c</members>
-        <members>EMPLOYEE__c.Is_Active__c</members>
-        <members>EMPLOYEE__c.Is_On_Notice_Period__c</members>
-        <members>EMPLOYEE__c.Last_Name__c</members>
-        <members>EMPLOYEE__c.Last_Working_Day__c</members>
-        <members>EMPLOYEE__c.Manager_Email__c</members>
-        <members>EMPLOYEE__c.Manager__c</members>
-        <members>EMPLOYEE__c.Resignation_Date__c</members>
-        <members>EMPLOYEE__c.Role_Name__c</members>
-        <members>EMPLOYEE__c.Role__c</members>
-        <members>EMPLOYEE__c.SSN__c</members>
-        <members>EMPLOYEE__c.Salary_Credited_Till_Date__c</members>
-        <members>EMPLOYEE__c.Skills__c</members>
-        <members>EMPLOYEE__c.State__c</members>
-        <members>EMPLOYEE__c.Status__c</members>
-        <members>EMPLOYEE__c.Street__c</members>
-        <members>EMPLOYEE__c.Zip__c</members>
-        <members>Employee_Project_Juction__c.Employee__c</members>
-        <members>Employee_Project_Juction__c.Project__c</members>
-        <members>Goal.OrigGoalId__c</members>
-        <members>Invoice_Statement__c.Description__c</members>
-        <members>Invoice_Statement__c.Status__c</members>
-        <members>Job_Request__c.Activity__c</members>
-        <members>Job_Request__c.Bill__c</members>
-        <members>Job_Request__c.Customer__c</members>
-        <members>Job_Request__c.Job_Date__c</members>
-        <members>Lead.Cluster__c</members>
-        <members>Lead.CurrentGenerators__c</members>
-        <members>Lead.Follow_Up__c</members>
-        <members>Lead.Lead_City__c</members>
-        <members>Lead.Lead_Priority__c</members>
-        <members>Lead.NumberofLocations__c</members>
-        <members>Lead.Primary__c</members>
-        <members>Lead.ProductInterest__c</members>
-        <members>Lead.RSVP__c</members>
-        <members>Lead.SICCode__c</members>
-        <members>Lead.Stage__c</members>
-        <members>Line_Item__c.Invoice_Statement__c</members>
-        <members>Line_Item__c.Merchandise_Name__c</members>
-        <members>Line_Item__c.Unit_Price__c</members>
-        <members>Line_Item__c.Unit_Sold__c</members>
-        <members>Log__c.Error__c</members>
-        <members>Media_Bill__c.Bill__c</members>
-        <members>Media_Bill__c.Media__c</members>
-        <members>Media__c.Description__c</members>
-        <members>Media__c.Price__c</members>
-        <members>Media__c.Total_Quantity__c</members>
-        <members>Merchandise__c.Description__c</members>
-        <members>Merchandise__c.Price__c</members>
-        <members>Merchandise__c.Total_Inventory__c</members>
-        <members>Metric.OrigMetricId__c</members>
-        <members>Opportunity.CurrentGenerators__c</members>
-        <members>Opportunity.DeliveryInstallationStatus__c</members>
-        <members>Opportunity.MainCompetitors__c</members>
-        <members>Opportunity.OrderNumber__c</members>
-        <members>Opportunity.TrackingNumber__c</members>
-        <members>OpportunityLineItem.Labour_Hour__c</members>
-        <members>OpportunityLineItem.Labour_Rate__c</members>
-        <members>OpportunityLineItem.Service_Fee__c</members>
-        <members>OpportunityLineItem.Tax__c</members>
-        <members>Parent__c.Full_Name__c</members>
-        <members>Parent__c.Location__c</members>
-        <members>Parent__c.Password__c</members>
-        <members>Project__c.Client__c</members>
-        <members>Project__c.End_Date__c</members>
-        <members>Project__c.Implementation_Type__c</members>
-        <members>Project__c.Manager_Email__c</members>
-        <members>Project__c.Manager__c</members>
-        <members>Project__c.Project_Description__c</members>
-        <members>Project__c.Start_Date__c</members>
-        <members>Project__c.Status__c</members>
-        <members>Role__c.Description__c</members>
-        <members>SALARY_DETAIL__c.Bank_Account_Number__c</members>
-        <members>SALARY_DETAIL__c.Bank_Details__c</members>
-        <members>SALARY_DETAIL__c.Basic__c</members>
-        <members>SALARY_DETAIL__c.Credited_To__c</members>
-        <members>SALARY_DETAIL__c.Gross_Salary__c</members>
-        <members>SALARY_DETAIL__c.HRA__c</members>
-        <members>SALARY_DETAIL__c.Mode_of_Payment__c</members>
-        <members>SALARY_DETAIL__c.PF_Deduction__c</members>
-        <members>SALARY_DETAIL__c.Salary_Credit_Date__c</members>
-        <members>SALARY_DETAIL__c.Special_Allowance__c</members>
-        <members>SALARY_DETAIL__c.Total_Earnings__c</members>
-        <members>SalesHeader__c.Bill_to_City__c</members>
-        <members>SalesHeader__c.Bill_to_Customer_Account__c</members>
-        <members>SalesHeader__c.Bill_to_Customer_Contact__c</members>
-        <members>SalesHeader__c.Bill_to_Postal_Code__c</members>
-        <members>SalesHeader__c.Bill_to_State__c</members>
-        <members>SalesHeader__c.Bill_to_Street__c</members>
-        <members>SalesHeader__c.Pick_Status__c</members>
-        <members>SalesHeader__c.Ship_to_City__c</members>
-        <members>SalesHeader__c.Ship_to_Postal_Code__c</members>
-        <members>SalesHeader__c.Ship_to_State__c</members>
-        <members>SalesHeader__c.Ship_to_Street__c</members>
-        <members>SalesHeader__c.Status__c</members>
-        <members>SalesHeader__c.Total_Amount__c</members>
-        <members>Student__c.City__c</members>
-        <members>Student__c.Country__c</members>
-        <members>Student__c.Course__c</members>
-        <members>Student__c.Gender__c</members>
-        <members>Student__c.HSC_Percentage__c</members>
-        <members>Student__c.Roll_Number__c</members>
-        <members>Student__c.SSC_Percentage__c</members>
-        <members>Student__c.State__c</members>
-        <members>Trigger_Setting__c.ABCContactTrigger__c</members>
-        <members>Trigger_Setting__c.AccountTrigger__c</members>
-        <members>Trigger_Setting__c.CaseTrigger__c</members>
-        <members>Trigger_Setting__c.CloneAccountTrigger__c</members>
-        <members>Trigger_Setting__c.CloneLeadTrigger__c</members>
-        <members>Trigger_Setting__c.CloneOpportunityTrigger__c</members>
-        <members>Trigger_Setting__c.DuplicateContactCheckTrigger__c</members>
-        <members>Trigger_Setting__c.EFTAddressVerificationTrigger__c</members>
-        <members>Trigger_Setting__c.SalesHeaderTrigger__c</members>
-        <members>Validation_Setting__c.Validation_Rule__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Base_URL</members>
-        <members>Change_Language</members>
-        <members>HTML_Label</members>
-        <members>Language</members>
-        <members>Lead_Duplicate_Check_Fields</members>
-        <members>Multilingual_Custom_Label</members>
-        <members>Save</members>
-        <name>CustomLabel</name>
-    </types>
-    <types>
-        <members>CustomLabels</members>
+        <members>*</members>
         <name>CustomLabels</name>
     </types>
     <types>
-        <members>A__c</members>
+        <members>*</members>
         <members>Account</members>
         <members>AccountCleanInfo</members>
         <members>AccountContactRole</members>
@@ -210,119 +25,59 @@
         <members>Asset</members>
         <members>AssetRelationship</members>
         <members>AssistantProgress</members>
-        <members>B__c</members>
-        <members>Bill__c</members>
-        <members>C__c</members>
         <members>Campaign</members>
         <members>CampaignMember</members>
         <members>Case</members>
         <members>CaseContactRole</members>
-        <members>Child__c</members>
-        <members>City__c</members>
-        <members>Client__c</members>
         <members>Contact</members>
         <members>ContactCleanInfo</members>
         <members>ContentVersion</members>
         <members>Contract</members>
         <members>ContractContactRole</members>
-        <members>Country__c</members>
-        <members>DEPARTMENT__c</members>
         <members>DandBCompany</members>
-        <members>DemoCO__c</members>
         <members>DuplicateRecordItem</members>
         <members>DuplicateRecordSet</members>
-        <members>EFT_Transaction_Status__c</members>
-        <members>EMPLOYEE__c</members>
         <members>EmailMessage</members>
-        <members>Employee_Project_Juction__c</members>
         <members>Event</members>
         <members>ExchangeUserMapping</members>
         <members>FeedItem</members>
         <members>ForecastingCategoryMapping</members>
         <members>Idea</members>
-        <members>Invoice_Statement__c</members>
-        <members>Job_Request__c</members>
         <members>Lead</members>
         <members>LeadCleanInfo</members>
-        <members>Line_Item__c</members>
-        <members>Log__c</members>
         <members>Macro</members>
         <members>MacroAction</members>
         <members>MacroInstruction</members>
-        <members>Media_Bill__c</members>
-        <members>Media__c</members>
-        <members>Merchandise__c</members>
         <members>Opportunity</members>
         <members>OpportunityCompetitor</members>
         <members>OpportunityContactRole</members>
         <members>OpportunityLineItem</members>
         <members>Order</members>
         <members>OrderItem</members>
-        <members>Parent__c</members>
         <members>PartnerRole</members>
         <members>Pricebook2</members>
         <members>PricebookEntry</members>
         <members>Product2</members>
-        <members>Project__c</members>
         <members>Quote</members>
         <members>QuoteLineItem</members>
-        <members>Role__c</members>
-        <members>SALARY_DETAIL__c</members>
-        <members>SalesHeader__c</members>
         <members>Site</members>
         <members>SocialPersona</members>
         <members>Solution</members>
         <members>StreamingChannel</members>
-        <members>Student__c</members>
         <members>Task</members>
-        <members>Trigger_Setting__c</members>
         <members>User</members>
         <members>UserProvisioningRequest</members>
-        <members>Validation_Setting__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>ApexDevNet</members>
+        <members>Google_Distance_Matrix_API</members>
+        <members>Google_Maps_API</members>
         <name>RemoteSiteSetting</name>
     </types>
     <types>
-        <members>A__c</members>
-        <members>Account</members>
-        <members>Asset</members>
-        <members>B__c</members>
-        <members>Bill__c</members>
-        <members>Campaign</members>
-        <members>Case</members>
-        <members>City__c</members>
-        <members>Client__c</members>
-        <members>Contact</members>
-        <members>Country__c</members>
-        <members>DEPARTMENT__c</members>
-        <members>DemoCO__c</members>
-        <members>EFT_Transaction_Status__c</members>
-        <members>EMPLOYEE__c</members>
-        <members>Invoice_Statement__c</members>
-        <members>Lead</members>
-        <members>Log__c</members>
-        <members>Media__c</members>
-        <members>Merchandise__c</members>
-        <members>Opportunity</members>
-        <members>Order</members>
-        <members>Parent__c</members>
-        <members>Role__c</members>
-        <members>SalesHeader__c</members>
-        <members>Student__c</members>
-        <members>Trigger_Setting__c</members>
-        <members>User</members>
-        <members>Validation_Setting__c</members>
-        <name>SharingRules</name>
-    </types>
-    <types>
-        <members>ABCCSS</members>
-        <members>AccImg</members>
-        <members>Query_Builder_Stylesheet</members>
-        <members>RemotingJS</members>
+        <members>*</members>
         <name>StaticResource</name>
     </types>
-    <version>38.0</version>
+    <version>36.0</version>
 </Package>

@@ -110,6 +110,10 @@
         <name>Full_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Image --></label>
+        <name>Image_del__c</name>
+    </fields>
+    <fields>
         <label><!-- Is Active --></label>
         <name>Is_Active__c</name>
     </fields>

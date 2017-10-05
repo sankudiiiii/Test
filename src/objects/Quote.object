@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -109,6 +113,49 @@
     </fields>
     <fields>
         <fullName>Status</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Draft</fullName>
+                <default>true</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Needs Review</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Presented</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denied</fullName>
+                <default>false</default>
+                <allowEmail>true</allowEmail>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <type>Picklist</type>
     </fields>
     <fields>

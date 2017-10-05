@@ -86,46 +86,44 @@
         <fullName>Product_Status__c</fullName>
         <externalId>false</externalId>
         <label>Product Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Deign Sent for Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Not Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Added</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Not Added</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Deign Sent for Approval</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Design Approved</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Design Rejected</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Available</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Not Available</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Added</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Not Added</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Review</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Quantity</fullName>
@@ -169,7 +167,7 @@
         <masterLabel>Generate Invoice</masterLabel>
         <openType>replace</openType>
         <protected>false</protected>
-        <requireRowSelection>false</requireRowSelection>
+        <requireRowSelection>true</requireRowSelection>
         <url>https://c.ap5.visual.force.com/apex/Custom_Bike_Invoice?id={!Opportunity.Id}</url>
     </webLinks>
     <webLinks>

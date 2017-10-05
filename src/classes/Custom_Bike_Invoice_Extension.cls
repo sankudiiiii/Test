@@ -20,7 +20,8 @@ public with sharing class Custom_Bike_Invoice_Extension {
     		 	 , (SELECT ListPrice
     			 		 , Quantity
     			 		 , Product2.Name
-    		 	 	  FROM OpportunityLineItems   		 	 
+    		 	 	  FROM OpportunityLineItems
+    		 	 	 WHERE Product_Status__c = 'Review'   		 	 
     		 	   )
     		  FROM Opportunity 
     		 WHERE Id = :opportunityObj.Id

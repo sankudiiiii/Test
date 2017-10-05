@@ -1,0 +1,7 @@
+Hello,
+
+An survey appointment has been booked for,
+Customer Name : {!Contact.FirstName} {!Contact.LastName}
+Booking Date : {!Event.StartDateTime}
+
+Thank You.

@@ -99,7 +99,7 @@ private class QueryBuilderControllerTest {
 		System.assert(ApexPages.hasMessages(),'Message should be get generated if search string is invalid');
 	}
 	public static testmethod void executeQueryPositiveTest(){
-		TestDataFactory.QueryBuilderTestData();
+		QueryBuilder_TestDataFactory.QueryBuilderTestData();
 		QueryBuilderController controller = new QueryBuilderController();
 		controller.objectName='Account';
 		controller.setFieldAndOrderLists();
@@ -113,7 +113,7 @@ private class QueryBuilderControllerTest {
 		System.assert(controller.sObjectList.size()>0,'No records returned by query');
 	}
 	public static testmethod void getContainFieldNamePositiveTest(){
-		TestDataFactory.QueryBuilderTestData();
+		QueryBuilder_TestDataFactory.QueryBuilderTestData();
 		QueryBuilderController controller = new QueryBuilderController();
 		controller.objectName='Account';
 		controller.setFieldAndOrderLists();
@@ -122,7 +122,7 @@ private class QueryBuilderControllerTest {
 		System.assertEquals(true, actual , 'NameField not initialized');
 	}
 	public static testmethod void getContainFieldNameNegativeTest(){
-		TestDataFactory.QueryBuilderTestData();
+		QueryBuilder_TestDataFactory.QueryBuilderTestData();
 		QueryBuilderController controller = new QueryBuilderController();
 		controller.objectName='Account';
 		controller.setFieldAndOrderLists();

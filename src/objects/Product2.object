@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -39,6 +43,18 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Deal__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -46,47 +62,45 @@
         <fullName>Design_Process_Status__c</fullName>
         <externalId>false</externalId>
         <label>Design Process Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Deign Sent for Approval</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Not Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Added</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Not Added</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Deign Sent for Approval</fullName>
-                    <default>true</default>
-                </value>
-                <value>
-                    <fullName>Design Approved</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Design Rejected</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Available</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Not Available</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Added</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Parts Not Added</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Review</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>DisplayUrl</fullName>
@@ -145,6 +159,49 @@
     </fields>
     <fields>
         <fullName>Family</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Engine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exhaust</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Head Light</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mirrors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rear Light</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wheel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turn Signal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LogoOrSticker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gauge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Custom Bike</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -280,6 +337,13 @@
     </fields>
     <fields>
         <fullName>QuantityUnitOfMeasure</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>

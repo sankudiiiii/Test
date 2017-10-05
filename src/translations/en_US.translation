@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- ABC Containers --></label>
+        <name>ABC_Containers</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Creative Consulting --></label>
+        <name>Creative_Consulting</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Goel Bokers --></label>
+        <name>Goel_Bokers</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Payroll System --></label>
+        <name>Payroll_System</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Query Manager --></label>
+        <name>Query_Manager</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Warehouse --></label>
+        <name>Warehouse</name>
+    </customApplications>
     <customLabels>
         <label><!-- Base URL --></label>
         <name>Base_URL</name>
@@ -28,4 +52,104 @@
         <label>Save</label>
         <name>Save</name>
     </customLabels>
+    <customTabs>
+        <label><!-- Query Builder --></label>
+        <name>Query_Builder</name>
+    </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Job Request --></label>
+        <name>New_Job_Request</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- CR1 --></description>
+        <label><!-- CR1 --></label>
+        <name>CR1</name>
+        <sections>
+            <label><!-- As --></label>
+            <name>As</name>
+        </sections>
+        <sections>
+            <label><!-- Cs --></label>
+            <name>Cs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Clients with Projects with Employee Project Juctions --></description>
+        <label><!-- Clients with Projects with Employee Project Juctions --></label>
+        <name>Clients_with_Projects_with_Employee_Project_Juctions</name>
+        <sections>
+            <label><!-- Clients --></label>
+            <name>Clients</name>
+        </sections>
+        <sections>
+            <label><!-- Employee Project Juctions --></label>
+            <name>Employee Project Juctions</name>
+        </sections>
+        <sections>
+            <label><!-- Projects --></label>
+            <name>Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Roles with EMPLOYEES with Employee Project Juctions --></description>
+        <label><!-- Roles with EMPLOYEES with Employee Project Juctions --></label>
+        <name>Roles_with_EMPLOYEES_with_Employee_Project_Juctions</name>
+        <sections>
+            <label><!-- Roles --></label>
+            <name>Roles</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Roles with EMPLOYEES with SALARY DETAILS --></description>
+        <label><!-- Roles with EMPLOYEES with SALARY DETAILS --></label>
+        <name>Roles_with_EMPLOYEES_with_SALARY_DETAILS</name>
+        <sections>
+            <label><!-- Roles --></label>
+            <name>Roles</name>
+        </sections>
+    </reportTypes>
 </Translations>

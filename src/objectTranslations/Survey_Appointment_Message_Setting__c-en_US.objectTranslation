@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Survey Appointment Message Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Survey Appointment Message Setting</value>
+    </caseValues>
+    <fields>
+        <label><!-- API Failure Message --></label>
+        <name>API_Failure_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- API Result Failure Message --></label>
+        <name>API_Result_Failure_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Failed to Reach Message --></label>
+        <name>Failed_to_Reach_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Success Message --></label>
+        <name>Success_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Today Timeout Message --></label>
+        <name>Today_Timeout_Message__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

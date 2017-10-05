@@ -29,8 +29,6 @@
             <casePriority>Medium</casePriority>
             <createTask>true</createTask>
             <emailAddress>sanketmandhare@outlook.com</emailAddress>
-            <emailServicesAddress>sanketmandhare@20xtpqkdekvsm45dc7blzzw54hi6m6ydrmfc0vw3joylu0xphi.7f-1zgqsuak.ap5.case.salesforce.com</emailServicesAddress>
-            <isVerified>true</isVerified>
             <routingName>RN</routingName>
             <saveEmailHeaders>false</saveEmailHeaders>
             <taskStatus>Completed</taskStatus>

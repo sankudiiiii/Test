@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AssignTo_User__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>AssignTo User</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Postal_Code__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Company Postal Code</label>
+        <length>6</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Event_Subject__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Event Subject</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reachable_Time_in_Seconds__c</fullName>
+        <externalId>false</externalId>
+        <label>Reachable Time in Seconds</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Survey Appointment Company Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>

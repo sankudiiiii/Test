@@ -82,4 +82,12 @@
         <label><!-- Fresher --></label>
         <name>Fresher</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- First Name should contain only alphabetic characters. --></errorMessage>
+        <name>Validate_FirstName</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Last Name should contain only alphabetic characters. --></errorMessage>
+        <name>Validate_LastName</name>
+    </validationRules>
 </CustomObjectTranslation>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Google Distance Matrix API Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Google Distance Matrix API Setting</value>
+    </caseValues>
+    <fields>
+        <label><!-- Base URL --></label>
+        <name>Base_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>Language__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response Type --></label>
+        <name>Response_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sensor --></label>
+        <name>Sensor__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

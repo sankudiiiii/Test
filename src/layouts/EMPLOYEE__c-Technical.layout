@@ -71,6 +71,10 @@
                 <behavior>Edit</behavior>
                 <field>Manager_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Image_del__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

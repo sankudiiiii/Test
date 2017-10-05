@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Survey Appointment Time Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Survey Appointment Time Setting</value>
+    </caseValues>
+    <fields>
+        <label><!-- End Time Hours --></label>
+        <name>End_Time_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time Minutes --></label>
+        <name>End_Time_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time Hours --></label>
+        <name>Start_Time_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time Minutes --></label>
+        <name>Start_Time_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Slot Difference --></label>
+        <name>Time_Slot_Difference__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

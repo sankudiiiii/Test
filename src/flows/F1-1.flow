@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>F1 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>F1</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>DR</name>
+        <label>DR</label>
+        <locationX>435</locationX>
+        <locationY>116</locationY>
+        <filters>
+            <field>Description__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>A</stringValue>
+            </value>
+        </filters>
+        <object>Role__c</object>
+    </recordDeletes>
+    <startElementReference>DR</startElementReference>
+</Flow>
