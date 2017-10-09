@@ -134,7 +134,7 @@
             <name>Status_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>4 AND (1 OR 2 OR 3)</booleanFilter>
         <criteriaItems>
             <field>Product2.IsActive</field>
@@ -160,7 +160,7 @@
             <name>Status_Update_Review</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Product2.Image_Document_Id__c</field>
             <operation>notEqual</operation>

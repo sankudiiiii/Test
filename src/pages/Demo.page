@@ -1,18 +1,49 @@
 <apex:page standardController="Account" extensions="Demo" docType="html-5.0">
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<!--from www  . j a va2  s . co  m-->
+<style>
+.ui-autocomplete {
+max-height: 100px;
+overflow-y: auto;
+/* prevent horizontal scrollbar */
+overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+height: 100px;
+}
+</style>
+  <script>
+  function fun(){
+$('[id$=inputfield]').autocomplete({ 
+               
+               source: function( request, response ) {
+                              
+                   console.log('request.term',request.term);
+               
+                   Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.Demo.getList}',request.term, function(result, event){
+                       response( result );
+                   });
+               },
+               select: function( event, ui ) {
+                   var terms =  [this.value];
+                   terms.pop();
+                   terms.push( ui.item.value );  
+                   this.value = terms;
+                   return false;
+               },
+               focus: function() {
+                   return false;
+               },
+            },{escape: true});
+            }
+</script></head>
 <apex:form >
-<apex:selectList value="{!str}" size="10" multiSelect="true" id="fieldPicklist">
-<apex:actionSupport action="{!abc}" event="onchange" rerender="qaz"/>
-<apex:selectOptions value="{!so}" />
-</apex:selectList>
-<apex:inputText list="{!lList}" />
+<apex:inputField id="inputfield" value="{!Account.Name}" onkeypress="fun()"/>
 </apex:form>
-<apex:pageblock id="qaz">
-<apex:outputtext value="{!str}"></apex:outputtext>
-<apex:repeat value="{!acc}" var="ac">
-<apex:repeat value="{!abc}" var="a">
-<apex:outputText value="{!ac[a]}">
-</apex:outputText>
-</apex:repeat>
-</apex:repeat>
-</apex:pageblock>
 </apex:page>
