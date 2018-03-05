@@ -4,6 +4,12 @@
 	<apex:inputText value="{!searchString}"/>
 	<apex:commandButton action="{!search}" value="SEARCH" rerender="conId,accId,oppId,lId"/>
 </apex:form>
+
+
+
+
+
+
 <apex:pageblocktable value="{!acclist}" var="acc" id="accId" style="display:{!if(isacc,"block","none")}">
 		<apex:facet name="header">Accounts</apex:facet>
 		<apex:column value="{!acc.name}"/>
